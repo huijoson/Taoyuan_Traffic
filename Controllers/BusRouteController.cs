@@ -37,7 +37,7 @@ namespace Taoyuan_Traffic.Controllers
         public async Task<IEnumerable<BusRouteDeserialize>> RetriveBusRouteData(string cacheName)
         {
             //Setting target Url
-            string targetURI = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/City/Taoyuan?$top=400&$format=JSON";
+            string targetURI = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/City/Taoyuan?$top=5000&$format=JSON";
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
             //Get Json String
@@ -65,11 +65,10 @@ namespace Taoyuan_Traffic.Controllers
             }
             IEnumerable<BusRoute> record;
             DataClassesDataContext db = new DataClassesDataContext();
-            
 
             record = (from o in db.BusRoute select o).AsEnumerable();
 
-            return View(record);
+            return View();
         }
     }
 }

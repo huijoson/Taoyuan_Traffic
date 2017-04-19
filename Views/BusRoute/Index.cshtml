@@ -1,23 +1,23 @@
-﻿@model IEnumerable<Taoyuan_Traffic.ViewModels.BusRouteDeserialize>
+﻿@model IEnumerable<Taoyuan_Traffic.Models.BusRoute>
 @{
     ViewBag.Title = "Index";
 }
-<h2>桃園動態公車API抓取</h2>
+<h2>桃園公車路線JSON抓取</h2>
 
-<table class="table" border="1">
-    @*@foreach(var item in Model)
+@*<table class="table" border="1">
+    @foreach(var item in model)
     {
         <tr>
-            <td>@item.Azimuth</td>
+            <td>@item.azimuth</td>
         </tr>
-    }*@
-    @foreach (var item in Model)
+    }
+    @foreach (var item in model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.RouteName)
+                @html.displayfor(modelitem => item.routename)
             </td>
         </tr>
     }
-</table>
+</table>*@
 

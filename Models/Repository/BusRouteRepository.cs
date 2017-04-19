@@ -93,8 +93,11 @@ namespace Taoyuan_Traffic.Models.Repository
             foreach (BusRouteDeserialize item in AddBusRouteSource)
             {
                 var newBusRoute = new BusRoute { };
-                if (item.SubRoutes.Count() > 0)
+                if (item.SubRoutes.Count() > 1)
                 {
+
+                    //newBusRoute = new BusRoute();
+                    //newBusRoute.RouteUID = item.RouteUID;
                     newBusRoute = new BusRoute
                     {
                         ID = count,
