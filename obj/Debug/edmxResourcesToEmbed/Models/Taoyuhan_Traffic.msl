@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Taoyuan_TrafficModelStoreContainer" CdmEntityContainer="Taoyuan_TrafficEntities">
+    <EntitySetMapping Name="BusDynamic">
+      <EntityTypeMapping TypeName="Taoyuan_TrafficModel.BusDynamic">
+        <MappingFragment StoreEntitySet="BusDynamic">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="PlateNumb" ColumnName="PlateNumb" />
+          <ScalarProperty Name="OperatorID" ColumnName="OperatorID" />
+          <ScalarProperty Name="RouteUID" ColumnName="RouteUID" />
+          <ScalarProperty Name="RouteID" ColumnName="RouteID" />
+          <ScalarProperty Name="RouteName" ColumnName="RouteName" />
+          <ScalarProperty Name="SubRouteUID" ColumnName="SubRouteUID" />
+          <ScalarProperty Name="SubRouteID" ColumnName="SubRouteID" />
+          <ScalarProperty Name="SubRouteName" ColumnName="SubRouteName" />
+          <ScalarProperty Name="Direction" ColumnName="Direction" />
+          <ScalarProperty Name="BusPosition" ColumnName="BusPosition" />
+          <ScalarProperty Name="Speed" ColumnName="Speed" />
+          <ScalarProperty Name="Azimuth" ColumnName="Azimuth" />
+          <ScalarProperty Name="DutyStatus" ColumnName="DutyStatus" />
+          <ScalarProperty Name="BusStatus" ColumnName="BusStatus" />
+          <ScalarProperty Name="MessageType" ColumnName="MessageType" />
+          <ScalarProperty Name="GPSTime" ColumnName="GPSTime" />
+          <ScalarProperty Name="TransTime" ColumnName="TransTime" />
+          <ScalarProperty Name="SrcRecTime" ColumnName="SrcRecTime" />
+          <ScalarProperty Name="SrcUpdateTime" ColumnName="SrcUpdateTime" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="Zh_tw" ColumnName="Zh_tw" />
+          <ScalarProperty Name="En" ColumnName="En" />
+          <ScalarProperty Name="PositionLat" ColumnName="PositionLat" />
+          <ScalarProperty Name="PositionLon" ColumnName="PositionLon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

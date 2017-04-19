@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Taoyuan_Traffic" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLSERVER;Initial Catalog=Taoyuan_Traffic;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Taoyuan_TrafficConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BusDynamic" Member="BusDynamic">
+    <Type Name="BusDynamic">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlateNumb" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="OperatorID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="RouteUID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="RouteID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SubRouteUID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SubRouteID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Direction" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Speed" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Azimuth" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DutyStatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BusStatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MessageType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GPSTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SrcRecTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SrcUpdateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PositionLat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PositionLon" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SubRouteName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RouteName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

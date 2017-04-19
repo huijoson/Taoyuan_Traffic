@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Taoyuan_TrafficModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BusDynamic">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="PlateNumb" Type="varchar" MaxLength="20" />
+    <Property Name="OperatorID" Type="varchar" MaxLength="20" />
+    <Property Name="RouteUID" Type="varchar" MaxLength="20" />
+    <Property Name="RouteID" Type="varchar" MaxLength="20" />
+    <Property Name="RouteName" Type="varchar" MaxLength="20" />
+    <Property Name="SubRouteUID" Type="varchar" MaxLength="20" />
+    <Property Name="SubRouteID" Type="varchar" MaxLength="20" />
+    <Property Name="SubRouteName" Type="varchar" MaxLength="20" />
+    <Property Name="Direction" Type="varchar" MaxLength="20" />
+    <Property Name="BusPosition" Type="varchar" MaxLength="20" />
+    <Property Name="Speed" Type="float" />
+    <Property Name="Azimuth" Type="float" />
+    <Property Name="DutyStatus" Type="varchar" MaxLength="10" />
+    <Property Name="BusStatus" Type="varchar" MaxLength="10" />
+    <Property Name="MessageType" Type="varchar" MaxLength="10" />
+    <Property Name="GPSTime" Type="datetime" />
+    <Property Name="TransTime" Type="datetime" />
+    <Property Name="SrcRecTime" Type="datetime" />
+    <Property Name="SrcUpdateTime" Type="datetime" />
+    <Property Name="UpdateTime" Type="datetime" />
+    <Property Name="Zh_tw" Type="varchar" MaxLength="20" />
+    <Property Name="En" Type="varchar" MaxLength="20" />
+    <Property Name="PositionLat" Type="float" />
+    <Property Name="PositionLon" Type="float" />
+  </EntityType>
+  <EntityContainer Name="Taoyuan_TrafficModelStoreContainer">
+    <EntitySet Name="BusDynamic" EntityType="Self.BusDynamic" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Taoyuan_Traffic.Models.BusDynamic>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>桃園動態公車API抓取</h2>
+
+<table class="table" border="1">
+    @foreach(var item in Model)
+    {
+        @*<tr>
+            <td>@item.Azimuth</td>
+        </tr>*@
+    }
+    @*@foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlateNumb)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OperatorID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RouteUID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RouteID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RouteName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubRouteUID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubRouteID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubRouteName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusPosition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Speed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Azimuth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DutyStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MessageType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GPSTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SrcUpdateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateTime)
+            </td>
+        </tr>
+    }*@
+</table>
+
