@@ -14,10 +14,9 @@ using Taoyuan_Traffic.Models.Interface;
 
 namespace Taoyuan_Traffic.Controllers
 {
-    public class BusDynamicController : Controller
+    public class BusRouteController : Controller
     {
-        
-        public async Task<IEnumerable<BusDynamicDeserialize>> GetBusDynamicData()
+        public async Task<IEnumerable<BusRouteDeserialize>> GetBusRouteData()
         {
             //setting cache
             string cacheName = "BusCache";
@@ -27,24 +26,24 @@ namespace Taoyuan_Traffic.Controllers
 
             if (cacheContents == null)
             {
-                return await RetriveBusDynamicData(cacheName);
+                return await RetriveBusRouteData(cacheName);
             }
             else
             {
-                return cacheContents.Value as IEnumerable<BusDynamicDeserialize>;
+                return cacheContents.Value as IEnumerable<BusRouteDeserialize>;
             }
         }
 
-        public async Task<IEnumerable<BusDynamicDeserialize>> RetriveBusDynamicData(string cacheName)
+        public async Task<IEnumerable<BusRouteDeserialize>> RetriveBusRouteData(string cacheName)
         {
             //Setting target Url
-            string targetURI = "http://ptx.transportdata.tw/MOTC/v2/Bus/RealTimeByFrequency/City/Taoyuan?$top=500&$format=JSON";
+            string targetURI = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/City/Taoyuan?$top=400&$format=JSON";
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
             //Get Json String
             var response = await client.GetStringAsync(targetURI);
             //Deserialize
-            var collection = JsonConvert.DeserializeObject<IEnumerable<BusDynamicDeserialize>>(response);
+            var collection = JsonConvert.DeserializeObject<IEnumerable<BusRouteDeserialize>>(response);
             //setting cache policy
             CacheItemPolicy policy = new CacheItemPolicy();
             policy.AbsoluteExpiration = DateTime.Now.AddMinutes(0.2);
@@ -55,24 +54,22 @@ namespace Taoyuan_Traffic.Controllers
             return collection;
         }
 
-        // GET: BusDynamic
+        // GET: BusRoute
         public async Task<ActionResult> Index()
         {
-            var BusDynamicSource = await this.GetBusDynamicData();
+            var BusRouteSource = await this.GetBusRouteData();
             //將JSON反序列化的資料填進資料庫中
-            using (IBusDynamic repos = DataFactory.BusDynamicRepository())
+            using (IBusRoute repos = DataFactory.BusRouteRepository())
             {
-                repos.AddBusInfo(BusDynamicSource);
+                repos.AddBusRoute(BusRouteSource);
             }
-            IEnumerable<BusDynamic> record;
+            IEnumerable<BusRoute> record;
             DataClassesDataContext db = new DataClassesDataContext();
             
 
-                ViewData.Model = BusDynamicSource;
+            record = (from o in db.BusRoute select o).AsEnumerable();
 
-                record = (from o in db.BusDynamic select o).AsEnumerable();
-             
-                return View(record);
+            return View(record);
         }
     }
 }

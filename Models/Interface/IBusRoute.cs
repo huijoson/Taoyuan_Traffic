@@ -4,7 +4,7 @@ using Taoyuan_Traffic.ViewModels;
 
 namespace Taoyuan_Traffic.Models.Interface
 {
-    public interface IBusDynamic:IDisposable
+    public interface IBusRoute:IDisposable
     {
         /// <summary>
         /// 傳回使用的資料庫實體
@@ -15,6 +15,6 @@ namespace Taoyuan_Traffic.Models.Interface
         /// 新增公車資訊
         /// </summary>
         /// <param name="q"></param>
-        void AddBusInfo(IEnumerable<BusDynamicDeserialize> AddBusDynamicSource);
+        void AddBusRoute(IEnumerable<BusRouteDeserialize> AddBusRouteSource);
     }
 }

@@ -27,6 +27,8 @@ D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\roslyn\VBCS
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\Taoyuan_Traffic.dll.config
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\Taoyuan_Traffic.dll
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\Taoyuan_Traffic.pdb
+D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\EntityFramework.dll
+D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\EntityFramework.SqlServer.dll
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\Microsoft.Web.Infrastructure.dll
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\Newtonsoft.Json.dll
@@ -39,6 +41,8 @@ D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\System.Web.
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\System.Web.Webpages.Deployment.dll
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\System.Web.Webpages.dll
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\System.Web.Webpages.Razor.dll
+D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\EntityFramework.xml
+D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\EntityFramework.SqlServer.xml
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\System.Web.Razor.xml
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\System.Web.Webpages.xml
@@ -50,6 +54,7 @@ D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\Newtonsoft.
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\System.Net.Http.Formatting.xml
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\System.Web.Http.xml
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\System.Web.Http.WebHost.xml
+D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\zh-Hant\EntityFramework.resources.dll
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\zh-Hant\System.Web.Razor.resources.dll
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\zh-Hant\System.Web.Webpages.resources.dll
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\zh-Hant\System.Web.Webpages.Deployment.resources.dll
@@ -61,9 +66,3 @@ D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\zh-Hant\Sys
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\zh-Hant\System.Web.Http.WebHost.resources.dll
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\obj\Debug\Taoyuan_Traffic.dll
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\obj\Debug\Taoyuan_Traffic.pdb
-D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\EntityFramework.dll
-D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\EntityFramework.SqlServer.dll
-D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\EntityFramework.xml
-D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\EntityFramework.SqlServer.xml
-D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\zh-Hant\EntityFramework.resources.dll
-D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\obj\Debug\Taoyuan_Traffic.csprojResolveAssemblyReference.cache

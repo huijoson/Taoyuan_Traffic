@@ -2,7 +2,7 @@
   <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLSERVER;Initial Catalog=Taoyuan_Traffic;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Taoyuan_TrafficConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.BusDynamic" Member="BusDynamic">
     <Type Name="BusDynamic">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="PlateNumb" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="OperatorID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="RouteUID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
@@ -23,6 +23,34 @@
       <Column Name="PositionLon" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="SubRouteName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="RouteName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BusRoute" Member="BusRoute">
+    <Type Name="BusRoute">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RouteUID" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="RouteID" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="OperatorIDs" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="AuthorityID" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="ProviderID" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="GoSubRouteUID" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="GoSubRouteID" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="GoOperatorIDs" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="GoSubRouteName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="GoHeadsign" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="GoDirection" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BackSubRouteUID" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="BackSubRouteID" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="BackOperatorIDs" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="BackSubRouteName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="BackHeadsign" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="BackDirection" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BusRouteType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RouteName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="DepartureStopNameZh" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="DestinationStopNameZh" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

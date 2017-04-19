@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Taoyuan_Traffic.Models
+namespace Taoyuan_Traffic.ViewModels
 {
 
     public class BusDynamicDeserialize
@@ -26,21 +26,5 @@ namespace Taoyuan_Traffic.Models
         public DateTime GPSTime { get; set; }
         public DateTime SrcUpdateTime { get; set; }
         public DateTime UpdateTime { get; set; }
-    }
-
-    public class Routename
-    {
-        public string Zh_tw { get; set; }
-    }
-
-    public class Subroutename
-    {
-        public string Zh_tw { get; set; }
-    }
-
-    public class Busposition
-    {
-        public float PositionLat { get; set; }
-        public float PositionLon { get; set; }
     }
 }

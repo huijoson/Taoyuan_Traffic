@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Taoyuan_Traffic.ViewModels;
 using Taoyuan_Traffic.Models.Interface;
 
 namespace Taoyuan_Traffic.Models.Repository
 {
-    public class BusDynamicRepository : IBusDynamic
-    {/// <summary>
+    public class BusDynamicRepository:IBusDynamic
+    {
+     /// <summary>
      /// (私有) 資料庫實體資料集合
      /// </summary>
         private DataClassesDataContext _db;
@@ -86,31 +88,35 @@ namespace Taoyuan_Traffic.Models.Repository
         /// </summary>
         public void AddBusInfo(IEnumerable<BusDynamicDeserialize> AddBusDynamicSource)
         {
+            var count = 1;
             _db.ExecuteCommand("DELETE FROM BusDynamic");
             foreach (BusDynamicDeserialize item in AddBusDynamicSource)
             {
                 var newBusInfo = new BusDynamic
                 {
-                    PlateNumb = item.PlateNumb,
-                    OperatorID = item.OperatorID,
-                    RouteUID = item.RouteUID,
-                    RouteID = item.RouteID,
-                    RouteName = item.RouteName.Zh_tw,
-                    SubRouteUID = item.SubRouteUID,
-                    SubRouteID = item.SubRouteID,
-                    SubRouteName = item.SubRouteName.Zh_tw,
-                    Direction = item.Direction,
-                    Speed = item.Speed,
-                    Azimuth = item.Azimuth,
-                    DutyStatus = item.DutyStatus,
-                    BusStatus = item.BusStatus,
-                    MessageType = item.MessageType,
-                    GPSTime = item.GPSTime,
-                    SrcUpdateTime = item.SrcUpdateTime,
-                    UpdateTime = item.UpdateTime,
-                    PositionLat = item.BusPosition.PositionLat,
-                    PositionLon = item.BusPosition.PositionLon
+                    ID = count,
+                    PlateNumb               = item.PlateNumb,
+                    OperatorID              = item.OperatorID,
+                    RouteUID                = item.RouteUID,
+                    RouteID                 = item.RouteID,
+                    RouteName               = item.RouteName.Zh_tw,
+                    SubRouteUID             = item.SubRouteUID,
+                    SubRouteID              = item.SubRouteID,
+                    SubRouteName            = item.SubRouteName.Zh_tw,
+                    Direction               = item.Direction,
+                    Speed                   = item.Speed,
+                    Azimuth                 = item.Azimuth,
+                    DutyStatus              = item.DutyStatus,
+                    BusStatus               = item.BusStatus,
+                    MessageType             = item.MessageType,
+                    GPSTime                 = item.GPSTime,
+                    SrcUpdateTime           = item.SrcUpdateTime,
+                    UpdateTime              = item.UpdateTime,
+                    PositionLat             = item.BusPosition.PositionLat,
+                    PositionLon             = item.BusPosition.PositionLon
+                    
                 };
+                count++;
                 _db.BusDynamic.InsertOnSubmit(newBusInfo);
                 _db.SubmitChanges();
             }

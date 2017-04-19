@@ -138,9 +138,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BusDynamicController.cs" />
+    <Compile Include="Controllers\BusRouteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Interface\IBusRoute.cs" />
+    <Compile Include="Models\Repository\BusRouteRepository.cs" />
     <Compile Include="ViewModels\BusDynamicDeserialize.cs" />
     <Compile Include="Models\DataClasses.designer.cs">
       <AutoGen>True</AutoGen>
@@ -151,6 +154,8 @@
     <Compile Include="Models\Interface\IBusDynamic.cs" />
     <Compile Include="Models\Repository\BusDynamicRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BusRouteDeserialize.cs" />
+    <Compile Include="ViewModels\PublicSub.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -162,6 +167,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\BusRoute\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
