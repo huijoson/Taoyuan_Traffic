@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.ViewModels;
 using Taoyuan_Traffic.Models.Interface;
+using System.Configuration;
 
 namespace Taoyuan_Traffic.Controllers
 {
@@ -37,7 +38,7 @@ namespace Taoyuan_Traffic.Controllers
         public async Task<IEnumerable<BusRouteDeserialize>> RetriveBusRouteData(string cacheName)
         {
             //Setting target Url
-            string targetURI = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/City/Taoyuan?$top=5000&$format=JSON";
+            string targetURI = ConfigurationManager.AppSettings["BusRouteURL"].ToString() + "?$format=JSON";
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
             //Get Json String
@@ -70,5 +71,27 @@ namespace Taoyuan_Traffic.Controllers
 
             return View();
         }
+
+        public ActionResult JsonAllRoute()
+        {
+            IBusRoute repos = DataFactory.BusRouteRepository();
+
+            return Content(JsonConvert.SerializeObject(repos.GetAllRoute()));
+        }
+
+        public async Task<ActionResult> JsonBusEstimatedInfo(string routeName)
+        {
+            //Setting target Url
+            string targetURI = ConfigurationManager.AppSettings["BusEstimatedTimeURL"].ToString() + "/" + routeName + "?$format=JSON";
+            HttpClient client = new HttpClient();
+            client.MaxResponseContentBufferSize = Int32.MaxValue;
+            //Get Json String
+            var response = await client.GetStringAsync(targetURI);
+            //Deserialize
+            var collection = JsonConvert.DeserializeObject(response);
+
+            return Content(JsonConvert.SerializeObject(collection));
+        }
+
     }
 }

@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.ViewModels;
 using Taoyuan_Traffic.Models.Interface;
+using System.Configuration;
 
 namespace Taoyuan_Traffic.Controllers
 {
@@ -38,7 +39,7 @@ namespace Taoyuan_Traffic.Controllers
         public async Task<IEnumerable<BusDynamicDeserialize>> RetriveBusDynamicData(string cacheName)
         {
             //Setting target Url
-            string targetURI = "http://ptx.transportdata.tw/MOTC/v2/Bus/RealTimeByFrequency/City/Taoyuan?$top=5000&$format=JSON";
+            string targetURI = ConfigurationManager.AppSettings["BusDynamicURL"].ToString() + "?$top=5000&$format=JSON";
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
             //Get Json String

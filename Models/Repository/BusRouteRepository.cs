@@ -155,5 +155,28 @@ namespace Taoyuan_Traffic.Models.Repository
                 _db.SubmitChanges();
             }
         }
+
+        /// <summary>
+        /// 取得所有路線
+        /// </summary>
+        public List<ViewModels.GetRoute> GetAllRoute()
+        {
+            List<ViewModels.GetRoute> routeList = (from o in _db.BusRoute
+                          select new ViewModels.GetRoute()
+                          {
+                              RouteUID = o.RouteUID,
+                              RouteID = o.RouteID,
+                              RouteName = o.RouteName,
+                              GoDirection = o.GoDirection.HasValue ? o.GoDirection.Value : 0,
+                              BackDirection = o.BackDirection.HasValue ? o.BackDirection.Value : 0,
+                              DepartureStopNameZh = o.DepartureStopNameZh,
+                              DestinationStopNameZh = o.DestinationStopNameZh,
+                              GoHeadsign = o.GoHeadsign,
+                              BackHeadsign = o.BackHeadsign
+                          }).ToList();
+
+            return routeList;
+        }
+
     }
 }
