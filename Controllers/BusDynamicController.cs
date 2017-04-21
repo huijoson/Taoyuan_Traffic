@@ -75,5 +75,19 @@ namespace Taoyuan_Traffic.Controllers
              
                 return View(record);
         }
+
+        public async Task<ActionResult> JsonRouteBusInfo(string routeName)
+        {
+            //Setting target Url
+            string targetURI = ConfigurationManager.AppSettings["BusDynamicInfoURL"].ToString() + "/" + routeName.ToString() + "?$format=JSON";
+            HttpClient client = new HttpClient();
+            client.MaxResponseContentBufferSize = Int32.MaxValue;
+            //Get Json String
+            var response = await client.GetStringAsync(targetURI);
+            //Deserialize
+            var collection = JsonConvert.DeserializeObject(response);
+
+            return Content(JsonConvert.SerializeObject(collection));
+        }
     }
 }

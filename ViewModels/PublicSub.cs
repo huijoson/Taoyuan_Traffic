@@ -35,4 +35,25 @@ namespace Taoyuan_Traffic.ViewModels
         public float PositionLon { get; set; }
     }
 
+    public class Stop
+    {
+        public string StopUID { get; set; }
+        public string StopID { get; set; }
+        public Stopname StopName { get; set; }
+        public int StopBoarding { get; set; }
+        public int StopSequence { get; set; }
+        public Stopposition StopPosition { get; set; }
+    }
+
+    public class Stopname
+    {
+        public string Zh_tw { get; set; }
+    }
+
+    public class Stopposition
+    {
+        public float PositionLat { get; set; }
+        public float PositionLon { get; set; }
+    }
+
 }

@@ -94,11 +94,11 @@ namespace Taoyuan_Traffic.Controllers
             return Content(JsonConvert.SerializeObject(collection));
         }
 
-        public ActionResult JsonSearchRoute(string keyWord)
+        public ActionResult JsonSearchRoute(string keyword)
         {
             IBusRoute repos = DataFactory.BusRouteRepository();
 
-            return Content(JsonConvert.SerializeObject(repos.GetSearchRoute(keyWord)));
+            return Content(JsonConvert.SerializeObject(repos.GetSearchRoute(keyword)));
         }
 
     }
