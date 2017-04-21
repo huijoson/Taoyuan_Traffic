@@ -79,10 +79,11 @@ namespace Taoyuan_Traffic.Controllers
             return Content(JsonConvert.SerializeObject(repos.GetAllRoute()));
         }
 
-        public async Task<ActionResult> JsonBusEstimatedInfo(string routeName)
+        public async Task<ActionResult> JsonBusEstimatedInfo(string routeName,string direction = "0'%20or%20Direction%20eq%20%20'1")
         {
             //Setting target Url
-            string targetURI = ConfigurationManager.AppSettings["BusEstimatedTimeURL"].ToString() + "/" + routeName + "?$format=JSON";
+            string targetURI = ConfigurationManager.AppSettings["BusEstimatedTimeURL"].ToString() +
+                "/" + routeName + "?$filter=Direction%20eq%20'" + direction + "'&$format=JSON";
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
             //Get Json String
@@ -91,6 +92,13 @@ namespace Taoyuan_Traffic.Controllers
             var collection = JsonConvert.DeserializeObject(response);
 
             return Content(JsonConvert.SerializeObject(collection));
+        }
+
+        public ActionResult JsonSearchRoute(string keyWord)
+        {
+            IBusRoute repos = DataFactory.BusRouteRepository();
+
+            return Content(JsonConvert.SerializeObject(repos.GetSearchRoute(keyWord)));
         }
 
     }

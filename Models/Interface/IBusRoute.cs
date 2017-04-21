@@ -18,5 +18,7 @@ namespace Taoyuan_Traffic.Models.Interface
         void AddBusRoute(IEnumerable<BusRouteDeserialize> AddBusRouteSource);
 
         List<ViewModels.GetRoute> GetAllRoute();
+
+        List<ViewModels.GetRoute> GetSearchRoute(string keyWord);
     }
 }

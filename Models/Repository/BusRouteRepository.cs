@@ -7,7 +7,7 @@ using Taoyuan_Traffic.Models.Interface;
 
 namespace Taoyuan_Traffic.Models.Repository
 {
-    public class BusRouteRepository:IBusRoute
+    public class BusRouteRepository : IBusRoute
     {
         /// <summary>
         /// (私有) 資料庫實體資料集合
@@ -162,21 +162,43 @@ namespace Taoyuan_Traffic.Models.Repository
         public List<ViewModels.GetRoute> GetAllRoute()
         {
             List<ViewModels.GetRoute> routeList = (from o in _db.BusRoute
-                          select new ViewModels.GetRoute()
-                          {
-                              RouteUID = o.RouteUID,
-                              RouteID = o.RouteID,
-                              RouteName = o.RouteName,
-                              GoDirection = o.GoDirection.HasValue ? o.GoDirection.Value : 0,
-                              BackDirection = o.BackDirection.HasValue ? o.BackDirection.Value : 0,
-                              DepartureStopNameZh = o.DepartureStopNameZh,
-                              DestinationStopNameZh = o.DestinationStopNameZh,
-                              GoHeadsign = o.GoHeadsign,
-                              BackHeadsign = o.BackHeadsign
-                          }).ToList();
+                                                   select new ViewModels.GetRoute()
+                                                   {
+                                                       RouteUID = o.RouteUID,
+                                                       RouteID = o.RouteID,
+                                                       RouteName = o.RouteName,
+                                                       GoDirection = o.GoDirection.HasValue ? o.GoDirection.Value : 0,
+                                                       BackDirection = o.BackDirection.HasValue ? o.BackDirection.Value : 0,
+                                                       DepartureStopNameZh = o.DepartureStopNameZh,
+                                                       DestinationStopNameZh = o.DestinationStopNameZh,
+                                                       GoHeadsign = o.GoHeadsign,
+                                                       BackHeadsign = o.BackHeadsign
+                                                   }).ToList();
 
             return routeList;
         }
 
+        public List<ViewModels.GetRoute> GetSearchRoute(string keyWord)
+        {
+            List<ViewModels.GetRoute> routeList = (from o in _db.BusRoute
+                                                   where o.DepartureStopNameZh.Contains(keyWord) |
+                                                         o.DestinationStopNameZh.Contains(keyWord) |
+                                                         o.GoHeadsign.Contains(keyWord) |
+                                                         o.RouteName.Contains(keyWord)
+                                                   select new ViewModels.GetRoute()
+                                                   {
+                                                       RouteUID = o.RouteUID,
+                                                       RouteID = o.RouteID,
+                                                       RouteName = o.RouteName,
+                                                       GoDirection = o.GoDirection.HasValue ? o.GoDirection.Value : 0,
+                                                       BackDirection = o.BackDirection.HasValue ? o.BackDirection.Value : 0,
+                                                       DepartureStopNameZh = o.DepartureStopNameZh,
+                                                       DestinationStopNameZh = o.DestinationStopNameZh,
+                                                       GoHeadsign = o.GoHeadsign,
+                                                       BackHeadsign = o.BackHeadsign
+                                                   }).ToList();
+
+            return routeList;
+        }
     }
 }
