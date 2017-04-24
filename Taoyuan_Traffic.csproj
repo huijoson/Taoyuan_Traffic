@@ -137,9 +137,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\BusDynamicController.cs" />
-    <Compile Include="Controllers\BusRouteController.cs" />
-    <Compile Include="Controllers\BusStopController.cs" />
+    <Compile Include="Controllers\V1\BusDynamicController.cs" />
+    <Compile Include="Controllers\V1\BusRouteController.cs" />
+    <Compile Include="Controllers\V1\BusStopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

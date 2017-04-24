@@ -14,10 +14,18 @@ namespace Taoyuan_Traffic
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "ApiV1",
+                url: "api/v1/{controller}/{action}",
+                namespaces: new string[] { "BusDynamicController.V1", "BusRouteController.V1", "BusStopController.V1" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            
         }
     }
 }

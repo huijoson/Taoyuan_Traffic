@@ -15,9 +15,10 @@ using System.Configuration;
 
 namespace Taoyuan_Traffic.Controllers
 {
-    public class BusRouteController : Controller
+    public class BusDynamicController : Controller
     {
-        public async Task<IEnumerable<BusRouteDeserialize>> GetBusRouteData()
+        
+        public async Task<IEnumerable<BusDynamicDeserialize>> GetBusDynamicData()
         {
             //setting cache
             string cacheName = "BusCache";
@@ -27,24 +28,25 @@ namespace Taoyuan_Traffic.Controllers
 
             if (cacheContents == null)
             {
-                return await RetriveBusRouteData(cacheName);
+                return await RetriveBusDynamicData(cacheName);
             }
             else
             {
-                return cacheContents.Value as IEnumerable<BusRouteDeserialize>;
+                return cacheContents.Value as IEnumerable<BusDynamicDeserialize>;
             }
         }
 
-        public async Task<IEnumerable<BusRouteDeserialize>> RetriveBusRouteData(string cacheName)
+        public async Task<IEnumerable<BusDynamicDeserialize>> RetriveBusDynamicData(string cacheName)
         {
             //Setting target Url
-            string targetURI = ConfigurationManager.AppSettings["BusRouteURL"].ToString() + "?$format=JSON";
+            string targetURI = ConfigurationManager.AppSettings["BusDynamicURL"].ToString() + "?$top=5000&$format=JSON";
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
+
             //Get Json String
             var response = await client.GetStringAsync(targetURI);
             //Deserialize
-            var collection = JsonConvert.DeserializeObject<IEnumerable<BusRouteDeserialize>>(response);
+            var collection = JsonConvert.DeserializeObject<IEnumerable<BusDynamicDeserialize>>(response);
             //setting cache policy
             CacheItemPolicy policy = new CacheItemPolicy();
             policy.AbsoluteExpiration = DateTime.Now.AddMinutes(0.2);
@@ -55,35 +57,30 @@ namespace Taoyuan_Traffic.Controllers
             return collection;
         }
 
-        // GET: BusRoute
+        // GET: BusDynamic
         public async Task<ActionResult> Index()
         {
-            var BusRouteSource = await this.GetBusRouteData();
+            var BusDynamicSource = await this.GetBusDynamicData();
             //將JSON反序列化的資料填進資料庫中
-            using (IBusRoute repos = DataFactory.BusRouteRepository())
+            using (IBusDynamic repos = DataFactory.BusDynamicRepository())
             {
-                repos.AddBusRoute(BusRouteSource);
+                repos.AddBusInfo(BusDynamicSource);
             }
-            IEnumerable<BusRoute> record;
+            IEnumerable<BusDynamic> record;
             DataClassesDataContext db = new DataClassesDataContext();
+            
 
-            record = (from o in db.BusRoute select o).AsEnumerable();
+                ViewData.Model = BusDynamicSource;
 
-            return View();
+                record = (from o in db.BusDynamic select o).AsEnumerable();
+             
+                return View(record);
         }
-
-        public ActionResult JsonAllRoute()
-        {
-            IBusRoute repos = DataFactory.BusRouteRepository();
-
-            return Content(JsonConvert.SerializeObject(repos.GetAllRoute()));
-        }
-
-        public async Task<ActionResult> JsonBusEstimatedInfo(string routeName,string direction = "0'%20or%20Direction%20eq%20%20'1")
+        //取得某路線公車動態資訊
+        public async Task<ActionResult> JsonRouteBusInfo(string routeName)
         {
             //Setting target Url
-            string targetURI = ConfigurationManager.AppSettings["BusEstimatedTimeURL"].ToString() +
-                "/" + routeName + "?$filter=Direction%20eq%20'" + direction + "'&$format=JSON";
+            string targetURI = ConfigurationManager.AppSettings["BusDynamicInfoURL"].ToString() + "/" + routeName.ToString() + "?$format=JSON";
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
             //Get Json String
@@ -91,15 +88,7 @@ namespace Taoyuan_Traffic.Controllers
             //Deserialize
             var collection = JsonConvert.DeserializeObject(response);
 
-            return Content(JsonConvert.SerializeObject(collection));
+            return Content(JsonConvert.SerializeObject(collection), "application/json");
         }
-
-        public ActionResult JsonSearchRoute(string keyword)
-        {
-            IBusRoute repos = DataFactory.BusRouteRepository();
-
-            return Content(JsonConvert.SerializeObject(repos.GetSearchRoute(keyword)));
-        }
-
     }
 }

@@ -15,7 +15,9 @@ namespace Taoyuan_Traffic.Controllers
 {
     public class BusStopController : Controller
     {
+        //用來暫存路線名稱
         public string routName = ""; 
+        //取得路線資訊並設快取
         public async Task<IEnumerable<BusStopDeserialize>> GetBusStopData()
         {
             //setting cache
@@ -62,7 +64,7 @@ namespace Taoyuan_Traffic.Controllers
 
             return View();
         }
-
+        //取得公車站牌資訊(用路由名稱)
         public async Task<ActionResult> JsonBusStopInfo(string routeName)
         {
             routName = routeName;
@@ -71,7 +73,7 @@ namespace Taoyuan_Traffic.Controllers
             IBusStop repos = DataFactory.BusStopRepository();
            
 
-            return Content(JsonConvert.SerializeObject(repos.GetBusStop(busStopSource)));
+            return Content(JsonConvert.SerializeObject(repos.GetBusStop(busStopSource)),"application/json");
         }
     }
 }
