@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Data.Linq;
 using System.Net.Http;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
@@ -13,11 +11,11 @@ using Taoyuan_Traffic.ViewModels;
 using Taoyuan_Traffic.Models.Interface;
 using System.Configuration;
 
-
 namespace Taoyuan_Traffic.Controllers
 {
-    public class BusStopController
+    public class BusStopController : Controller
     {
+        public string routName = ""; 
         public async Task<IEnumerable<BusStopDeserialize>> GetBusStopData()
         {
             //setting cache
@@ -39,7 +37,7 @@ namespace Taoyuan_Traffic.Controllers
         public async Task<IEnumerable<BusStopDeserialize>> RetriveBusStopData(string cacheName)
         {
             //Setting target Url
-            string targetURI = ConfigurationManager.AppSettings["BusStopURL"].ToString() + "?$format=JSON";
+            string targetURI = ConfigurationManager.AppSettings["BusStopURL"].ToString() + "/" + routName + "?$format=JSON";
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
             //Get Json String
@@ -60,19 +58,20 @@ namespace Taoyuan_Traffic.Controllers
         public async Task<ActionResult> Index()
         {
             var BusStopSource = await this.GetBusStopData();
-            DataClassesDataContext db = new DataClassesDataContext();
+
 
             return View();
         }
 
-        public async Task<ActionResult> JsonBusStopInfo()
+        public async Task<ActionResult> JsonBusStopInfo(string routeName)
         {
-            //Setting target Url
+            routName = routeName;
             var busStopSource = await this.GetBusStopData();
-            using (IBusStop repos = DataFactory.BusStopRepository())
-            { var temp = repos.GetBusStop(busStopSource); }
+            List<BusStopCustom> busStopList = new List<BusStopCustom>();
+            IBusStop repos = DataFactory.BusStopRepository();
+           
 
-            return View();
+            return Content(JsonConvert.SerializeObject(repos.GetBusStop(busStopSource)));
         }
     }
 }

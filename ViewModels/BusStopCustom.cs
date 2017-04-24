@@ -10,7 +10,7 @@ namespace Taoyuan_Traffic.ViewModels
         public Routename RouteName { get; set; }
         public int Direction { get; set; }
         public Stop[] Stops { get; set; }
-        public string UpdateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
         public DateTime UpdateTime { get; set; }
     }
 }

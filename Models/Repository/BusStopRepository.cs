@@ -83,9 +83,21 @@ namespace Taoyuan_Traffic.Models.Repository
 
         #endregion 實作IDisposable
 
-        public List<BusStopCustom GetBusStop(IEnumerable<BusStopDeserialize> busStopSource)
+        public List<BusStopCustom> GetBusStop(IEnumerable<BusStopDeserialize> busStopSource)
         {
-            return;
+            List<BusStopCustom> busStopCList = new List<BusStopCustom>();
+            foreach(BusStopDeserialize item in busStopSource)
+            {
+                BusStopCustom busStopC = new BusStopCustom();
+                busStopC.Direction = item.Direction;
+                busStopC.RouteName = item.RouteName;
+                busStopC.UpdateDate = item.UpdateDate;
+                busStopC.UpdateTime = item.UpdateTime;
+                busStopC.Stops = item.Stops;
+
+                busStopCList.Add(busStopC);
+            }
+            return busStopCList;
         }
     }
 }
