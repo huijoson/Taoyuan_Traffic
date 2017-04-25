@@ -200,5 +200,33 @@ namespace Taoyuan_Traffic.Models.Repository
 
             return routeList;
         }
+
+        public List<ViewModels.BusEstimatedTimeDeserialize> GetBusEstimatedTime(IEnumerable<BusEstimatedTimeDeserialize> busEstimated)
+        {
+            List<ViewModels.BusEstimatedTimeDeserialize> busEstimatedModelList = new List<BusEstimatedTimeDeserialize>();
+            
+            foreach (BusEstimatedTimeDeserialize item in busEstimated)
+            {
+                BusEstimatedTimeDeserialize busEstimatedModel = new BusEstimatedTimeDeserialize();
+                busEstimatedModel.PlateNumb = item.PlateNumb;
+                busEstimatedModel.StopUID = item.StopUID;
+                busEstimatedModel.StopID = item.StopID;
+                busEstimatedModel.StopName = item.StopName;
+                busEstimatedModel.RouteUID = item.RouteUID;
+                busEstimatedModel.RouteID = item.RouteID;
+                busEstimatedModel.RouteName = item.RouteName;
+                busEstimatedModel.SubRouteUID = item.SubRouteUID;
+                busEstimatedModel.SubRouteID = item.SubRouteID;
+                busEstimatedModel.SubRouteName = item.SubRouteName;
+                busEstimatedModel.Direction = item.Direction;
+                busEstimatedModel.MessageType = item.MessageType;
+                busEstimatedModel.NextBusTime = Convert.ToDateTime(item.NextBusTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                busEstimatedModel.SrcUpdateTime = Convert.ToDateTime(item.SrcUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                busEstimatedModel.UpdateTime = Convert.ToDateTime(item.UpdateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                busEstimatedModelList.Add(busEstimatedModel);
+            }
+
+            return busEstimatedModelList;
+        }
     }
 }

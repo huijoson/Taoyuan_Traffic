@@ -16,7 +16,7 @@ namespace Taoyuan_Traffic
             routes.MapRoute(
                 name: "ApiV1",
                 url: "api/v1/{controller}/{action}",
-                namespaces: new string[] { "BusDynamicController.V1", "BusRouteController.V1", "BusStopController.V1" }
+                namespaces: new string[] { "BusDynamicController", "BusRouteController", "BusStopController" }
             );
 
             routes.MapRoute(

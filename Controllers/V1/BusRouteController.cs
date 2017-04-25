@@ -89,9 +89,12 @@ namespace Taoyuan_Traffic.Controllers
             //Get Json String
             var response = await client.GetStringAsync(targetURI);
             //Deserialize
-            var collection = JsonConvert.DeserializeObject(response);
+            var collection = JsonConvert.DeserializeObject<IEnumerable<BusEstimatedTimeDeserialize>>(response);
 
-            return Content(JsonConvert.SerializeObject(collection), "application/json");
+            IBusRoute repos = DataFactory.BusRouteRepository();
+
+
+            return Content(JsonConvert.SerializeObject(repos.GetBusEstimatedTime(collection)), "application/json");
         }
         //關鍵字搜尋公車路線
         public ActionResult JsonSearchRoute(string keyword)

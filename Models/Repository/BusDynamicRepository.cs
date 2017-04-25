@@ -121,6 +121,38 @@ namespace Taoyuan_Traffic.Models.Repository
                 _db.SubmitChanges();
             }
         }
+
+        public List<BusDynamicDeserialize> GetBusDynamicInfo(IEnumerable<BusDynamicDeserialize> busDynamicCol)
+        {
+            List<ViewModels.BusDynamicDeserialize> busDynamicModelList = new List<BusDynamicDeserialize>();
+
+            foreach (BusDynamicDeserialize item in busDynamicCol)
+            {
+                BusDynamicDeserialize busDynamicModel = new BusDynamicDeserialize();
+
+                busDynamicModel.RouteID = item.RouteID;
+                busDynamicModel.PlateNumb = item.PlateNumb;
+                busDynamicModel.OperatorID = item.OperatorID;
+                busDynamicModel.RouteUID = item.RouteUID;
+                busDynamicModel.RouteName = item.RouteName;
+                busDynamicModel.SubRouteUID = item.SubRouteUID;
+                busDynamicModel.SubRouteID = item.SubRouteID;
+                busDynamicModel.SubRouteName = item.SubRouteName;
+                busDynamicModel.Direction = item.Direction;
+                busDynamicModel.BusPosition = item.BusPosition;
+                busDynamicModel.Speed = item.Speed;
+                busDynamicModel.Azimuth = item.Azimuth;
+                busDynamicModel.DutyStatus = item.DutyStatus;
+                busDynamicModel.BusStatus = item.BusStatus;
+                busDynamicModel.MessageType = item.MessageType;
+                busDynamicModel.GPSTime = Convert.ToDateTime(item.GPSTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                busDynamicModel.SrcUpdateTime = Convert.ToDateTime(item.SrcUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                busDynamicModel.UpdateTime = Convert.ToDateTime(item.UpdateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                busDynamicModelList.Add(busDynamicModel);
+            }
+
+            return busDynamicModelList;
+        }
     }
 
     

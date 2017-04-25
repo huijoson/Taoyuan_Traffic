@@ -147,6 +147,7 @@
     <Compile Include="Models\Interface\IBusStop.cs" />
     <Compile Include="Models\Repository\BusRouteRepository.cs" />
     <Compile Include="Models\Repository\BusStopRepository.cs" />
+    <Compile Include="ViewModels\BusDynamic.cs" />
     <Compile Include="ViewModels\BusDynamicDeserialize.cs" />
     <Compile Include="Models\DataClasses.designer.cs">
       <AutoGen>True</AutoGen>
@@ -157,6 +158,7 @@
     <Compile Include="Models\Interface\IBusDynamic.cs" />
     <Compile Include="Models\Repository\BusDynamicRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BusEstimatedTimeDeserialize.cs" />
     <Compile Include="ViewModels\BusStopCustom.cs" />
     <Compile Include="ViewModels\BusStopDeserialize.cs" />
     <Compile Include="ViewModels\GetRoute.cs" />

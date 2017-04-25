@@ -20,5 +20,7 @@ namespace Taoyuan_Traffic.Models.Interface
         List<ViewModels.GetRoute> GetAllRoute();
 
         List<ViewModels.GetRoute> GetSearchRoute(string keyWord);
+
+        List<ViewModels.BusEstimatedTimeDeserialize> GetBusEstimatedTime(IEnumerable<BusEstimatedTimeDeserialize> busEstimated);
     }
 }

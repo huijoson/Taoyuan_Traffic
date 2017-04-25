@@ -16,5 +16,6 @@ namespace Taoyuan_Traffic.Models.Interface
         /// </summary>
         /// <param name="q"></param>
         void AddBusInfo(IEnumerable<BusDynamicDeserialize> AddBusDynamicSource);
+        List<BusDynamicDeserialize> GetBusDynamicInfo(IEnumerable<BusDynamicDeserialize> busDynamicCol);
     }
 }

@@ -66,15 +66,13 @@ namespace Taoyuan_Traffic.Controllers
             {
                 repos.AddBusInfo(BusDynamicSource);
             }
-            IEnumerable<BusDynamic> record;
+
             DataClassesDataContext db = new DataClassesDataContext();
             
 
-                ViewData.Model = BusDynamicSource;
-
-                record = (from o in db.BusDynamic select o).AsEnumerable();
+            ViewData.Model = BusDynamicSource;
              
-                return View(record);
+            return View();
         }
         //取得某路線公車動態資訊
         public async Task<ActionResult> JsonRouteBusInfo(string routeName)
@@ -86,9 +84,11 @@ namespace Taoyuan_Traffic.Controllers
             //Get Json String
             var response = await client.GetStringAsync(targetURI);
             //Deserialize
-            var collection = JsonConvert.DeserializeObject(response);
+            var collection = JsonConvert.DeserializeObject<IEnumerable<BusDynamicDeserialize>>(response);
 
-            return Content(JsonConvert.SerializeObject(collection), "application/json");
+            IBusDynamic repos = DataFactory.BusDynamicRepository();
+
+            return Content(JsonConvert.SerializeObject(repos.GetBusDynamicInfo(collection)), "application/json");
         }
     }
 }
