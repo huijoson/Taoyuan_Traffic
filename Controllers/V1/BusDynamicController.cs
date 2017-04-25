@@ -66,11 +66,7 @@ namespace Taoyuan_Traffic.Controllers
             {
                 repos.AddBusInfo(BusDynamicSource);
             }
-
-            DataClassesDataContext db = new DataClassesDataContext();
-            
-
-            ViewData.Model = BusDynamicSource;
+           
              
             return View();
         }

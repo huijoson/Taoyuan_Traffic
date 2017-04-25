@@ -7,6 +7,8 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
+using cfg = System.Web.Configuration.WebConfigurationManager;
+using System.Net;
 
 namespace Taoyuan_Traffic
 {
@@ -17,7 +19,13 @@ namespace Taoyuan_Traffic
             // 應用程式啟動時執行的程式碼
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            var task = new runUriTask();
+            task.run();
         }
+
+        /// <summary>
+        /// 設定應用程式排程
+        /// </summary>
     }
 }
