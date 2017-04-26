@@ -62,6 +62,7 @@ namespace Taoyuan_Traffic
 
         private void DoRunURI()
         {
+            //更新路由資訊API
             string targetUrl = "http://192.168.1.111:1004/api/v1/BusDynamic/index";
             WebRequest request = WebRequest.Create(targetUrl) as HttpWebRequest;
             request.Method = WebRequestMethods.Http.Post;
@@ -91,7 +92,7 @@ namespace Taoyuan_Traffic
             }
             catch (Exception ex)
             {
-                
+                Log(ex.ToString());
             }
 
             string msg = String.Format("DoRunURI() at {0:yyyy/MM/dd HH:mm:ss}", DateTime.Now);

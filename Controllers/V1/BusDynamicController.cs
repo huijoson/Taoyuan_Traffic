@@ -12,11 +12,16 @@ using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.ViewModels;
 using Taoyuan_Traffic.Models.Interface;
 using System.Configuration;
+using System.Web.Http;
 
 namespace Taoyuan_Traffic.Controllers
 {
     public class BusDynamicController : Controller
     {
+        /// <summary>
+        /// 動態公車項目
+        /// </summary>
+        /// <returns></returns>
         
         public async Task<IEnumerable<BusDynamicDeserialize>> GetBusDynamicData()
         {
@@ -70,7 +75,11 @@ namespace Taoyuan_Traffic.Controllers
              
             return View();
         }
-        //取得某路線公車動態資訊
+        /// <summary>
+        /// 取得路線公車動態資訊
+        /// </summary>
+        /// <param name="routeName"></param>
+        /// <returns></returns>
         public async Task<ActionResult> JsonRouteBusInfo(string routeName)
         {
             //Setting target Url

@@ -15,6 +15,9 @@ using System.Configuration;
 
 namespace Taoyuan_Traffic.Controllers
 {
+    /// <summary>
+    /// 公車路線資訊
+    /// </summary>
     public class BusRouteController : Controller
     {
         public async Task<IEnumerable<BusRouteDeserialize>> GetBusRouteData()
@@ -71,14 +74,22 @@ namespace Taoyuan_Traffic.Controllers
 
             return View();
         }
-
+        /// <summary>
+        /// 取得所有桃園公車路線
+        /// </summary>
+        /// <returns></returns>
         public ActionResult JsonAllRoute()
         {
             IBusRoute repos = DataFactory.BusRouteRepository();
 
             return Content(JsonConvert.SerializeObject(repos.GetAllRoute()), "application/json");
         }
-        //取得公車路線資訊並轉成JSON輸出
+        /// <summary>
+        /// 取得公車路線資訊並轉成JSON輸出
+        /// </summary>
+        /// <param name="routeName">公車路線名稱</param>
+        /// <param name="direction">回、返(0、1)</param>
+        /// <returns></returns>
         public async Task<ActionResult> JsonBusEstimatedInfo(string routeName,string direction = "0'%20or%20Direction%20eq%20%20'1")
         {
             //Setting target Url
@@ -96,7 +107,11 @@ namespace Taoyuan_Traffic.Controllers
 
             return Content(JsonConvert.SerializeObject(repos.GetBusEstimatedTime(collection)), "application/json");
         }
-        //關鍵字搜尋公車路線
+        /// <summary>
+        /// 關鍵字搜尋公車路線
+        /// </summary>
+        /// <param name="keyword">關鍵字(路線名稱、路線代號)</param>
+        /// <returns></returns>
         public ActionResult JsonSearchRoute(string keyword)
         {
             IBusRoute repos = DataFactory.BusRouteRepository();

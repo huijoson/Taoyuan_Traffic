@@ -13,6 +13,9 @@ using System.Configuration;
 
 namespace Taoyuan_Traffic.Controllers
 {
+    /// <summary>
+    /// 站牌資訊
+    /// </summary>
     public class BusStopController : Controller
     {
         //用來暫存路線名稱
@@ -64,7 +67,12 @@ namespace Taoyuan_Traffic.Controllers
 
             return View();
         }
-        //取得公車站牌資訊(用路由名稱)
+
+        /// <summary>
+        /// 取得公車站牌資訊
+        /// </summary>
+        /// <param name="routeName">路線名稱</param>
+        /// <returns></returns>
         public async Task<ActionResult> JsonBusStopInfo(string routeName)
         {
             routName = routeName;
