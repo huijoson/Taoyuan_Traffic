@@ -274,6 +274,9 @@
             Sets up default options for <see cref="T:Microsoft.AspNetCore.Mvc.DataAnnotations.MvcDataAnnotationsLocalizationOptions"/>.
             </summary>
         </member>
+        <member name="M:Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.MvcDataAnnotationsLocalizationOptionsSetup.Configure(Microsoft.AspNetCore.Mvc.DataAnnotations.MvcDataAnnotationsLocalizationOptions)">
+            <inheritdoc />
+        </member>
         <member name="T:Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.MvcDataAnnotationsMvcOptionsSetup">
             <summary>
             Sets up default options for <see cref="T:Microsoft.AspNetCore.Mvc.MvcOptions"/>.

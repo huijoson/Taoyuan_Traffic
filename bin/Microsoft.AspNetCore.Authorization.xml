@@ -4,6 +4,40 @@
         <name>Microsoft.AspNetCore.Authorization</name>
     </assembly>
     <members>
+        <member name="F:Microsoft.Extensions.Internal.TaskCache.CompletedTask">
+            <summary>
+            A <see cref="T:System.Threading.Tasks.Task"/> that's already completed successfully.
+            </summary>
+            <remarks>
+            We're caching this in a static readonly field to make it more inlinable and avoid the volatile lookup done
+            by <c>Task.CompletedTask</c>.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Extensions.Internal.TaskCache`1.DefaultCompletedTask">
+            <summary>
+            Gets a completed <see cref="T:System.Threading.Tasks.Task"/> with the value of <c>default(T)</c>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions">
+            <summary>
+            Extension methods for setting up authorization services in an <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds authorization services to the specified <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />. 
+            </summary>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" /> to add services to.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> so that additional calls can be chained.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authorization.AuthorizationOptions})">
+            <summary>
+            Adds authorization services to the specified <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />. 
+            </summary>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" /> to add services to.</param>
+            <param name="configure">An action delegate to configure the provided <see cref="T:Microsoft.AspNetCore.Authorization.AuthorizationOptions"/>.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> so that additional calls can be chained.</returns>
+        </member>
         <member name="T:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute">
             <summary>
             Specifies that the class or method that this attribute is applied to does not require authorization.
@@ -109,6 +143,12 @@
         <member name="T:Microsoft.AspNetCore.Authorization.AuthorizationOptions">
             <summary>
             Provides programmatic configuration used by <see cref="T:Microsoft.AspNetCore.Authorization.IAuthorizationService"/> and <see cref="T:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Authorization.AuthorizationOptions.InvokeHandlersAfterFailure">
+            <summary>
+            Determines whether authentication handlers should be invoked after a failure.
+            Defaults to true.
             </summary>
         </member>
         <member name="P:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy">
@@ -414,6 +454,42 @@
         <member name="P:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.ActiveAuthenticationSchemes">
             <inheritdoc />
         </member>
+        <member name="T:Microsoft.AspNetCore.Authorization.DefaultAuthorizationEvaluator">
+            <summary>
+            Determines whether an authorization request was successful or not.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Authorization.DefaultAuthorizationEvaluator.HasFailed(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext)">
+            <summary>
+            Returns true, if authorization has failed.
+            </summary>
+            <param name="context">The authorization information.</param>
+            <returns>True if authorization has failed.</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Authorization.DefaultAuthorizationEvaluator.HasSucceeded(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext)">
+            <summary>
+            Returns true, if authorization has succeeded.
+            </summary>
+            <param name="context">The authorization information.</param>
+            <returns>True if authorization has succeeded.</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Authorization.DefaultAuthorizationHandlerContextFactory">
+            <summary>
+            A type used to provide a <see cref="T:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext"/> used for authorization.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Authorization.DefaultAuthorizationHandlerContextFactory.CreateContext(System.Collections.Generic.IEnumerable{Microsoft.AspNetCore.Authorization.IAuthorizationRequirement},System.Security.Claims.ClaimsPrincipal,System.Object)">
+            <summary>
+            Creates a <see cref="T:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext"/> used for authorization.
+            </summary>
+            <param name="requirements">The requirements to evaluate.</param>
+            <param name="user">The user to evaluate the requirements against.</param>
+            <param name="resource">
+            An optional resource the policy should be checked with.
+            If a resource is not required for policy evaluation you may pass null as the value.
+            </param>
+            <returns>The <see cref="T:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext"/>.</returns>
+        </member>
         <member name="T:Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider">
             <summary>
             The default implementation of a policy provider,
@@ -452,6 +528,17 @@
             <param name="handlers">The handlers used to fulfill <see cref="T:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement"/>s.</param>
             <param name="logger">The logger used to log messages, warnings and errors.</param>  
         </member>
+        <member name="M:Microsoft.AspNetCore.Authorization.DefaultAuthorizationService.#ctor(Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider,System.Collections.Generic.IEnumerable{Microsoft.AspNetCore.Authorization.IAuthorizationHandler},Microsoft.Extensions.Logging.ILogger{Microsoft.AspNetCore.Authorization.DefaultAuthorizationService},Microsoft.AspNetCore.Authorization.IAuthorizationHandlerContextFactory,Microsoft.AspNetCore.Authorization.IAuthorizationEvaluator,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Authorization.AuthorizationOptions})">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.AspNetCore.Authorization.DefaultAuthorizationService"/>.
+            </summary>
+            <param name="policyProvider">The <see cref="T:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider"/> used to provide policies.</param>
+            <param name="handlers">The handlers used to fulfill <see cref="T:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement"/>s.</param>
+            <param name="logger">The logger used to log messages, warnings and errors.</param>  
+            <param name="contextFactory">The <see cref="T:Microsoft.AspNetCore.Authorization.IAuthorizationHandlerContextFactory"/> used to create the context to handle the authorization.</param>  
+            <param name="evaluator">The <see cref="T:Microsoft.AspNetCore.Authorization.IAuthorizationEvaluator"/> used to determine if authorzation was successful.</param>  
+            <param name="options">The <see cref="T:Microsoft.AspNetCore.Authorization.AuthorizationOptions"/> used.</param>  
+        </member>
         <member name="M:Microsoft.AspNetCore.Authorization.DefaultAuthorizationService.AuthorizeAsync(System.Security.Claims.ClaimsPrincipal,System.Object,System.Collections.Generic.IEnumerable{Microsoft.AspNetCore.Authorization.IAuthorizationRequirement})">
             <summary>
             Checks if a user meets a specific set of requirements for the specified resource.
@@ -481,6 +568,25 @@
             Marker interface to enable the <see cref="T:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute"/>.
             </summary>
         </member>
+        <member name="T:Microsoft.AspNetCore.Authorization.IAuthorizationEvaluator">
+            <summary>
+            Determines whether an authorization request was successful or not.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Authorization.IAuthorizationEvaluator.HasFailed(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext)">
+            <summary>
+            Returns true, if authorization has failed.
+            </summary>
+            <param name="context">The authorization information.</param>
+            <returns>True if authorization has failed.</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Authorization.IAuthorizationEvaluator.HasSucceeded(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext)">
+            <summary>
+            Returns true, if authorization has succeeded.
+            </summary>
+            <param name="context">The authorization information.</param>
+            <returns>True if authorization has succeeded.</returns>
+        </member>
         <member name="T:Microsoft.AspNetCore.Authorization.IAuthorizationHandler">
             <summary>
             Classes implementing this interface are able to make a decision if authorization is allowed.
@@ -491,6 +597,23 @@
             Makes a decision if authorization is allowed.
             </summary>
             <param name="context">The authorization information.</param>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Authorization.IAuthorizationHandlerContextFactory">
+            <summary>
+            A type used to provide a <see cref="T:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext"/> used for authorization.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Authorization.IAuthorizationHandlerContextFactory.CreateContext(System.Collections.Generic.IEnumerable{Microsoft.AspNetCore.Authorization.IAuthorizationRequirement},System.Security.Claims.ClaimsPrincipal,System.Object)">
+            <summary>
+            Creates a <see cref="T:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext"/> used for authorization.
+            </summary>
+            <param name="requirements">The requirements to evaluate.</param>
+            <param name="user">The user to evaluate the requirements against.</param>
+            <param name="resource">
+            An optional resource the policy should be checked with.
+            If a resource is not required for policy evaluation you may pass null as the value.
+            </param>
+            <returns>The <see cref="T:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext"/>.</returns>
         </member>
         <member name="T:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider">
             <summary>
@@ -754,26 +877,6 @@
             <summary>
             At least one role must be specified.
             </summary>
-        </member>
-        <member name="T:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions">
-            <summary>
-            Extension methods for setting up authorization services in an <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            Adds authorization services to the specified <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />. 
-            </summary>
-            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" /> to add services to.</param>
-            <returns>The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> so that additional calls can be chained.</returns>
-        </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authorization.AuthorizationOptions})">
-            <summary>
-            Adds authorization services to the specified <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />. 
-            </summary>
-            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" /> to add services to.</param>
-            <param name="configure">An action delegate to configure the provided <see cref="T:Microsoft.AspNetCore.Authorization.AuthorizationOptions"/>.</param>
-            <returns>The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> so that additional calls can be chained.</returns>
         </member>
     </members>
 </doc>

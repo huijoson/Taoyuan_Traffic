@@ -28,12 +28,13 @@ namespace Taoyuan_Traffic
                         // about them, you can use the "Schemes" option as shown below.
                         //
                         //c.Schemes(new[] { "http", "https" });
+                        c.Schemes(new[] { "http"});
 
                         // Use "SingleApiVersion" to describe a single version API. Swagger 2.0 includes an "Info" object to
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "桃園交通API");
+                        c.SingleApiVersion("v1", "桃園交通資訊介接 API");
 
                         // If your API has multiple versions, use "MultipleApiVersions" instead of "SingleApiVersion".
                         // In this case, you must provide a lambda that tells Swashbuckle which actions should be
@@ -116,7 +117,7 @@ namespace Taoyuan_Traffic
                         // If you want to post-modify "complex" Schemas once they've been generated, across the board or for a
                         // specific type, you can wire up one or more Schema filters.
                         //
-                        //c.SchemaFilter<ApplySchemaVendorExtensions>();
+                        //c.SchemaFilter<`>();
 
                         // In a Swagger 2.0 document, complex types are typically declared globally and referenced by unique
                         // Schema Id. By default, Swashbuckle does NOT use the full type name in Schema Ids. In most cases, this
@@ -180,13 +181,13 @@ namespace Taoyuan_Traffic
                         // The file must be included in your project as an "Embedded Resource", and then the resource's
                         // "Logical Name" is passed to the method as shown below.
                         //
-                        //c.InjectStylesheet(containingAssembly, "Swashbuckle.Dummy.SwaggerExtensions.testStyles1.css");
+                        c.InjectStylesheet(thisAssembly, "Taoyuan_Traffic.CustomContent.dotnetlatest.css");
 
                         // Use the "InjectJavaScript" option to invoke one or more custom JavaScripts after the swagger-ui
                         // has loaded. The file must be included in your project as an "Embedded Resource", and then the resource's
                         // "Logical Name" is passed to the method as shown above.
                         //
-                        //c.InjectJavaScript(thisAssembly, "Swashbuckle.Dummy.SwaggerExtensions.testScript1.js");
+                        //c.InjectJavaScript(thisAssembly, "Taoyuan_Traffic.CustomContent.basic-auth.js");
 
                         // The swagger-ui renders boolean data types as a dropdown. By default, it provides "true" and "false"
                         // strings as the possible choices. You can use this option to change these to something else,
@@ -198,13 +199,13 @@ namespace Taoyuan_Traffic
                         // in a badge at the bottom of the page. Use these options to set a different validator URL or to disable the
                         // feature entirely.
                         //c.SetValidatorUrl("http://localhost/validator");
-                        //c.DisableValidator();
+                        c.DisableValidator();
 
                         // Use this option to control how the Operation listing is displayed.
                         // It can be set to "None" (default), "List" (shows operations for each resource),
                         // or "Full" (fully expanded: shows operations and their details).
                         //
-                        //c.DocExpansion(DocExpansion.List);
+                        c.DocExpansion(DocExpansion.List);
 
                         // Specify which HTTP operations will have the 'Try it out!' option. An empty paramter list disables
                         // it for all operations.
@@ -217,7 +218,7 @@ namespace Taoyuan_Traffic
                         // in your project as an "Embedded Resource", and then the resource's "Logical Name" is passed to
                         // the method as shown below.
                         //
-                        //c.CustomAsset("index", containingAssembly, "YourWebApiProject.SwaggerExtensions.index.html");
+                        c.CustomAsset("index", thisAssembly, "Taoyuan_Traffic.CustomContent.index.html");
 
                         // If your API has multiple versions and you've applied the MultipleApiVersions setting
                         // as described above, you can also enable a select box in the swagger-ui, that displays

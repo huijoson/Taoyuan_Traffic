@@ -53,4 +53,36 @@
       <Column Name="UpdateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.TraLine" Member="TraLine">
+    <Type Name="TraLine">
+      <Column Name="[LineNo]" Member="LineNo" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LineID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LineNameZh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LineNameEn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LineSectionNameZh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LineSectionNameEn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsBranch" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TraStation" Member="TraStation">
+    <Type Name="TraStation">
+      <Column Name="StationID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Zh_tw" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="En" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PositionLat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PositionLon" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="StationAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="StationPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OperatorID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="StationClass" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ReservationCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TraClass" Member="TraClass">
+    <Type Name="TraClass">
+      <Column Name="TrainClassificationID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Zh_tw" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="En" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

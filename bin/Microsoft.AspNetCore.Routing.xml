@@ -140,6 +140,20 @@
              faster when the the same type is used multiple times with ObjectToDictionary.
              </remarks>
         </member>
+        <member name="F:Microsoft.Extensions.Internal.TaskCache.CompletedTask">
+            <summary>
+            A <see cref="T:System.Threading.Tasks.Task"/> that's already completed successfully.
+            </summary>
+            <remarks>
+            We're caching this in a static readonly field to make it more inlinable and avoid the volatile lookup done
+            by <c>Task.CompletedTask</c>.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Extensions.Internal.TaskCache`1.DefaultCompletedTask">
+            <summary>
+            Gets a completed <see cref="T:System.Threading.Tasks.Task"/> with the value of <c>default(T)</c>.
+            </summary>
+        </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions">
             <summary>
             Contains extension methods to <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.
@@ -411,6 +425,25 @@
             Sets the given key as optional.
             </summary>
             <param name="key">The key.</param>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Routing.RouteCreationException">
+            <summary>
+            The exception that is thrown for invalid routes or constraints.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Routing.RouteCreationException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNetCore.Routing.RouteCreationException"/> class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Routing.RouteCreationException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNetCore.Routing.RouteCreationException"/> class with a specified error message
+            and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
         </member>
         <member name="P:Microsoft.AspNetCore.Routing.RouteOptions.LowercaseUrls">
             <summary>
@@ -725,6 +758,20 @@
         <member name="M:Microsoft.AspNetCore.Routing.Constraints.RequiredRouteConstraint.Match(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Routing.IRouter,System.String,Microsoft.AspNetCore.Routing.RouteValueDictionary,Microsoft.AspNetCore.Routing.RouteDirection)">
             <inheritdoc />
         </member>
+        <member name="T:Microsoft.AspNetCore.Routing.Constraints.StringRouteConstraint">
+            <summary>
+            Constrains a route parameter to contain only a specified strign.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Routing.Constraints.StringRouteConstraint.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNetCore.Routing.Constraints.StringRouteConstraint"/> class.
+            </summary>
+            <param name="value">The constraint value to match.</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Routing.Constraints.StringRouteConstraint.Match(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Routing.IRouter,System.String,Microsoft.AspNetCore.Routing.RouteValueDictionary,Microsoft.AspNetCore.Routing.RouteDirection)">
+            <inheritdoc />
+        </member>
         <member name="T:Microsoft.AspNetCore.Routing.Internal.RoutingMarkerService">
             <summary>
             A marker class used to determine if all the routing services were added
@@ -773,12 +820,12 @@
         </member>
         <member name="P:Microsoft.AspNetCore.Routing.Resources.DefaultHandler_MustBeSet">
             <summary>
-            A default handler must be set on the RouteCollection.
+            A default handler must be set on the {0}.
             </summary>
         </member>
-        <member name="M:Microsoft.AspNetCore.Routing.Resources.FormatDefaultHandler_MustBeSet">
+        <member name="M:Microsoft.AspNetCore.Routing.Resources.FormatDefaultHandler_MustBeSet(System.Object)">
             <summary>
-            A default handler must be set on the RouteCollection.
+            A default handler must be set on the {0}.
             </summary>
         </member>
         <member name="P:Microsoft.AspNetCore.Routing.Resources.DefaultInlineConstraintResolver_AmbiguousCtors">
@@ -999,6 +1046,16 @@
         <member name="M:Microsoft.AspNetCore.Routing.Resources.FormatUnableToFindServices(System.Object,System.Object,System.Object)">
             <summary>
             Unable to find the required services. Please add all the required services by calling '{0}.{1}' inside the call to '{2}' in the application startup code.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Routing.Resources.TemplateRoute_Exception">
+            <summary>
+            An error occurred while creating the route with name '{0}' and template '{1}'.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Routing.Resources.FormatTemplateRoute_Exception(System.Object,System.Object)">
+            <summary>
+            An error occurred while creating the route with name '{0}' and template '{1}'.
             </summary>
         </member>
         <member name="T:Microsoft.AspNetCore.Routing.Template.InlineConstraint">
@@ -1364,19 +1421,6 @@
             Gets the root of the <see cref="T:Microsoft.AspNetCore.Routing.Tree.UrlMatchingTree"/>.
             </summary>
         </member>
-        <member name="T:Microsoft.AspNetCore.Builder.RoutingBuilderExtensions">
-            <summary>
-            Extension methods for adding the <see cref="T:Microsoft.AspNetCore.Builder.RouterMiddleware"/> middleware to an <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/>.
-            </summary>
-        </member>
-        <member name="M:Microsoft.AspNetCore.Builder.RoutingBuilderExtensions.UseRouter(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Routing.IRouter)">
-            <summary>
-            Adds a <see cref="T:Microsoft.AspNetCore.Builder.RouterMiddleware"/> middleware to the specified <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> with the specified <see cref="T:Microsoft.AspNetCore.Routing.IRouter"/>.
-            </summary>
-            <param name="builder">The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> to add the middleware to.</param>
-            <param name="router">The <see cref="T:Microsoft.AspNetCore.Routing.IRouter"/> to use for routing requests.</param>
-            <returns>A reference to this instance after the operation has completed.</returns>
-        </member>
         <member name="T:Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions">
             <summary>
             Provides extension methods for <see cref="T:Microsoft.AspNetCore.Routing.IRouteBuilder"/> to add routes.
@@ -1399,7 +1443,7 @@
             <param name="name">The name of the route.</param>
             <param name="template">The URL pattern of the route.</param>
             <param name="defaults">
-            An object that contains default values for route parameters. The object's properties represent the names 
+            An object that contains default values for route parameters. The object's properties represent the names
             and values of the default values.
             </param>
             <returns>A reference to this instance after the operation has completed.</returns>
@@ -1442,6 +1486,28 @@
             An object that contains data tokens for the route. The object's properties represent the names and values
             of the data tokens.
             </param>
+            <returns>A reference to this instance after the operation has completed.</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.RoutingBuilderExtensions">
+            <summary>
+            Extension methods for adding the <see cref="T:Microsoft.AspNetCore.Builder.RouterMiddleware"/> middleware to an <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.RoutingBuilderExtensions.UseRouter(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Routing.IRouter)">
+            <summary>
+            Adds a <see cref="T:Microsoft.AspNetCore.Builder.RouterMiddleware"/> middleware to the specified <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> with the specified <see cref="T:Microsoft.AspNetCore.Routing.IRouter"/>.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> to add the middleware to.</param>
+            <param name="router">The <see cref="T:Microsoft.AspNetCore.Routing.IRouter"/> to use for routing requests.</param>
+            <returns>A reference to this instance after the operation has completed.</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.RoutingBuilderExtensions.UseRouter(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{Microsoft.AspNetCore.Routing.IRouteBuilder})">
+            <summary>
+            Adds a <see cref="T:Microsoft.AspNetCore.Builder.RouterMiddleware"/> middleware to the specified <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/>
+            with the <see cref="T:Microsoft.AspNetCore.Routing.IRouter"/> built from configured <see cref="T:Microsoft.AspNetCore.Routing.IRouteBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> to add the middleware to.</param>
+            <param name="action">An <see cref="T:System.Action`1"/> to configure the provided <see cref="T:Microsoft.AspNetCore.Routing.IRouteBuilder"/>.</param>
             <returns>A reference to this instance after the operation has completed.</returns>
         </member>
     </members>

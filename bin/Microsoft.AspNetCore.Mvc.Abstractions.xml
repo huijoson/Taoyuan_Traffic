@@ -254,11 +254,13 @@
         </member>
         <member name="M:Microsoft.AspNetCore.Mvc.IUrlHelper.Action(Microsoft.AspNetCore.Mvc.Routing.UrlActionContext)">
             <summary>
-            Generates a fully qualified or absolute URL specified by <see cref="T:Microsoft.AspNetCore.Mvc.Routing.UrlActionContext"/> for an action
-            method, which contains action name, controller name, route values, protocol to use, host name, and fragment.
+            Generates a URL with an absolute path for an action method, which contains the action
+            name, controller name, route values, protocol to use, host name, and fragment specified by
+            <see cref="T:Microsoft.AspNetCore.Mvc.Routing.UrlActionContext"/>. Generates an absolute URL if <see cref="P:Microsoft.AspNetCore.Mvc.Routing.UrlActionContext.Protocol"/> and
+            <see cref="P:Microsoft.AspNetCore.Mvc.Routing.UrlActionContext.Host"/> are non-<c>null</c>.
             </summary>
             <param name="actionContext">The context object for the generated URLs for an action method.</param>
-            <returns>The fully qualified or absolute URL to an action method.</returns>
+            <returns>The generated URL.</returns>
         </member>
         <member name="M:Microsoft.AspNetCore.Mvc.IUrlHelper.Content(System.String)">
             <summary>
@@ -273,43 +275,47 @@
         </member>
         <member name="M:Microsoft.AspNetCore.Mvc.IUrlHelper.IsLocalUrl(System.String)">
             <summary>
-            Returns a value that indicates whether the URL is local. A URL with an absolute path is considered local
-            if it does not have a host/authority part. URLs using virtual paths ('~/') are also local.
+            Returns a value that indicates whether the URL is local. A URL is considered local if it does not have a
+            host / authority part and it has an absolute path. URLs using virtual paths ('~/') are also local.
             </summary>
             <param name="url">The URL.</param>
             <returns><c>true</c> if the URL is local; otherwise, <c>false</c>.</returns>
             <example>
             <para>
             For example, the following URLs are considered local:
+            <code>
             /Views/Default/Index.html
             ~/Index.html
+            </code>
             </para>
             <para>
             The following URLs are non-local:
+            <code>
             ../Index.html
             http://www.contoso.com/
             http://localhost/Index.html
+            </code>
             </para>
             </example>
         </member>
         <member name="M:Microsoft.AspNetCore.Mvc.IUrlHelper.RouteUrl(Microsoft.AspNetCore.Mvc.Routing.UrlRouteContext)">
             <summary>
-            Generates a fully qualified or absolute URL specified by <see cref="T:Microsoft.AspNetCore.Mvc.Routing.UrlRouteContext"/>, which
-            contains the route name, the route values, protocol to use, host name and fragment.
+            Generates a URL with an absolute path, which contains the route name, route values, protocol to use, host
+            name, and fragment specified by <see cref="T:Microsoft.AspNetCore.Mvc.Routing.UrlRouteContext"/>. Generates an absolute URL if
+            <see cref="P:Microsoft.AspNetCore.Mvc.Routing.UrlActionContext.Protocol"/> and <see cref="P:Microsoft.AspNetCore.Mvc.Routing.UrlActionContext.Host"/> are non-<c>null</c>.
             </summary>
             <param name="routeContext">The context object for the generated URLs for a route.</param>
-            <returns>The fully qualified or absolute URL.</returns>
+            <returns>The generated URL.</returns>
         </member>
         <member name="M:Microsoft.AspNetCore.Mvc.IUrlHelper.Link(System.String,System.Object)">
             <summary>
-            Generates an absolute URL using the specified route name and values.
+            Generates an absolute URL for the specified <paramref name="routeName"/> and route
+            <paramref name="values"/>, which contains the protocol (such as "http" or "https") and host name from the
+            current request.
             </summary>
-            <param name="routeName">The name of the route that is used to generate the URL.</param>
-            <param name="values">An object that contains the route values.</param>
+            <param name="routeName">The name of the route that is used to generate URL.</param>
+            <param name="values">An object that contains route values.</param>
             <returns>The generated absolute URL.</returns>
-            <remarks>
-            The protocol and host is obtained from the current request.
-            </remarks>
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.Id">
             <summary>
@@ -327,9 +333,19 @@
             The set of constraints for this action. Must all be satisfied for the action to be selected.
             </summary>
         </member>
+        <member name="P:Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.Parameters">
+            <summary>
+            The set of parameters associated with this action.
+            </summary>
+        </member>
         <member name="P:Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.BoundProperties">
             <summary>
             The set of properties which are model bound.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.FilterDescriptors">
+            <summary>
+            The set of filters associated with this action.
             </summary>
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.DisplayName">
@@ -386,6 +402,44 @@
             </para>
             </remarks>
         </member>
+        <member name="T:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvoker">
+            <summary>
+            Defines an interface for invoking an MVC action.
+            </summary>
+            <remarks>
+            An <see cref="T:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvoker"/> is created for each request the MVC handles by querying the set of
+            <see cref="T:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider"/> instances. See <see cref="T:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider"/> for more information. 
+            </remarks>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvoker.InvokeAsync">
+            <summary>
+            Invokes an MVC action.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> which will complete when action processing has completed.</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider">
+            <summary>
+            Defines an interface for components that can create an <see cref="T:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvoker"/> for the
+            current request.
+            </summary>
+            <remarks>
+            <para>
+            <see cref="T:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider"/> instances form a pipeline that results in the creation of an
+            <see cref="T:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvoker"/>. The <see cref="T:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider"/> instances are ordered by
+            an ascending sort of the <see cref="P:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider.Order"/>.  
+            </para>
+            <para>
+            To create an <see cref="T:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvoker"/>, each provider has its <see cref="M:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider.OnProvidersExecuting(Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext)"/> method
+            called in sequence and given the same instance of <see cref="T:Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext"/>. Then each
+            provider has its <see cref="M:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider.OnProvidersExecuted(Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext)"/> method called in the reverse order. The result is
+            the value of <see cref="P:Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext.Result"/>.  
+            </para>
+            <para>
+            As providers are called in a predefined sequence, each provider has a chance to observe and decorate the
+            result of the providers that have already run. 
+            </para>
+            </remarks>
+        </member>
         <member name="P:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider.Order">
             <summary>
             Gets the order value for determining the order of execution of providers. Providers execute in
@@ -406,6 +460,19 @@
             is undefined.
             </para>
             </remarks>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider.OnProvidersExecuting(Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext)">
+            <summary>
+            Called to execute the provider. 
+            </summary>
+            <param name="context">The <see cref="T:Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext"/>.</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider.OnProvidersExecuted(Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext)">
+            <summary>
+            Called to execute the provider, after the <see cref="M:Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider.OnProvidersExecuting(Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext)"/> methods of all providers,
+            have been called.
+            </summary>
+            <param name="context">The <see cref="T:Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext"/>.</param>
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.Abstractions.Resources.ArgumentCannotBeNullOrEmpty">
             <summary>
@@ -1682,6 +1749,28 @@
             A context object for <see cref="M:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter.CanWriteResult(Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterCanWriteContext)"/>.
             </summary>
         </member>
+        <member name="M:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterCanWriteContext.#ctor">
+            <summary>
+            <para>
+            This constructor is obsolete and will be removed in a future version.
+            Please use <see cref="M:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterCanWriteContext.#ctor(Microsoft.AspNetCore.Http.HttpContext)"/> instead.
+            </para>
+            <para>
+            Creates a new <see cref="T:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterCanWriteContext"/>.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterCanWriteContext.#ctor(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Creates a new <see cref="T:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterCanWriteContext"/>.
+            </summary>
+            <param name="httpContext">The <see cref="P:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterCanWriteContext.HttpContext"/> for the current request.</param>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterCanWriteContext.HttpContext">
+            <summary>
+            Gets or sets the <see cref="P:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterCanWriteContext.HttpContext"/> context associated with the current operation.
+            </summary>
+        </member>
         <member name="P:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterCanWriteContext.ContentType">
             <summary>
             Gets or sets the content type to write to the response.
@@ -1716,11 +1805,6 @@
             <param name="writerFactory">The delegate used to create a <see cref="T:System.IO.TextWriter"/> for writing the response.</param>
             <param name="objectType">The <see cref="T:System.Type"/> of the object to write to the response.</param>
             <param name="object">The object to write to the response.</param>
-        </member>
-        <member name="P:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext.HttpContext">
-            <summary>
-            Gets or sets the <see cref="P:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext.HttpContext"/> context associated with the current operation.
-            </summary>
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext.WriterFactory">
             <summary>
@@ -1930,10 +2014,18 @@
         </member>
         <member name="M:Microsoft.AspNetCore.Mvc.ModelBinding.EnumGroupAndName.#ctor(System.String,System.String)">
             <summary>
-            Initializes a new instance of the EnumGroupAndName structure.
+            Initializes a new instance of the <see cref="T:Microsoft.AspNetCore.Mvc.ModelBinding.EnumGroupAndName"/> structure. This constructor should 
+            not be used in any site where localization is important.
             </summary>
             <param name="group">The group name.</param>
             <param name="name">The name.</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Mvc.ModelBinding.EnumGroupAndName.#ctor(System.String,System.Func{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNetCore.Mvc.ModelBinding.EnumGroupAndName"/> structure.
+            </summary>
+            <param name="group">The group name.</param>
+            <param name="name">A <see cref="T:System.Func`1"/> which will return the name.</param>
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.ModelBinding.EnumGroupAndName.Group">
             <summary>
@@ -2367,8 +2459,8 @@
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.ConvertEmptyStringToNull">
             <summary>
-            Gets a value indicating whether or not to convert an empty string value to <c>null</c> when
-            representing a model as text.
+            Gets a value indicating whether or not to convert an empty string value or one containing only whitespace
+            characters to <c>null</c> when representing a model as text.
             </summary>
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.DataTypeName">
@@ -2385,8 +2477,8 @@
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.DisplayFormatString">
             <summary>
-            Gets the composite format <see cref="T:System.String"/> (see
-            http://msdn.microsoft.com/en-us/library/txafckwd.aspx) used to display the model.
+            Gets the format string (see https://msdn.microsoft.com/en-us/library/txafckwd.aspx) used to display the
+            model.
             </summary>
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.DisplayName">
@@ -2396,8 +2488,7 @@
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.EditFormatString">
             <summary>
-            Gets the composite format <see cref="T:System.String"/> (see
-            http://msdn.microsoft.com/en-us/library/txafckwd.aspx) used to edit the model.
+            Gets the format string (see https://msdn.microsoft.com/en-us/library/txafckwd.aspx) used to edit the model.
             </summary>
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.ElementMetadata">
@@ -2890,7 +2981,7 @@
         </member>
         <member name="M:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Clear">
             <summary>
-            Removes all keys and values from ths instance of <see cref="T:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary"/>.
+            Removes all keys and values from this instance of <see cref="T:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary"/>.
             </summary>
         </member>
         <member name="M:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ContainsKey(System.String)">
@@ -3654,13 +3745,13 @@
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.Routing.UrlActionContext.Values">
             <summary>
-            The object that contains the route parameters that <see cref="M:Microsoft.AspNetCore.Mvc.IUrlHelper.Action(Microsoft.AspNetCore.Mvc.Routing.UrlActionContext)"/>
+            The object that contains the route values that <see cref="M:Microsoft.AspNetCore.Mvc.IUrlHelper.Action(Microsoft.AspNetCore.Mvc.Routing.UrlActionContext)"/>
             uses to generate URLs.
             </summary>
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.Routing.UrlActionContext.Protocol">
             <summary>
-            The protocol for the URLs that <see cref="M:Microsoft.AspNetCore.Mvc.IUrlHelper.Action(Microsoft.AspNetCore.Mvc.Routing.UrlActionContext)"/> generates
+            The protocol for the URLs that <see cref="M:Microsoft.AspNetCore.Mvc.IUrlHelper.Action(Microsoft.AspNetCore.Mvc.Routing.UrlActionContext)"/> generates,
             such as "http" or "https"
             </summary>
         </member>
@@ -3686,12 +3777,13 @@
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.Routing.UrlRouteContext.Values">
             <summary>
-            The object that contains the route values for the generated URLs.
+            The object that contains the route values that <see cref="M:Microsoft.AspNetCore.Mvc.IUrlHelper.RouteUrl(Microsoft.AspNetCore.Mvc.Routing.UrlRouteContext)"/>
+            uses to generate URLs.
             </summary>
         </member>
         <member name="P:Microsoft.AspNetCore.Mvc.Routing.UrlRouteContext.Protocol">
             <summary>
-            The protocol for the URLs that <see cref="M:Microsoft.AspNetCore.Mvc.IUrlHelper.RouteUrl(Microsoft.AspNetCore.Mvc.Routing.UrlRouteContext)"/> generates
+            The protocol for the URLs that <see cref="M:Microsoft.AspNetCore.Mvc.IUrlHelper.RouteUrl(Microsoft.AspNetCore.Mvc.Routing.UrlRouteContext)"/> generates,
             such as "http" or "https"
             </summary>
         </member>

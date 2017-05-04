@@ -4,6 +4,29 @@
         <name>Microsoft.AspNetCore.JsonPatch</name>
     </assembly>
     <members>
+        <member name="T:Microsoft.Extensions.Internal.ClosedGenericMatcher">
+            <summary>
+            Helper related to generic interface definitions and implementing classes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Internal.ClosedGenericMatcher.ExtractGenericInterface(System.Type,System.Type)">
+            <summary>
+            Determine whether <paramref name="queryType"/> is or implements a closed generic <see cref="T:System.Type"/>
+            created from <paramref name="interfaceType"/>.
+            </summary>
+            <param name="queryType">The <see cref="T:System.Type"/> of interest.</param>
+            <param name="interfaceType">The open generic <see cref="T:System.Type"/> to match. Usually an interface.</param>
+            <returns>
+            The closed generic <see cref="T:System.Type"/> created from <paramref name="interfaceType"/> that
+            <paramref name="queryType"/> is or implements. <c>null</c> if the two <see cref="T:System.Type"/>s have no such
+            relationship.
+            </returns>
+            <remarks>
+            This method will return <paramref name="queryType"/> if <paramref name="interfaceType"/> is
+            <c>typeof(KeyValuePair{,})</c>, and <paramref name="queryType"/> is
+            <c>typeof(KeyValuePair{string, object})</c>.
+            </remarks>
+        </member>
         <member name="M:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.Add(System.String,System.Object)">
             <summary>
             Add operation.  Will result in, for example,
@@ -50,20 +73,20 @@
         </member>
         <member name="M:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)">
             <summary>
-            Apply this JsonPatchDocument 
+            Apply this JsonPatchDocument
             </summary>
             <param name="objectToApplyTo">Object to apply the JsonPatchDocument to</param>
         </member>
         <member name="M:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object,System.Action{Microsoft.AspNetCore.JsonPatch.JsonPatchError})">
             <summary>
-            Apply this JsonPatchDocument 
+            Apply this JsonPatchDocument
             </summary>
             <param name="objectToApplyTo">Object to apply the JsonPatchDocument to</param>
             <param name="logErrorAction">Action to log errors</param>
         </member>
         <member name="M:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object,Microsoft.AspNetCore.JsonPatch.Adapters.IObjectAdapter)">
             <summary>
-            Apply this JsonPatchDocument  
+            Apply this JsonPatchDocument
             </summary>
             <param name="objectToApplyTo">Object to apply the JsonPatchDocument to</param>
             <param name="adapter">IObjectAdapter instance to use when applying</param>
@@ -233,7 +256,7 @@
             Copy from a property to a location in a list
             </summary>
             <typeparam name="TProp"></typeparam>
-            <param name="from">source location</param>      
+            <param name="from">source location</param>
             <param name="path">target location</param>
             <param name="positionTo">position</param>
             <returns></returns>
@@ -270,20 +293,20 @@
         </member>
         <member name="M:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument`1.ApplyTo(`0)">
             <summary>
-            Apply this JsonPatchDocument 
+            Apply this JsonPatchDocument
             </summary>
             <param name="objectToApplyTo">Object to apply the JsonPatchDocument to</param>
         </member>
         <member name="M:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument`1.ApplyTo(`0,System.Action{Microsoft.AspNetCore.JsonPatch.JsonPatchError})">
             <summary>
-            Apply this JsonPatchDocument 
+            Apply this JsonPatchDocument
             </summary>
             <param name="objectToApplyTo">Object to apply the JsonPatchDocument to</param>
             <param name="logErrorAction">Action to log errors</param>
         </member>
         <member name="M:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument`1.ApplyTo(`0,Microsoft.AspNetCore.JsonPatch.Adapters.IObjectAdapter)">
             <summary>
-            Apply this JsonPatchDocument  
+            Apply this JsonPatchDocument
             </summary>
             <param name="objectToApplyTo">Object to apply the JsonPatchDocument to</param>
             <param name="adapter">IObjectAdapter instance to use when applying</param>
@@ -455,7 +478,7 @@
             Remove is used by various operations (eg: remove, move, ...), yet through different operations;
             This method allows code reuse yet reporting the correct operation on error.  The return value
             contains the type of the item that has been removed (and a bool possibly signifying an error)
-            This can be used by other methods, like replace, to ensure that we can pass in the correctly 
+            This can be used by other methods, like replace, to ensure that we can pass in the correctly
             typed value to whatever method follows.
             </summary>
         </member>
@@ -505,15 +528,6 @@
              <param name="operation">The copy operation.</param>
              <param name="objectToApplyTo">Object to apply the operation to.</param>
         </member>
-        <member name="M:Microsoft.AspNetCore.JsonPatch.Adapters.ObjectAdapter.GetValueAtLocation(System.String,System.Object,Microsoft.AspNetCore.JsonPatch.Operations.Operation)">
-            <summary>
-            Method is used by Copy and Move to avoid duplicate code
-            </summary>
-            <param name="location">Location where value should be</param>
-            <param name="objectToGetValueFrom">Object to inspect for the desired value</param>
-            <param name="operationToReport">Operation to report in case of an error</param>
-            <returns>GetValueResult containing value and a bool signifying a possible error</returns>
-        </member>
         <member name="T:Microsoft.AspNetCore.JsonPatch.Helpers.GetValueResult">
             <summary>
             Return value for the helper method used by Copy/Move.  Needed to ensure we can make a different
@@ -528,30 +542,6 @@
             </summary>
         </member>
         <member name="P:Microsoft.AspNetCore.JsonPatch.Helpers.GetValueResult.HasError">
-            <summary>
-            HasError: true when an error occurred, the operation didn't complete succesfully
-            </summary>
-        </member>
-        <member name="T:Microsoft.AspNetCore.JsonPatch.Helpers.RemovedPropertyTypeResult">
-            <summary>
-            Return value for Remove operation.  The combination tells us what to do next (if this operation
-            is called from inside another operation, eg: Replace, Copy.
-            
-            Possible combo:
-            - ActualType contains type: operation succesfully completed, can continue when called from inside
-              another operation
-            - ActualType null and HasError true: operation not completed succesfully, should not be allowed to continue
-            - ActualType null and HasError false: operation completed succesfully, but we should not be allowed to 
-              continue when called from inside another method as we could not verify the type of the removed property.
-              This happens when the value of an item in an ExpandoObject dictionary is null.
-            </summary>
-        </member>
-        <member name="P:Microsoft.AspNetCore.JsonPatch.Helpers.RemovedPropertyTypeResult.ActualType">
-            <summary>
-            The type of the removed property (value)
-            </summary>
-        </member>
-        <member name="P:Microsoft.AspNetCore.JsonPatch.Helpers.RemovedPropertyTypeResult.HasError">
             <summary>
             HasError: true when an error occurred, the operation didn't complete succesfully
             </summary>
@@ -586,6 +576,16 @@
             The type of the property at path '{0}' could not be determined.
             </summary>
         </member>
+        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.CannotPerformOperation">
+            <summary>
+            The '{0}' operation at path '{1}' could not be performed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatCannotPerformOperation(System.Object,System.Object)">
+            <summary>
+            The '{0}' operation at path '{1}' could not be performed.
+            </summary>
+        </member>
         <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.CannotReadProperty">
             <summary>
             The property at '{0}' could not be read.
@@ -606,24 +606,24 @@
             The property at path '{0}' could not be updated.
             </summary>
         </member>
-        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.DictionaryKeyNotFound">
+        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.IndexOutOfBounds">
             <summary>
-            The key '{0}' was not found.
+            The index value provided by path segment '{0}' is out of bounds of the array size.
             </summary>
         </member>
-        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatDictionaryKeyNotFound(System.Object)">
+        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatIndexOutOfBounds(System.Object)">
             <summary>
-            The key '{0}' was not found.
+            The index value provided by path segment '{0}' is out of bounds of the array size.
             </summary>
         </member>
-        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.InvalidIndexForArrayProperty">
+        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.InvalidIndexValue">
             <summary>
-            For operation '{0}' on array property at path '{1}', the index is larger than the array size.
+            The path segment '{0}' is invalid for an array index.
             </summary>
         </member>
-        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatInvalidIndexForArrayProperty(System.Object,System.Object)">
+        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatInvalidIndexValue(System.Object)">
             <summary>
-            For operation '{0}' on array property at path '{1}', the index is larger than the array size.
+            The path segment '{0}' is invalid for an array index.
             </summary>
         </member>
         <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.InvalidJsonPatchDocument">
@@ -636,14 +636,14 @@
             The type '{0}' was malformed and could not be parsed.
             </summary>
         </member>
-        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.InvalidPathForArrayProperty">
+        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.InvalidJsonPatchOperation">
             <summary>
-            For operation '{0}', the provided path is invalid for array property at path '{1}'.
+            Invalid JsonPatch operation '{0}'.
             </summary>
         </member>
-        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatInvalidPathForArrayProperty(System.Object,System.Object)">
+        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatInvalidJsonPatchOperation(System.Object)">
             <summary>
-            For operation '{0}', the provided path is invalid for array property at path '{1}'.
+            Invalid JsonPatch operation '{0}'.
             </summary>
         </member>
         <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.InvalidValueForPath">
@@ -658,22 +658,12 @@
         </member>
         <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.InvalidValueForProperty">
             <summary>
-            The value '{0}' is invalid for property at path '{1}'.
+            The value '{0}' is invalid for target location.
             </summary>
         </member>
-        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatInvalidValueForProperty(System.Object,System.Object)">
+        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatInvalidValueForProperty(System.Object)">
             <summary>
-            The value '{0}' is invalid for property at path '{1}'.
-            </summary>
-        </member>
-        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.NegativeIndexForArrayProperty">
-            <summary>
-            For operation '{0}' on array property at path '{1}', the index is negative.
-            </summary>
-        </member>
-        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatNegativeIndexForArrayProperty(System.Object,System.Object)">
-            <summary>
-            For operation '{0}' on array property at path '{1}', the index is negative.
+            The value '{0}' is invalid for target location.
             </summary>
         </member>
         <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.ParameterMustMatchType">
@@ -686,34 +676,44 @@
             '{0}' must be of type '{1}'.
             </summary>
         </member>
-        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.PropertyCannotBeAdded">
+        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.PatchNotSupportedForArrays">
             <summary>
-            The property at path '{0}' could not be added.
+            The type '{0}' which is an array is not supported for json patch operations as it has a fixed size.
             </summary>
         </member>
-        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatPropertyCannotBeAdded(System.Object)">
+        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatPatchNotSupportedForArrays(System.Object)">
             <summary>
-            The property at path '{0}' could not be added.
+            The type '{0}' which is an array is not supported for json patch operations as it has a fixed size.
             </summary>
         </member>
-        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.PropertyCannotBeRemoved">
+        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.PatchNotSupportedForNonGenericLists">
             <summary>
-            The property at path '{0}' could not be removed.
+            The type '{0}' which is a non generic list is not supported for json patch operations. Only generic list types are supported.
             </summary>
         </member>
-        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatPropertyCannotBeRemoved(System.Object)">
+        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatPatchNotSupportedForNonGenericLists(System.Object)">
             <summary>
-            The property at path '{0}' could not be removed.
+            The type '{0}' which is a non generic list is not supported for json patch operations. Only generic list types are supported.
             </summary>
         </member>
-        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.PropertyDoesNotExist">
+        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.TargetLocationAtPathSegmentNotFound">
             <summary>
-            Property does not exist at path '{0}'.
+            The target location specified by path segment '{0}' was not found.
             </summary>
         </member>
-        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatPropertyDoesNotExist(System.Object)">
+        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatTargetLocationAtPathSegmentNotFound(System.Object)">
             <summary>
-            Property does not exist at path '{0}'.
+            The target location specified by path segment '{0}' was not found.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.TargetLocationNotFound">
+            <summary>
+            For operation '{0}', the target location specified by path '{1}' was not found.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.JsonPatch.Resources.FormatTargetLocationNotFound(System.Object,System.Object)">
+            <summary>
+            For operation '{0}', the target location specified by path '{1}' was not found.
             </summary>
         </member>
         <member name="P:Microsoft.AspNetCore.JsonPatch.Resources.TestOperationNotSupported">

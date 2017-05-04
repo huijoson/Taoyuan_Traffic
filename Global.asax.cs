@@ -23,9 +23,5 @@ namespace Taoyuan_Traffic
             var task = new runUriTask();
             task.run();
         }
-
-        /// <summary>
-        /// 設定應用程式排程
-        /// </summary>
     }
 }

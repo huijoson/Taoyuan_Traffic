@@ -39,6 +39,14 @@
             <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IMvcBuilder"/>.</param>
             <param name="setupAction">The <see cref="T:Microsoft.AspNetCore.Mvc.MvcJsonOptions"/> which need to be configured.</param>
         </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.MvcJsonMvcCoreBuilderExtensions.AddJsonOptions(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder,System.Action{Microsoft.AspNetCore.Mvc.MvcJsonOptions})">
+            <summary>
+            Adds configuration of <see cref="T:Microsoft.AspNetCore.Mvc.MvcJsonOptions"/> for the application.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder"/>.</param>
+            <param name="setupAction">The <see cref="T:Microsoft.AspNetCore.Mvc.MvcJsonOptions"/> which need to be configured.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder"/>.</returns>
+        </member>
         <member name="T:Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter">
             <summary>
             A <see cref="T:Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter"/> for JSON content.
@@ -231,15 +239,6 @@
             <summary>
             Sets up JSON formatter options for <see cref="T:Microsoft.AspNetCore.Mvc.MvcOptions"/>.
             </summary>
-        </member>
-        <member name="M:Microsoft.AspNetCore.Mvc.Formatters.Json.Internal.MvcJsonMvcOptionsSetup.#ctor(Microsoft.Extensions.Logging.ILoggerFactory,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Mvc.MvcJsonOptions},System.Buffers.ArrayPool{System.Char},Microsoft.Extensions.ObjectPool.ObjectPoolProvider)">
-            <summary>
-            Intiailizes a new instance of <see cref="T:Microsoft.AspNetCore.Mvc.Formatters.Json.Internal.MvcJsonMvcOptionsSetup"/>.
-            </summary>
-            <param name="loggerFactory">The <see cref="T:Microsoft.Extensions.Logging.ILoggerFactory"/>.</param>
-            <param name="jsonOptions"></param>
-            <param name="charPool"></param>
-            <param name="objectPoolProvider"></param>
         </member>
         <member name="T:Microsoft.AspNetCore.Mvc.JsonPatchExtensions">
             <summary>

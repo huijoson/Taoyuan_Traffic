@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -38,7 +39,7 @@ namespace Taoyuan_Traffic
 
         private void TaskLoop()
         {
-            const int LoopIntervalInMinutes = 1000 * 30 * 1;
+            const int LoopIntervalInMinutes = 1000 * 10800 * 1;
 
             Log("TaskLoop on thread ID: " + Thread.CurrentThread.ManagedThreadId.ToString());
             while (!_stopping)
@@ -63,7 +64,7 @@ namespace Taoyuan_Traffic
         private void DoRunURI()
         {
             //更新路由資訊API
-            string targetUrl = "http://192.168.1.111:1004/api/v1/BusDynamic/index";
+            string targetUrl = ConfigurationManager.AppSettings["TaskAllRouteURL"].ToString();
             WebRequest request = WebRequest.Create(targetUrl) as HttpWebRequest;
             request.Method = WebRequestMethods.Http.Post;
             string param = "=sayhello";//注意有個「=」

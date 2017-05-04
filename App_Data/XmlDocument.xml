@@ -481,36 +481,71 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="T:Taoyuan_Traffic.Controllers.V1.BusAPIController">
+        <member name="T:Taoyuan_Traffic.Controllers.V1.Bus.BusController">
             <summary>
-            動態公車API
+            Bus
             </summary>
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.BusDynamicController.GetBusDynamicData">
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusController.GetAllRoute">
             <summary>
-            動態公車項目
+            取得所有公車路線
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.BusDynamicController.JsonRouteBusInfo(System.String)">
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusController.GetBusEstimatedInfo(System.String,System.String)">
+            <summary>
+            取得公車路線資料
+            </summary>
+            <param name="routeName">路線名稱</param>
+            <param name="direction">去返</param>
+            <returns></returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusController.GetSearchRoute(System.String)">
+            <summary>
+            關鍵字搜尋公車路線
+            </summary>
+            <param name="keyword">關鍵字(路線名稱、路線代號)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusController.GetDynamicBusInfo(System.String)">
             <summary>
             取得路線公車動態資訊
             </summary>
             <param name="routeName"></param>
             <returns></returns>
         </member>
-        <member name="T:Taoyuan_Traffic.Controllers.BusRouteController">
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusController.GetBusStopInfo(System.String)">
+            <summary>
+            取得公車站牌資訊
+            </summary>
+            <param name="routeName">路線名稱</param>
+            <returns></returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusDynamicController.Index">
+            <summary>
+            動態公車項目
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusDynamicController.JsonRouteBusInfo(System.String)">
+            <summary>
+            取得路線公車動態資訊
+            </summary>
+            <param name="routeName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Taoyuan_Traffic.Controllers.V1.Bus.BusRouteController">
             <summary>
             公車路線資訊
             </summary>
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.BusRouteController.JsonAllRoute">
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusRouteController.JsonAllRoute">
             <summary>
             取得所有桃園公車路線
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.BusRouteController.JsonBusEstimatedInfo(System.String,System.String)">
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusRouteController.JsonBusEstimatedInfo(System.String,System.String)">
             <summary>
             取得公車路線資訊並轉成JSON輸出
             </summary>
@@ -518,19 +553,19 @@
             <param name="direction">回、返(0、1)</param>
             <returns></returns>
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.BusRouteController.JsonSearchRoute(System.String)">
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusRouteController.JsonSearchRoute(System.String)">
             <summary>
             關鍵字搜尋公車路線
             </summary>
             <param name="keyword">關鍵字(路線名稱、路線代號)</param>
             <returns></returns>
         </member>
-        <member name="T:Taoyuan_Traffic.Controllers.BusStopController">
+        <member name="T:Taoyuan_Traffic.Controllers.V1.Bus.BusStopController">
             <summary>
             站牌資訊
             </summary>
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.BusStopController.JsonBusStopInfo(System.String)">
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusStopController.JsonBusStopInfo(System.String)">
             <summary>
             取得公車站牌資訊
             </summary>
@@ -545,6 +580,11 @@
         <member name="M:Taoyuan_Traffic.Models.Interface.IBusRoute.AddBusRoute(System.Collections.Generic.IEnumerable{Taoyuan_Traffic.ViewModels.BusRouteDeserialize})">
             <summary>
             新增公車資訊
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Interface.ITraLine.Entity">
+            <summary>
+            傳回使用的資料庫實體
             </summary>
         </member>
         <member name="P:Taoyuan_Traffic.Models.Interface.IBusDynamic.Entity">
@@ -639,6 +679,54 @@
             資源釋放
             </summary>
         </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.TraRepository._db">
+            <summary>
+            (私有) 資料庫實體資料集合
+            </summary>
+        </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.TraRepository._now">
+            <summary>
+            目前時間
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TraRepository.#ctor">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TraRepository.#ctor(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            倉儲建構子
+            </summary>
+            <param name="context">實體資料集合</param>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TraRepository.Finalize">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Repository.TraRepository.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TraRepository.Dispose">
+            <summary>
+            資源釋放
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TraRepository.AddTraLine(System.Collections.Generic.IEnumerable{Taoyuan_Traffic.ViewModels.TRA.TraLineDeserialize})">
+            <summary>
+            新增路線資料至資料庫
+            </summary>
+            <param name="traLineResource"></param>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TraRepository.AddStation(System.Collections.Generic.IEnumerable{Taoyuan_Traffic.ViewModels.TRA.TraStationDeserialize})">
+            <summary>
+            新增車站資料至資料庫
+            </summary>
+            <param name="traStationResource"></param>
+        </member>
         <member name="F:Taoyuan_Traffic.Models.Repository.BusDynamicRepository._db">
             <summary>
             (私有) 資料庫實體資料集合
@@ -700,6 +788,98 @@
             </summary>
             <param name="dataContext">資料實體</param>
             <returns>資料倉儲介面</returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.DataFactory.TraRepository(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            通用資料倉儲
+            </summary>
+            <param name="dataContext">資料實體</param>
+            <returns>資料倉儲介面</returns>
+        </member>
+        <member name="T:Taoyuan_Traffic.ViewModels.GetRoute">
+            <summary>
+            取得所有公車路線
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.GetRoute.RouteUID">
+            <summary>
+            路線唯一識別代碼，規則為 {業管機關代碼} + {RouteID}
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.GetRoute.RouteID">
+            <summary>
+            地區既用中之路線代碼(為原資料內碼) 
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.GetRoute.RouteName">
+            <summary>
+            路線名稱
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.GetRoute.GoDirection">
+            <summary>
+            去返程 = ['0: 去程', '1: 返程']
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.GetRoute.BackDirection">
+            <summary>
+            去返程 = ['0: 去程', '1: 返程']
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.GetRoute.DepartureStopNameZh">
+            <summary>
+            起站中文名稱
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.GetRoute.DestinationStopNameZh">
+            <summary>
+            終點站中文名稱
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.GetRoute.GoHeadsign">
+            <summary>
+            車頭描述
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.GetRoute.BackHeadsign">
+            <summary>
+            車頭描述
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.TRA.TraLineDeserialize.LineNo">
+            <summary>
+            路線編號
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.TRA.TraLineDeserialize.LineID">
+            <summary>
+            路線代碼
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.TRA.TraLineDeserialize.LineNameZh">
+            <summary>
+            路線中文名稱
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.TRA.TraLineDeserialize.LineNameEn">
+            <summary>
+            路線英文名稱
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.TRA.TraLineDeserialize.LineSectionNameZh">
+            <summary>
+            路線區間中文名稱
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.TRA.TraLineDeserialize.LineSectionNameEn">
+            <summary>
+            路線區間英文名稱
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.TRA.TraLineDeserialize.IsBranch">
+            <summary>
+            是否位於支線
+            </summary>
         </member>
     </members>
 </doc>

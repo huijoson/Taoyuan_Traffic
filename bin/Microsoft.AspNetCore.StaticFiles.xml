@@ -33,6 +33,14 @@
             Enables directory browsing
             </summary>
         </member>
+        <member name="M:Microsoft.AspNetCore.StaticFiles.DirectoryBrowserMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.DirectoryBrowserOptions})">
+            <summary>
+            Creates a new instance of the SendFileMiddleware. Using <see cref="P:System.Text.Encodings.Web.HtmlEncoder.Default"/> instance.
+            </summary>
+            <param name="next">The next middleware in the pipeline.</param>
+            <param name="hostingEnv">The <see cref="T:Microsoft.AspNetCore.Hosting.IHostingEnvironment"/> used by this middleware.</param>
+            <param name="options">The configuration for this middleware.</param>
+        </member>
         <member name="M:Microsoft.AspNetCore.StaticFiles.DirectoryBrowserMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.AspNetCore.Hosting.IHostingEnvironment,System.Text.Encodings.Web.HtmlEncoder,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Builder.DirectoryBrowserOptions})">
             <summary>
             Creates a new instance of the SendFileMiddleware.

@@ -36,6 +36,15 @@ namespace Taoyuan_Traffic.Models
     partial void InsertBusRoute(BusRoute instance);
     partial void UpdateBusRoute(BusRoute instance);
     partial void DeleteBusRoute(BusRoute instance);
+    partial void InsertTraLine(TraLine instance);
+    partial void UpdateTraLine(TraLine instance);
+    partial void DeleteTraLine(TraLine instance);
+    partial void InsertTraStation(TraStation instance);
+    partial void UpdateTraStation(TraStation instance);
+    partial void DeleteTraStation(TraStation instance);
+    partial void InsertTraClass(TraClass instance);
+    partial void UpdateTraClass(TraClass instance);
+    partial void DeleteTraClass(TraClass instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -81,6 +90,30 @@ namespace Taoyuan_Traffic.Models
 			get
 			{
 				return this.GetTable<BusRoute>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TraLine> TraLine
+		{
+			get
+			{
+				return this.GetTable<TraLine>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TraStation> TraStation
+		{
+			get
+			{
+				return this.GetTable<TraStation>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TraClass> TraClass
+		{
+			get
+			{
+				return this.GetTable<TraClass>();
 			}
 		}
 	}
@@ -1216,6 +1249,600 @@ namespace Taoyuan_Traffic.Models
 					this._UpdateTime = value;
 					this.SendPropertyChanged("UpdateTime");
 					this.OnUpdateTimeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TraLine")]
+	public partial class TraLine : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _LineNo;
+		
+		private string _LineID;
+		
+		private string _LineNameZh;
+		
+		private string _LineNameEn;
+		
+		private string _LineSectionNameZh;
+		
+		private string _LineSectionNameEn;
+		
+		private System.Nullable<bool> _IsBranch;
+		
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnLineNoChanging(string value);
+    partial void OnLineNoChanged();
+    partial void OnLineIDChanging(string value);
+    partial void OnLineIDChanged();
+    partial void OnLineNameZhChanging(string value);
+    partial void OnLineNameZhChanged();
+    partial void OnLineNameEnChanging(string value);
+    partial void OnLineNameEnChanged();
+    partial void OnLineSectionNameZhChanging(string value);
+    partial void OnLineSectionNameZhChanged();
+    partial void OnLineSectionNameEnChanging(string value);
+    partial void OnLineSectionNameEnChanged();
+    partial void OnIsBranchChanging(System.Nullable<bool> value);
+    partial void OnIsBranchChanged();
+    #endregion
+		
+		public TraLine()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[LineNo]", Storage="_LineNo", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string LineNo
+		{
+			get
+			{
+				return this._LineNo;
+			}
+			set
+			{
+				if ((this._LineNo != value))
+				{
+					this.OnLineNoChanging(value);
+					this.SendPropertyChanging();
+					this._LineNo = value;
+					this.SendPropertyChanged("LineNo");
+					this.OnLineNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LineID", DbType="NVarChar(50)")]
+		public string LineID
+		{
+			get
+			{
+				return this._LineID;
+			}
+			set
+			{
+				if ((this._LineID != value))
+				{
+					this.OnLineIDChanging(value);
+					this.SendPropertyChanging();
+					this._LineID = value;
+					this.SendPropertyChanged("LineID");
+					this.OnLineIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LineNameZh", DbType="NVarChar(50)")]
+		public string LineNameZh
+		{
+			get
+			{
+				return this._LineNameZh;
+			}
+			set
+			{
+				if ((this._LineNameZh != value))
+				{
+					this.OnLineNameZhChanging(value);
+					this.SendPropertyChanging();
+					this._LineNameZh = value;
+					this.SendPropertyChanged("LineNameZh");
+					this.OnLineNameZhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LineNameEn", DbType="NVarChar(50)")]
+		public string LineNameEn
+		{
+			get
+			{
+				return this._LineNameEn;
+			}
+			set
+			{
+				if ((this._LineNameEn != value))
+				{
+					this.OnLineNameEnChanging(value);
+					this.SendPropertyChanging();
+					this._LineNameEn = value;
+					this.SendPropertyChanged("LineNameEn");
+					this.OnLineNameEnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LineSectionNameZh", DbType="NVarChar(50)")]
+		public string LineSectionNameZh
+		{
+			get
+			{
+				return this._LineSectionNameZh;
+			}
+			set
+			{
+				if ((this._LineSectionNameZh != value))
+				{
+					this.OnLineSectionNameZhChanging(value);
+					this.SendPropertyChanging();
+					this._LineSectionNameZh = value;
+					this.SendPropertyChanged("LineSectionNameZh");
+					this.OnLineSectionNameZhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LineSectionNameEn", DbType="NVarChar(50)")]
+		public string LineSectionNameEn
+		{
+			get
+			{
+				return this._LineSectionNameEn;
+			}
+			set
+			{
+				if ((this._LineSectionNameEn != value))
+				{
+					this.OnLineSectionNameEnChanging(value);
+					this.SendPropertyChanging();
+					this._LineSectionNameEn = value;
+					this.SendPropertyChanged("LineSectionNameEn");
+					this.OnLineSectionNameEnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsBranch", DbType="Bit")]
+		public System.Nullable<bool> IsBranch
+		{
+			get
+			{
+				return this._IsBranch;
+			}
+			set
+			{
+				if ((this._IsBranch != value))
+				{
+					this.OnIsBranchChanging(value);
+					this.SendPropertyChanging();
+					this._IsBranch = value;
+					this.SendPropertyChanged("IsBranch");
+					this.OnIsBranchChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TraStation")]
+	public partial class TraStation : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _StationID;
+		
+		private string _Zh_tw;
+		
+		private string _En;
+		
+		private System.Nullable<double> _PositionLat;
+		
+		private System.Nullable<double> _PositionLon;
+		
+		private string _StationAddress;
+		
+		private string _StationPhone;
+		
+		private string _OperatorID;
+		
+		private string _StationClass;
+		
+		private string _ReservationCode;
+		
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnStationIDChanging(string value);
+    partial void OnStationIDChanged();
+    partial void OnZh_twChanging(string value);
+    partial void OnZh_twChanged();
+    partial void OnEnChanging(string value);
+    partial void OnEnChanged();
+    partial void OnPositionLatChanging(System.Nullable<double> value);
+    partial void OnPositionLatChanged();
+    partial void OnPositionLonChanging(System.Nullable<double> value);
+    partial void OnPositionLonChanged();
+    partial void OnStationAddressChanging(string value);
+    partial void OnStationAddressChanged();
+    partial void OnStationPhoneChanging(string value);
+    partial void OnStationPhoneChanged();
+    partial void OnOperatorIDChanging(string value);
+    partial void OnOperatorIDChanged();
+    partial void OnStationClassChanging(string value);
+    partial void OnStationClassChanged();
+    partial void OnReservationCodeChanging(string value);
+    partial void OnReservationCodeChanged();
+    #endregion
+		
+		public TraStation()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StationID", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string StationID
+		{
+			get
+			{
+				return this._StationID;
+			}
+			set
+			{
+				if ((this._StationID != value))
+				{
+					this.OnStationIDChanging(value);
+					this.SendPropertyChanging();
+					this._StationID = value;
+					this.SendPropertyChanged("StationID");
+					this.OnStationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Zh_tw", DbType="NVarChar(50)")]
+		public string Zh_tw
+		{
+			get
+			{
+				return this._Zh_tw;
+			}
+			set
+			{
+				if ((this._Zh_tw != value))
+				{
+					this.OnZh_twChanging(value);
+					this.SendPropertyChanging();
+					this._Zh_tw = value;
+					this.SendPropertyChanged("Zh_tw");
+					this.OnZh_twChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_En", DbType="NVarChar(50)")]
+		public string En
+		{
+			get
+			{
+				return this._En;
+			}
+			set
+			{
+				if ((this._En != value))
+				{
+					this.OnEnChanging(value);
+					this.SendPropertyChanging();
+					this._En = value;
+					this.SendPropertyChanged("En");
+					this.OnEnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PositionLat", DbType="Float")]
+		public System.Nullable<double> PositionLat
+		{
+			get
+			{
+				return this._PositionLat;
+			}
+			set
+			{
+				if ((this._PositionLat != value))
+				{
+					this.OnPositionLatChanging(value);
+					this.SendPropertyChanging();
+					this._PositionLat = value;
+					this.SendPropertyChanged("PositionLat");
+					this.OnPositionLatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PositionLon", DbType="Float")]
+		public System.Nullable<double> PositionLon
+		{
+			get
+			{
+				return this._PositionLon;
+			}
+			set
+			{
+				if ((this._PositionLon != value))
+				{
+					this.OnPositionLonChanging(value);
+					this.SendPropertyChanging();
+					this._PositionLon = value;
+					this.SendPropertyChanged("PositionLon");
+					this.OnPositionLonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StationAddress", DbType="NVarChar(50)")]
+		public string StationAddress
+		{
+			get
+			{
+				return this._StationAddress;
+			}
+			set
+			{
+				if ((this._StationAddress != value))
+				{
+					this.OnStationAddressChanging(value);
+					this.SendPropertyChanging();
+					this._StationAddress = value;
+					this.SendPropertyChanged("StationAddress");
+					this.OnStationAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StationPhone", DbType="NVarChar(50)")]
+		public string StationPhone
+		{
+			get
+			{
+				return this._StationPhone;
+			}
+			set
+			{
+				if ((this._StationPhone != value))
+				{
+					this.OnStationPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._StationPhone = value;
+					this.SendPropertyChanged("StationPhone");
+					this.OnStationPhoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OperatorID", DbType="NVarChar(50)")]
+		public string OperatorID
+		{
+			get
+			{
+				return this._OperatorID;
+			}
+			set
+			{
+				if ((this._OperatorID != value))
+				{
+					this.OnOperatorIDChanging(value);
+					this.SendPropertyChanging();
+					this._OperatorID = value;
+					this.SendPropertyChanged("OperatorID");
+					this.OnOperatorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StationClass", DbType="NVarChar(50)")]
+		public string StationClass
+		{
+			get
+			{
+				return this._StationClass;
+			}
+			set
+			{
+				if ((this._StationClass != value))
+				{
+					this.OnStationClassChanging(value);
+					this.SendPropertyChanging();
+					this._StationClass = value;
+					this.SendPropertyChanged("StationClass");
+					this.OnStationClassChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservationCode", DbType="NVarChar(50)")]
+		public string ReservationCode
+		{
+			get
+			{
+				return this._ReservationCode;
+			}
+			set
+			{
+				if ((this._ReservationCode != value))
+				{
+					this.OnReservationCodeChanging(value);
+					this.SendPropertyChanging();
+					this._ReservationCode = value;
+					this.SendPropertyChanged("ReservationCode");
+					this.OnReservationCodeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TraClass")]
+	public partial class TraClass : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _TrainClassificationID;
+		
+		private string _Zh_tw;
+		
+		private string _En;
+		
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTrainClassificationIDChanging(string value);
+    partial void OnTrainClassificationIDChanged();
+    partial void OnZh_twChanging(string value);
+    partial void OnZh_twChanged();
+    partial void OnEnChanging(string value);
+    partial void OnEnChanged();
+    #endregion
+		
+		public TraClass()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrainClassificationID", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string TrainClassificationID
+		{
+			get
+			{
+				return this._TrainClassificationID;
+			}
+			set
+			{
+				if ((this._TrainClassificationID != value))
+				{
+					this.OnTrainClassificationIDChanging(value);
+					this.SendPropertyChanging();
+					this._TrainClassificationID = value;
+					this.SendPropertyChanged("TrainClassificationID");
+					this.OnTrainClassificationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Zh_tw", DbType="NVarChar(50)")]
+		public string Zh_tw
+		{
+			get
+			{
+				return this._Zh_tw;
+			}
+			set
+			{
+				if ((this._Zh_tw != value))
+				{
+					this.OnZh_twChanging(value);
+					this.SendPropertyChanging();
+					this._Zh_tw = value;
+					this.SendPropertyChanged("Zh_tw");
+					this.OnZh_twChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_En", DbType="NChar(10)")]
+		public string En
+		{
+			get
+			{
+				return this._En;
+			}
+			set
+			{
+				if ((this._En != value))
+				{
+					this.OnEnChanging(value);
+					this.SendPropertyChanging();
+					this._En = value;
+					this.SendPropertyChanged("En");
+					this.OnEnChanged();
 				}
 			}
 		}

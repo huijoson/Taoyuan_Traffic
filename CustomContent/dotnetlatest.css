@@ -1,0 +1,16 @@
+﻿body {
+    background-color:lightgray;
+}
+.swagger-section #header {
+    background-color: #FFFFFF;
+    background-image: padding: 9px 14px 19px 14px;
+    background-image: height: 100px;
+    background-image: url('https://attach.mobile01.com/attach/201612/mobile01-2b5e880d0e7b31bd01a7348fc01d154f.jpg');
+    min-width: 775px;
+    height: 100px;
+}
+
+.swagger-ui-wrap {
+    padding-top: 45px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
