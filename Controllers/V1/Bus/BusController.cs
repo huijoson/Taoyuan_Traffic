@@ -17,7 +17,7 @@ using Taoyuan_Traffic.ViewModels;
 
 namespace Taoyuan_Traffic.Controllers.V1.Bus
 {
-    /// <summary>
+    /// <summary>`
     /// Bus
     /// </summary>
     public class BusController : ApiController
