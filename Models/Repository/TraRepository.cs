@@ -176,6 +176,8 @@ namespace Taoyuan_Traffic.Models.Repository
 
         public List<TraDailyTimeTableDeserialize> GetTraDailyTimetable(IEnumerable<TraDailyTimeTableDeserialize> traDailyTimetableReaource, string hhmm)
         {
+            //DateTime myDate = DateTime.ParseExact(hhmm, "yyyy - MM - dd HH: mm:ss,fff",
+            //                           System.Globalization.CultureInfo.InvariantCulture);
             DateTime dt1 = Convert.ToDateTime(hhmm);
             List<TraDailyTimeTableDeserialize> List = new List<TraDailyTimeTableDeserialize>();
             foreach (TraDailyTimeTableDeserialize item in traDailyTimetableReaource)

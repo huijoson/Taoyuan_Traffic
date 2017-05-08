@@ -181,7 +181,7 @@ namespace Taoyuan_Traffic
                         // The file must be included in your project as an "Embedded Resource", and then the resource's
                         // "Logical Name" is passed to the method as shown below.
                         //
-                        //c.InjectStylesheet(thisAssembly, "Taoyuan_Traffic.CustomContent.dotnetlatest.css");
+                        c.InjectStylesheet(thisAssembly, "Taoyuan_Traffic.CustomContent.dotnetlatest.css");
 
                         // Use the "InjectJavaScript" option to invoke one or more custom JavaScripts after the swagger-ui
                         // has loaded. The file must be included in your project as an "Embedded Resource", and then the resource's
@@ -218,7 +218,7 @@ namespace Taoyuan_Traffic
                         // in your project as an "Embedded Resource", and then the resource's "Logical Name" is passed to
                         // the method as shown below.
                         //
-                        //c.CustomAsset("index", thisAssembly, "Taoyuan_Traffic.CustomContent.index.html");
+                        c.CustomAsset("index", thisAssembly, "Taoyuan_Traffic.CustomContent.index.html");
 
                         // If your API has multiple versions and you've applied the MultipleApiVersions setting
                         // as described above, you can also enable a select box in the swagger-ui, that displays

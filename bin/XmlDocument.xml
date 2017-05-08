@@ -482,7 +482,7 @@
             <param name="documentPath">The physical path to XML document.</param>
         </member>
         <member name="T:Taoyuan_Traffic.Controllers.V1.Bus.BusController">
-            <summary>`
+            <summary>
             Bus
             </summary>
         </member>
@@ -571,19 +571,6 @@
             </summary>
             <param name="routeName">路線名稱</param>
             <returns></returns>
-        </member>
-        <member name="M:Taoyuan_Traffic.Controllers.V1.TRA.TraController.GetTraDTT(System.String,System.String,System.String,System.String)">
-            <summary>
-            提供對應之時間火車時刻
-            </summary>
-            <remarks>
-            取得對應之去回時間後的火車班次
-            </remarks>
-            <param name="originSation">Go location</param>
-            <param name="destionation">Back location</param>
-            <param name="trainDate">Date</param>
-            <param name="trainAfterTime">After The time to leave</param>
-            <returns>HttpResponseMessages</returns>
         </member>
         <member name="P:Taoyuan_Traffic.Models.Interface.IBusRoute.Entity">
             <summary>
