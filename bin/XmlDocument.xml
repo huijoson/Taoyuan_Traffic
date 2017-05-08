@@ -572,6 +572,16 @@
             <param name="routeName">路線名稱</param>
             <returns></returns>
         </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.TRA.TraController.GetTraDailyTimeTable(System.String,System.String,System.String,System.String)">
+            <summary>
+            取得公車路線資料
+            </summary>
+            <param name="originSation">去</param>
+            <param name="destionation">回</param>
+            <param name="trainDate">乘車日期</param>
+            <param name="trainAfterTime">乘車時間</param>
+            <returns></returns>
+        </member>
         <member name="P:Taoyuan_Traffic.Models.Interface.IBusRoute.Entity">
             <summary>
             傳回使用的資料庫實體
