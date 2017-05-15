@@ -24,7 +24,7 @@ namespace Taoyuan_Traffic
             var aThread = new Thread(TaskLoop);
             aThread.IsBackground = true;
             aThread.Priority = ThreadPriority.BelowNormal;
-            aThread.Start();
+            //aThread.Start();
         }
 
         public void Stop()

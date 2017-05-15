@@ -14,15 +14,27 @@ namespace Taoyuan_Traffic
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "ApiV1",
+                name: "BusApiV1",
                 url: "api/v1/Bus/{controller}/{action}",
                 namespaces: new string[] { "BusDynamicController", "BusRouteController", "BusStopController" }
             );
 
             routes.MapRoute(
-                name: "ApiV2",
+                name: "TRAApiV1",
                 url: "api/v1/TRA/{controller}/{action}",
                 namespaces: new string[] { "TraLineController" }
+            );
+
+            routes.MapRoute(
+                name: "WeatherApiV1",
+                url: "api/v1/Weather/{controller}/{action}",
+                namespaces: new string[] { "TaoyuanWeathertController" }
+            );
+
+            routes.MapRoute(
+                name: "ParkingApiV1",
+                url: "api/v1/Park/{controller}/{action}",
+                namespaces: new string[] { "ParkingController" }
             );
 
             routes.MapRoute(

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Taoyuan_Traffic.ViewModels.TRA
+namespace Taoyuan_Traffic.ViewModels.Parking
 {
 
     public class ParkingDeserialize
@@ -21,4 +21,6 @@ namespace Taoyuan_Traffic.ViewModels.TRA
         public string surplusSpace { get; set; }
         public string areaName { get; set; }
     }
+
+
 }

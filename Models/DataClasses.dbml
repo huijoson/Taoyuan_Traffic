@@ -85,4 +85,37 @@
       <Column Name="En" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.ParkingInfo" Member="ParkingInfo">
+    <Type Name="ParkingInfo">
+      <Column Name="parkName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="areaId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="wgsX" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="totalSpace" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="introduction" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="wgsY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="parkId" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="payGuide" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[_id]" Member="_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="surplusSpace" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="areaName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WeatherTable" Member="WeatherTable">
+    <Type Name="WeatherTable">
+      <Column Name="wID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="locationName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="geocode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="elementName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="startTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="endTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="elementValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="parameterName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="parameterValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="dataTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="elementMeasure" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

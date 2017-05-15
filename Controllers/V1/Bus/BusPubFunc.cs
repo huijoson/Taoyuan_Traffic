@@ -74,7 +74,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         public async Task<IEnumerable<BusDynamicDeserialize>> RetriveBusDynamicData(string cacheName)
         {
             //Setting target Url
-            string targetURI = ConfigurationManager.AppSettings["BusDynamicURL"].ToString() + "?$top=5000&$format=JSON";
+            string targetURI = ConfigurationManager.AppSettings["BusDynamicURL"].ToString() + "?$format=JSON";
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
 
@@ -84,7 +84,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
             var collection = JsonConvert.DeserializeObject<IEnumerable<BusDynamicDeserialize>>(response);
             //setting cache policy
             CacheItemPolicy policy = new CacheItemPolicy();
-            policy.AbsoluteExpiration = DateTime.Now.AddMinutes(0.2);
+            policy.AbsoluteExpiration = DateTime.Now.AddMinutes(0.5);
 
             ObjectCache cacheItem = MemoryCache.Default;
             cacheItem.Add(cacheName, collection, policy);

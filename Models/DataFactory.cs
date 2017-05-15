@@ -49,5 +49,25 @@ namespace Taoyuan_Traffic.Models
         {
             return new TraRepository(dataContext);
         }
+
+        /// <summary>
+        /// 通用資料倉儲
+        /// </summary>
+        /// <param name="dataContext">資料實體</param>
+        /// <returns>資料倉儲介面</returns>
+        public static IParking ParkingRespository(DataClassesDataContext dataContext = null)
+        {
+            return new ParkingRespository(dataContext);
+        }
+
+        /// <summary>
+        /// 通用資料倉儲
+        /// </summary>
+        /// <param name="dataContext">資料實體</param>
+        /// <returns>資料倉儲介面</returns>
+        public static IWeather WeatherRespository(DataClassesDataContext dataContext = null)
+        {
+            return new WeatherRespository(dataContext);
+        }
     }
 }

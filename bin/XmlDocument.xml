@@ -592,9 +592,24 @@
             新增公車資訊
             </summary>
         </member>
+        <member name="P:Taoyuan_Traffic.Models.Interface.IParking.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
         <member name="P:Taoyuan_Traffic.Models.Interface.ITraLine.Entity">
             <summary>
             傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Interface.IWeather.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Interface.IWeather.addWeatherInfo(System.Collections.Generic.IEnumerable{Taoyuan_Traffic.ViewModels.Weather.Weather3DayDeserialize})">
+            <summary>
+            新增天氣資訊
             </summary>
         </member>
         <member name="P:Taoyuan_Traffic.Models.Interface.IBusDynamic.Entity">
@@ -689,6 +704,47 @@
             資源釋放
             </summary>
         </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.ParkingRespository._db">
+            <summary>
+            (私有) 資料庫實體資料集合
+            </summary>
+        </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.ParkingRespository._now">
+            <summary>
+            目前時間
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.ParkingRespository.#ctor">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.ParkingRespository.#ctor(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            倉儲建構子
+            </summary>
+            <param name="context">實體資料集合</param>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.ParkingRespository.Finalize">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Repository.ParkingRespository.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.ParkingRespository.Dispose">
+            <summary>
+            資源釋放
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.ParkingRespository.AddOutParking(System.Collections.Generic.IEnumerable{Taoyuan_Traffic.ViewModels.Parking.ParkingDeserialize})">
+            <summary>
+            新增熱門關鍵字
+            </summary>
+        </member>
         <member name="F:Taoyuan_Traffic.Models.Repository.TraRepository._db">
             <summary>
             (私有) 資料庫實體資料集合
@@ -736,6 +792,42 @@
             新增車站資料至資料庫
             </summary>
             <param name="traStationResource"></param>
+        </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.WeatherRespository._db">
+            <summary>
+            (私有) 資料庫實體資料集合
+            </summary>
+        </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.WeatherRespository._now">
+            <summary>
+            目前時間
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.WeatherRespository.#ctor">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.WeatherRespository.#ctor(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            倉儲建構子
+            </summary>
+            <param name="context">實體資料集合</param>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.WeatherRespository.Finalize">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Repository.WeatherRespository.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.WeatherRespository.Dispose">
+            <summary>
+            資源釋放
+            </summary>
         </member>
         <member name="F:Taoyuan_Traffic.Models.Repository.BusDynamicRepository._db">
             <summary>
@@ -800,6 +892,20 @@
             <returns>資料倉儲介面</returns>
         </member>
         <member name="M:Taoyuan_Traffic.Models.DataFactory.TraRepository(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            通用資料倉儲
+            </summary>
+            <param name="dataContext">資料實體</param>
+            <returns>資料倉儲介面</returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.DataFactory.ParkingRespository(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            通用資料倉儲
+            </summary>
+            <param name="dataContext">資料實體</param>
+            <returns>資料倉儲介面</returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.DataFactory.WeatherRespository(Taoyuan_Traffic.Models.DataClassesDataContext)">
             <summary>
             通用資料倉儲
             </summary>

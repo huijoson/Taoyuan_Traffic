@@ -408,21 +408,27 @@
     <Compile Include="Controllers\V1\Bus\BusRouteController.cs" />
     <Compile Include="Controllers\V1\Bus\BusStopController.cs" />
     <Compile Include="Controllers\V1\Bus\BusPubFunc.cs" />
+    <Compile Include="Controllers\V1\Park\ParkingController.cs" />
     <Compile Include="Controllers\V1\TRA\TraClassController.cs" />
     <Compile Include="Controllers\V1\TRA\TraController.cs" />
     <Compile Include="Controllers\V1\TRA\TraDailyTimeTableController.cs" />
     <Compile Include="Controllers\V1\TRA\TraLineController.cs" />
     <Compile Include="Controllers\V1\TRA\TraPubFunc.cs" />
     <Compile Include="Controllers\V1\TRA\TraStationController.cs" />
+    <Compile Include="Controllers\V1\Weather\TaoyuanWeatherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Interface\IBusRoute.cs" />
     <Compile Include="Models\Interface\IBusStop.cs" />
+    <Compile Include="Models\Interface\IParking.cs" />
     <Compile Include="Models\Interface\ITraLine.cs" />
+    <Compile Include="Models\Interface\IWeather.cs" />
     <Compile Include="Models\Repository\BusRouteRepository.cs" />
     <Compile Include="Models\Repository\BusStopRepository.cs" />
+    <Compile Include="Models\Repository\ParkingRespository.cs" />
     <Compile Include="Models\Repository\TraRepository.cs" />
+    <Compile Include="Models\Repository\WeatherRespository.cs" />
     <Compile Include="Models\runUriTask.cs" />
     <Compile Include="ViewModels\Bus\BusDynamic.cs" />
     <Compile Include="ViewModels\Bus\BusDynamicDeserialize.cs" />
@@ -441,11 +447,14 @@
     <Compile Include="ViewModels\Bus\GetRoute.cs" />
     <Compile Include="ViewModels\Bus\BusRouteDeserialize.cs" />
     <Compile Include="ViewModels\Bus\PublicSub.cs" />
+    <Compile Include="ViewModels\Parking\ParkingDeserialize.cs" />
     <Compile Include="ViewModels\TRA\PublicSub.cs" />
     <Compile Include="ViewModels\TRA\TraClassDeserialize.cs" />
     <Compile Include="ViewModels\TRA\TraDailyTimeTableDeserialize.cs" />
     <Compile Include="ViewModels\TRA\TraStationDeserialize.cs" />
     <Compile Include="ViewModels\TRA\TraLineDeserialize.cs" />
+    <Compile Include="ViewModels\Weather\PublicSub.cs" />
+    <Compile Include="ViewModels\Weather\Weather3DayDeserialize.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -462,6 +471,8 @@
     <Content Include="Views\TraLine\Index.cshtml" />
     <Content Include="Views\TraStation\Index.cshtml" />
     <Content Include="Views\TraClass\Index.cshtml" />
+    <Content Include="Views\TaoyuanWeather\Index.cshtml" />
+    <Content Include="Views\Parking\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
