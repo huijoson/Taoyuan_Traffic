@@ -95,9 +95,6 @@ namespace Taoyuan_Traffic.Models.Repository
                 var newBusRoute = new BusRoute { };
                 if (item.SubRoutes.Count() > 1)
                 {
-
-                    //newBusRoute = new BusRoute();
-                    //newBusRoute.RouteUID = item.RouteUID;
                     newBusRoute = new BusRoute
                     {
                         ID = count,

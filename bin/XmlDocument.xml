@@ -572,6 +572,12 @@
             <param name="routeName">路線名稱</param>
             <returns></returns>
         </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Park.ParkingController.JsonParkingInfo">
+            <summary>
+            取得停車場資訊
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Taoyuan_Traffic.Controllers.V1.TRA.TraController.GetTraDailyTimeTable(System.String,System.String,System.String,System.String)">
             <summary>
             取得公車路線資料
@@ -580,6 +586,21 @@
             <param name="destionation">回</param>
             <param name="trainDate">乘車日期</param>
             <param name="trainAfterTime">乘車時間</param>
+            <returns></returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Weather.TaoyuanWeatherController.GetSearchWeather(System.String,System.String,System.String)">
+            <summary>
+            取得搜尋天氣資訊
+            </summary>
+            <param name="attr"></param>
+            <param name="date"></param>
+            <param name="local"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Weather.WeatherController.GetSearchWeather(System.String,System.String,System.String)">
+            <summary>
+            取得天氣資訊
+            </summary>
             <returns></returns>
         </member>
         <member name="P:Taoyuan_Traffic.Models.Interface.IBusRoute.Entity">
@@ -611,6 +632,14 @@
             <summary>
             新增天氣資訊
             </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Interface.IWeather.GetWeatherSearch(System.String,System.String,System.String)">
+            <summary>
+            取得搜尋的天氣資訊
+            </summary>
+            <param name="attr">天氣屬性</param>
+            <param name="date">日期時間</param>
+            <returns></returns>
         </member>
         <member name="P:Taoyuan_Traffic.Models.Interface.IBusDynamic.Entity">
             <summary>

@@ -122,5 +122,72 @@ namespace Taoyuan_Traffic.Models.Repository
                 }
             }
         }
+
+        public object GetWeatherSearch(string attr, string date, string local)
+        {
+            DateTime dt1 = Convert.ToDateTime(date);
+            switch (attr)
+            {
+                case "Wx":
+                    List<WeatherWx> weatherListWx = (from o in _db.WeatherTable
+                                                       where o.elementName.Contains("Wx")
+                                                       && (Convert.ToDateTime(o.startTime) > dt1)
+                                                       && o.locationName.Contains(local)
+                                                   select new WeatherWx()
+                                                   {
+                                                       startTime = o.startTime,
+                                                       endTime = o.endTime,
+                                                       elementValue = o.elementValue,
+                                                       parameterName = o.parameterName,
+                                                       parameterValue = o.parameterValue
+                                                   }).ToList();
+                    return weatherListWx;
+
+                case "PoP":
+                    List<WeatherPoP> weatherListPoP = (from o in _db.WeatherTable
+                                                       where o.elementName.Contains("PoP")
+                                                       && Convert.ToDateTime(o.startTime) > dt1
+                                                       && o.locationName.Contains(local)
+                                                   select new WeatherPoP()
+                                                   {
+                                                       startTime = o.startTime,
+                                                       endTime = o.endTime,
+                                                       elementValue = o.elementValue,
+                                                       elementMeasure = o.elementMeasure
+                                                   }).ToList();
+                    return weatherListPoP;
+
+                case "T":
+                    List<WeatherT> weatherListT = (from o in _db.WeatherTable
+                                                       where o.elementName.Contains("T")
+                                                       && Convert.ToDateTime(o.dataTime) > dt1
+                                                       && o.locationName.Contains(local)
+                                                   select new WeatherT()
+                                                     {
+                                                         dataTime = o.dataTime,
+                                                         elementValue = o.elementValue,
+                                                         elementMeasure = o.elementMeasure
+                                                     }).ToList();
+                    return weatherListT;
+
+                case "CI":
+                    List<WeatherCI> weatherListCI = (from o in _db.WeatherTable
+                                                   where o.elementName.Contains("CI")
+                                                   && Convert.ToDateTime(o.dataTime) > dt1
+                                                   && o.locationName.Contains(local)
+                                                   select new WeatherCI()
+                                                   {
+                                                       dataTime = o.dataTime,
+                                                       elementValue = o.elementValue,
+                                                       parameterValue = o.parameterValue,
+                                                       parameterName = o.parameterName
+                                                   }).ToList();
+                    return weatherListCI;
+
+                default:
+                    return null;
+            }
+        }
+
     }
 }

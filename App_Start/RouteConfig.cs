@@ -34,7 +34,7 @@ namespace Taoyuan_Traffic
             routes.MapRoute(
                 name: "ParkingApiV1",
                 url: "api/v1/Park/{controller}/{action}",
-                namespaces: new string[] { "ParkingController" }
+                namespaces: new string[] { "ParkingController", "ParkingOutController" }
             );
 
             routes.MapRoute(

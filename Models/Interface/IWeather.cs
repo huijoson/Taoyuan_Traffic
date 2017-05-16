@@ -17,5 +17,12 @@ namespace Taoyuan_Traffic.Models.Interface
         /// 新增天氣資訊
         /// </summary>
         void addWeatherInfo(IEnumerable<Weather3DayDeserialize> weatherInfoSource);
+        /// <summary>
+        /// 取得搜尋的天氣資訊
+        /// </summary>
+        /// <param name="attr">天氣屬性</param>
+        /// <param name="date">日期時間</param>
+        /// <returns></returns>
+        object GetWeatherSearch(string attr, string date, string local);
     }
 }

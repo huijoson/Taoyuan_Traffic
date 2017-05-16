@@ -409,6 +409,7 @@
     <Compile Include="Controllers\V1\Bus\BusStopController.cs" />
     <Compile Include="Controllers\V1\Bus\BusPubFunc.cs" />
     <Compile Include="Controllers\V1\Park\ParkingController.cs" />
+    <Compile Include="Controllers\V1\Park\ParkingOutController.cs" />
     <Compile Include="Controllers\V1\TRA\TraClassController.cs" />
     <Compile Include="Controllers\V1\TRA\TraController.cs" />
     <Compile Include="Controllers\V1\TRA\TraDailyTimeTableController.cs" />
@@ -416,6 +417,7 @@
     <Compile Include="Controllers\V1\TRA\TraPubFunc.cs" />
     <Compile Include="Controllers\V1\TRA\TraStationController.cs" />
     <Compile Include="Controllers\V1\Weather\TaoyuanWeatherController.cs" />
+    <Compile Include="Controllers\V1\Weather\WeatherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -455,6 +457,10 @@
     <Compile Include="ViewModels\TRA\TraLineDeserialize.cs" />
     <Compile Include="ViewModels\Weather\PublicSub.cs" />
     <Compile Include="ViewModels\Weather\Weather3DayDeserialize.cs" />
+    <Compile Include="ViewModels\Weather\WeatherCI.cs" />
+    <Compile Include="ViewModels\Weather\WeatherPoP.cs" />
+    <Compile Include="ViewModels\Weather\WeatherT.cs" />
+    <Compile Include="ViewModels\Weather\WeatherWx.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -483,6 +489,7 @@
   <ItemGroup>
     <Folder Include="CustomContent\Images\" />
     <Folder Include="Views\API\" />
+    <Folder Include="Views\ParkingA\" />
     <Folder Include="Views\StationOfLine\" />
     <Folder Include="Views\TraDailyTimeTable\" />
   </ItemGroup>

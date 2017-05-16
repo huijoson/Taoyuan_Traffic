@@ -44,7 +44,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
             var collection = JsonConvert.DeserializeObject<IEnumerable<BusStopDeserialize>>(response);
             //setting cache policy
             CacheItemPolicy policy = new CacheItemPolicy();
-            policy.AbsoluteExpiration = DateTime.Now.AddMinutes(0.2);
+            policy.AbsoluteExpiration = DateTime.Now.AddMinutes(0);
 
             ObjectCache cacheItem = MemoryCache.Default;
             cacheItem.Add(cacheName, collection, policy);
@@ -84,7 +84,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
             var collection = JsonConvert.DeserializeObject<IEnumerable<BusDynamicDeserialize>>(response);
             //setting cache policy
             CacheItemPolicy policy = new CacheItemPolicy();
-            policy.AbsoluteExpiration = DateTime.Now.AddMinutes(0.5);
+            policy.AbsoluteExpiration = DateTime.Now.AddMinutes(0);
 
             ObjectCache cacheItem = MemoryCache.Default;
             cacheItem.Add(cacheName, collection, policy);
@@ -123,7 +123,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
             var collection = JsonConvert.DeserializeObject<IEnumerable<BusRouteDeserialize>>(response);
             //setting cache policy
             CacheItemPolicy policy = new CacheItemPolicy();
-            policy.AbsoluteExpiration = DateTime.Now.AddMinutes(0.2);
+            policy.AbsoluteExpiration = DateTime.Now.AddMinutes(0);
 
             ObjectCache cacheItem = MemoryCache.Default;
             cacheItem.Add(cacheName, collection, policy);

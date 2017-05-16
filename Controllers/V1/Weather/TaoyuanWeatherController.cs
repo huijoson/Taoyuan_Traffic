@@ -18,7 +18,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Weather
 {
     public class TaoyuanWeatherController : Controller
     {
-
+        private String nowTime = DateTime.Now.ToString();
         // GET: TaoyuanWeathert
         public ActionResult Index()
         {
@@ -58,6 +58,19 @@ namespace Taoyuan_Traffic.Controllers.V1.Weather
             repos.addWeatherInfo(collection);
 
             return View();
+        }
+        /// <summary>
+        /// 取得搜尋天氣資訊
+        /// </summary>
+        /// <param name="attr"></param>
+        /// <param name="date"></param>
+        /// <param name="local"></param>
+        /// <returns></returns>
+        public ActionResult GetSearchWeather(string attr, string date, string local = "桃園區")
+        {
+            //Initial Variables
+            IWeather repos = DataFactory.WeatherRespository();
+            return Content(JsonConvert.SerializeObject(repos.GetWeatherSearch(attr, date, local)), "application/json");
         }
     }
 }
