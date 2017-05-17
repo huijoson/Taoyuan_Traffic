@@ -51,6 +51,9 @@ namespace Taoyuan_Traffic.Models
     partial void InsertWeatherTable(WeatherTable instance);
     partial void UpdateWeatherTable(WeatherTable instance);
     partial void DeleteWeatherTable(WeatherTable instance);
+    partial void InsertAlertTable(AlertTable instance);
+    partial void UpdateAlertTable(AlertTable instance);
+    partial void DeleteAlertTable(AlertTable instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -136,6 +139,14 @@ namespace Taoyuan_Traffic.Models
 			get
 			{
 				return this.GetTable<WeatherTable>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AlertTable> AlertTable
+		{
+			get
+			{
+				return this.GetTable<AlertTable>();
 			}
 		}
 	}
@@ -2541,6 +2552,164 @@ namespace Taoyuan_Traffic.Models
 					this._elementMeasure = value;
 					this.SendPropertyChanged("elementMeasure");
 					this.OnelementMeasureChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AlertTable")]
+	public partial class AlertTable : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _alertID;
+		
+		private System.Nullable<System.DateTime> _updated;
+		
+		private string _name;
+		
+		private string _text;
+		
+		private string _term;
+		
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnalertIDChanging(int value);
+    partial void OnalertIDChanged();
+    partial void OnupdatedChanging(System.Nullable<System.DateTime> value);
+    partial void OnupdatedChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OntextChanging(string value);
+    partial void OntextChanged();
+    partial void OntermChanging(string value);
+    partial void OntermChanged();
+    #endregion
+		
+		public AlertTable()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_alertID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int alertID
+		{
+			get
+			{
+				return this._alertID;
+			}
+			set
+			{
+				if ((this._alertID != value))
+				{
+					this.OnalertIDChanging(value);
+					this.SendPropertyChanging();
+					this._alertID = value;
+					this.SendPropertyChanged("alertID");
+					this.OnalertIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated", DbType="DateTime")]
+		public System.Nullable<System.DateTime> updated
+		{
+			get
+			{
+				return this._updated;
+			}
+			set
+			{
+				if ((this._updated != value))
+				{
+					this.OnupdatedChanging(value);
+					this.SendPropertyChanging();
+					this._updated = value;
+					this.SendPropertyChanged("updated");
+					this.OnupdatedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_text", DbType="NVarChar(500)")]
+		public string text
+		{
+			get
+			{
+				return this._text;
+			}
+			set
+			{
+				if ((this._text != value))
+				{
+					this.OntextChanging(value);
+					this.SendPropertyChanging();
+					this._text = value;
+					this.SendPropertyChanged("text");
+					this.OntextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_term", DbType="NVarChar(50)")]
+		public string term
+		{
+			get
+			{
+				return this._term;
+			}
+			set
+			{
+				if ((this._term != value))
+				{
+					this.OntermChanging(value);
+					this.SendPropertyChanging();
+					this._term = value;
+					this.SendPropertyChanged("term");
+					this.OntermChanged();
 				}
 			}
 		}

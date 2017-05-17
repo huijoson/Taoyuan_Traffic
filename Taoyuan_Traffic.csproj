@@ -403,6 +403,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\V1\Alert\AlertController.cs" />
+    <Compile Include="Controllers\V1\Alert\AlertCustController.cs" />
     <Compile Include="Controllers\V1\Bus\BusController.cs" />
     <Compile Include="Controllers\V1\Bus\BusDynamicController.cs" />
     <Compile Include="Controllers\V1\Bus\BusRouteController.cs" />
@@ -421,17 +423,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Interface\IAlert.cs" />
     <Compile Include="Models\Interface\IBusRoute.cs" />
     <Compile Include="Models\Interface\IBusStop.cs" />
     <Compile Include="Models\Interface\IParking.cs" />
     <Compile Include="Models\Interface\ITraLine.cs" />
     <Compile Include="Models\Interface\IWeather.cs" />
+    <Compile Include="Models\Repository\AlertRespository.cs" />
     <Compile Include="Models\Repository\BusRouteRepository.cs" />
     <Compile Include="Models\Repository\BusStopRepository.cs" />
     <Compile Include="Models\Repository\ParkingRespository.cs" />
     <Compile Include="Models\Repository\TraRepository.cs" />
     <Compile Include="Models\Repository\WeatherRespository.cs" />
     <Compile Include="Models\runUriTask.cs" />
+    <Compile Include="ViewModels\Alert\AlertDeserialize.cs" />
+    <Compile Include="ViewModels\Alert\AlertInfo.cs" />
+    <Compile Include="ViewModels\Alert\PublicSub.cs" />
     <Compile Include="ViewModels\Bus\BusDynamic.cs" />
     <Compile Include="ViewModels\Bus\BusDynamicDeserialize.cs" />
     <Compile Include="Models\DataClasses.designer.cs">
@@ -479,6 +486,7 @@
     <Content Include="Views\TraClass\Index.cshtml" />
     <Content Include="Views\TaoyuanWeather\Index.cshtml" />
     <Content Include="Views\Parking\Index.cshtml" />
+    <Content Include="Views\AlertCust\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

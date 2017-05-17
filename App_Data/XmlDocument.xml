@@ -481,6 +481,18 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Alert.AlertController.GetAlertInfo">
+            <summary>
+            取得災害警示資訊
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Alert.AlertCustController.GetAlertInfo">
+            <summary>
+            取得災害警示資訊
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Taoyuan_Traffic.Controllers.V1.Bus.BusController">
             <summary>
             Bus
@@ -603,6 +615,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:Taoyuan_Traffic.Models.Interface.IAlert.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
         <member name="P:Taoyuan_Traffic.Models.Interface.IBusRoute.Entity">
             <summary>
             傳回使用的資料庫實體
@@ -649,6 +666,42 @@
         <member name="M:Taoyuan_Traffic.Models.Interface.IBusDynamic.AddBusInfo(System.Collections.Generic.IEnumerable{Taoyuan_Traffic.ViewModels.BusDynamicDeserialize})">
             <summary>
             新增公車資訊
+            </summary>
+        </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.AlertRespository._db">
+            <summary>
+            (私有) 資料庫實體資料集合
+            </summary>
+        </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.AlertRespository._now">
+            <summary>
+            目前時間
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.AlertRespository.#ctor">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.AlertRespository.#ctor(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            倉儲建構子
+            </summary>
+            <param name="context">實體資料集合</param>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.AlertRespository.Finalize">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Repository.AlertRespository.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.AlertRespository.Dispose">
+            <summary>
+            資源釋放
             </summary>
         </member>
         <member name="F:Taoyuan_Traffic.Models.Repository.BusRouteRepository._db">
@@ -940,6 +993,18 @@
             </summary>
             <param name="dataContext">資料實體</param>
             <returns>資料倉儲介面</returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.DataFactory.AlertRespository(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            通用資料倉儲
+            </summary>
+            <param name="dataContext">資料實體</param>
+            <returns>資料倉儲介面</returns>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.Alert.AlertInfo.updated">
+            <summary>
+            更新時間
+            </summary>
         </member>
         <member name="T:Taoyuan_Traffic.ViewModels.GetRoute">
             <summary>

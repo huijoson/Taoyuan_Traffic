@@ -26,7 +26,7 @@ namespace Taoyuan_Traffic.Controllers.V1.PARK
             IParking repos = DataFactory.ParkingRespository();
 
             //Setting target Url
-            string targetURI = "http://data.tycg.gov.tw/api/v1/rest/datastore/0daad6e6-0632-44f5-bd25-5e1de1e9146f?format=json";
+            string targetURI = ConfigurationManager.AppSettings["ParkingInfoURL"].ToString();
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
             //Get Parking Json Format (not completed json)

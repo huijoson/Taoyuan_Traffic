@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -23,7 +24,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Weather
         public ActionResult Index()
         {
             //Initial Variables
-            string targetURI = "http://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-005?elementName=Wx,PoP,T,CI&sort=time";
+            string targetURI = ConfigurationManager.AppSettings["WeatherInfoURL"].ToString() + "/?elementName=Wx,PoP,T,CI&sort=time";
             var jsonResponse = "";
             StringBuilder jsonResultSB = new StringBuilder();
             IWeather repos = DataFactory.WeatherRespository();

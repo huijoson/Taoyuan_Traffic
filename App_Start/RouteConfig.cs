@@ -38,6 +38,12 @@ namespace Taoyuan_Traffic
             );
 
             routes.MapRoute(
+                name: "AlertApiV1",
+                url: "api/v1/Alert/{controller}/{action}",
+                namespaces: new string[] { "AlertCustController" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
