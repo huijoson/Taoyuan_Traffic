@@ -26,7 +26,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         // GET: BusDynamic
         public async Task<ActionResult> Index()
         {
-            var BusDynamicSource = await new BusPubFunc().GetBusDynamicData();
+            var BusDynamicSource = await GetBusDynamicData();
             //將JSON反序列化的資料填進資料庫中
             using (IBusDynamic repos = DataFactory.BusDynamicRepository())
             {
@@ -55,6 +55,45 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
             IBusDynamic repos = DataFactory.BusDynamicRepository();
 
             return Content(JsonConvert.SerializeObject(repos.GetBusDynamicInfo(collection)), "application/json");
+        }
+
+        public async Task<IEnumerable<BusDynamicDeserialize>> GetBusDynamicData()
+        {
+            //setting cache
+            string cacheName = "BusCache";
+
+            ObjectCache cache = MemoryCache.Default;
+            CacheItem cacheContents = cache.GetCacheItem(cacheName);
+
+            if (cacheContents == null)
+            {
+                return await RetriveBusDynamicData(cacheName);
+            }
+            else
+            {
+                return cacheContents.Value as IEnumerable<BusDynamicDeserialize>;
+            }
+        }
+        //動態公車用快取
+        public async Task<IEnumerable<BusDynamicDeserialize>> RetriveBusDynamicData(string cacheName)
+        {
+            //Setting target Url
+            string targetURI = ConfigurationManager.AppSettings["BusDynamicURL"].ToString() + "?$format=JSON";
+            HttpClient client = new HttpClient();
+            client.MaxResponseContentBufferSize = Int32.MaxValue;
+
+            //Get Json String
+            var response = await client.GetStringAsync(targetURI);
+            //Deserialize
+            var collection = JsonConvert.DeserializeObject<IEnumerable<BusDynamicDeserialize>>(response);
+            //setting cache policy
+            CacheItemPolicy policy = new CacheItemPolicy();
+            policy.AbsoluteExpiration = DateTime.Now.AddMinutes(0);
+
+            ObjectCache cacheItem = MemoryCache.Default;
+            cacheItem.Add(cacheName, collection, policy);
+
+            return collection;
         }
     }
 }

@@ -54,6 +54,9 @@ namespace Taoyuan_Traffic.Models
     partial void InsertAlertTable(AlertTable instance);
     partial void UpdateAlertTable(AlertTable instance);
     partial void DeleteAlertTable(AlertTable instance);
+    partial void InsertRealTimeTable(RealTimeTable instance);
+    partial void UpdateRealTimeTable(RealTimeTable instance);
+    partial void DeleteRealTimeTable(RealTimeTable instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -147,6 +150,14 @@ namespace Taoyuan_Traffic.Models
 			get
 			{
 				return this.GetTable<AlertTable>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RealTimeTable> RealTimeTable
+		{
+			get
+			{
+				return this.GetTable<RealTimeTable>();
 			}
 		}
 	}
@@ -2710,6 +2721,356 @@ namespace Taoyuan_Traffic.Models
 					this._term = value;
 					this.SendPropertyChanged("term");
 					this.OntermChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RealTimeTable")]
+	public partial class RealTimeTable : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _region;
+		
+		private string _srcdetail;
+		
+		private string _areaNm;
+		
+		private string _UID;
+		
+		private string _direction;
+		
+		private string _y1;
+		
+		private string _happentime;
+		
+		private string _roadtype;
+		
+		private string _road;
+		
+		private string _modDttm;
+		
+		private string _comment;
+		
+		private string _happendate;
+		
+		private string _x1;
+		
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnregionChanging(string value);
+    partial void OnregionChanged();
+    partial void OnsrcdetailChanging(string value);
+    partial void OnsrcdetailChanged();
+    partial void OnareaNmChanging(string value);
+    partial void OnareaNmChanged();
+    partial void OnUIDChanging(string value);
+    partial void OnUIDChanged();
+    partial void OndirectionChanging(string value);
+    partial void OndirectionChanged();
+    partial void Ony1Changing(string value);
+    partial void Ony1Changed();
+    partial void OnhappentimeChanging(string value);
+    partial void OnhappentimeChanged();
+    partial void OnroadtypeChanging(string value);
+    partial void OnroadtypeChanged();
+    partial void OnroadChanging(string value);
+    partial void OnroadChanged();
+    partial void OnmodDttmChanging(string value);
+    partial void OnmodDttmChanged();
+    partial void OncommentChanging(string value);
+    partial void OncommentChanged();
+    partial void OnhappendateChanging(string value);
+    partial void OnhappendateChanged();
+    partial void Onx1Changing(string value);
+    partial void Onx1Changed();
+    #endregion
+		
+		public RealTimeTable()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_region", DbType="NVarChar(50)")]
+		public string region
+		{
+			get
+			{
+				return this._region;
+			}
+			set
+			{
+				if ((this._region != value))
+				{
+					this.OnregionChanging(value);
+					this.SendPropertyChanging();
+					this._region = value;
+					this.SendPropertyChanged("region");
+					this.OnregionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_srcdetail", DbType="NVarChar(100)")]
+		public string srcdetail
+		{
+			get
+			{
+				return this._srcdetail;
+			}
+			set
+			{
+				if ((this._srcdetail != value))
+				{
+					this.OnsrcdetailChanging(value);
+					this.SendPropertyChanging();
+					this._srcdetail = value;
+					this.SendPropertyChanged("srcdetail");
+					this.OnsrcdetailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_areaNm", DbType="NVarChar(100)")]
+		public string areaNm
+		{
+			get
+			{
+				return this._areaNm;
+			}
+			set
+			{
+				if ((this._areaNm != value))
+				{
+					this.OnareaNmChanging(value);
+					this.SendPropertyChanging();
+					this._areaNm = value;
+					this.SendPropertyChanged("areaNm");
+					this.OnareaNmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UID", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string UID
+		{
+			get
+			{
+				return this._UID;
+			}
+			set
+			{
+				if ((this._UID != value))
+				{
+					this.OnUIDChanging(value);
+					this.SendPropertyChanging();
+					this._UID = value;
+					this.SendPropertyChanged("UID");
+					this.OnUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_direction", DbType="NVarChar(50)")]
+		public string direction
+		{
+			get
+			{
+				return this._direction;
+			}
+			set
+			{
+				if ((this._direction != value))
+				{
+					this.OndirectionChanging(value);
+					this.SendPropertyChanging();
+					this._direction = value;
+					this.SendPropertyChanged("direction");
+					this.OndirectionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_y1", DbType="NVarChar(50)")]
+		public string y1
+		{
+			get
+			{
+				return this._y1;
+			}
+			set
+			{
+				if ((this._y1 != value))
+				{
+					this.Ony1Changing(value);
+					this.SendPropertyChanging();
+					this._y1 = value;
+					this.SendPropertyChanged("y1");
+					this.Ony1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_happentime", DbType="NVarChar(50)")]
+		public string happentime
+		{
+			get
+			{
+				return this._happentime;
+			}
+			set
+			{
+				if ((this._happentime != value))
+				{
+					this.OnhappentimeChanging(value);
+					this.SendPropertyChanging();
+					this._happentime = value;
+					this.SendPropertyChanged("happentime");
+					this.OnhappentimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_roadtype", DbType="NVarChar(50)")]
+		public string roadtype
+		{
+			get
+			{
+				return this._roadtype;
+			}
+			set
+			{
+				if ((this._roadtype != value))
+				{
+					this.OnroadtypeChanging(value);
+					this.SendPropertyChanging();
+					this._roadtype = value;
+					this.SendPropertyChanged("roadtype");
+					this.OnroadtypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_road", DbType="NVarChar(50)")]
+		public string road
+		{
+			get
+			{
+				return this._road;
+			}
+			set
+			{
+				if ((this._road != value))
+				{
+					this.OnroadChanging(value);
+					this.SendPropertyChanging();
+					this._road = value;
+					this.SendPropertyChanged("road");
+					this.OnroadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_modDttm", DbType="NVarChar(50)")]
+		public string modDttm
+		{
+			get
+			{
+				return this._modDttm;
+			}
+			set
+			{
+				if ((this._modDttm != value))
+				{
+					this.OnmodDttmChanging(value);
+					this.SendPropertyChanging();
+					this._modDttm = value;
+					this.SendPropertyChanged("modDttm");
+					this.OnmodDttmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_comment", DbType="NVarChar(600)")]
+		public string comment
+		{
+			get
+			{
+				return this._comment;
+			}
+			set
+			{
+				if ((this._comment != value))
+				{
+					this.OncommentChanging(value);
+					this.SendPropertyChanging();
+					this._comment = value;
+					this.SendPropertyChanged("comment");
+					this.OncommentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_happendate", DbType="NVarChar(50)")]
+		public string happendate
+		{
+			get
+			{
+				return this._happendate;
+			}
+			set
+			{
+				if ((this._happendate != value))
+				{
+					this.OnhappendateChanging(value);
+					this.SendPropertyChanging();
+					this._happendate = value;
+					this.SendPropertyChanged("happendate");
+					this.OnhappendateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_x1", DbType="NVarChar(50)")]
+		public string x1
+		{
+			get
+			{
+				return this._x1;
+			}
+			set
+			{
+				if ((this._x1 != value))
+				{
+					this.Onx1Changing(value);
+					this.SendPropertyChanging();
+					this._x1 = value;
+					this.SendPropertyChanged("x1");
+					this.Onx1Changed();
 				}
 			}
 		}

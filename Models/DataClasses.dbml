@@ -127,4 +127,21 @@
       <Column Name="term" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.RealTimeTable" Member="RealTimeTable">
+    <Type Name="RealTimeTable">
+      <Column Name="region" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="srcdetail" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="areaNm" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="UID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="direction" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="y1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="happentime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="roadtype" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="road" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="modDttm" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="comment" Type="System.String" DbType="NVarChar(600)" CanBeNull="true" />
+      <Column Name="happendate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="x1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

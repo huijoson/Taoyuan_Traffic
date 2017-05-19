@@ -590,6 +590,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.RealTime.RealTimeController.GetSearchWeather(System.Single,System.Single,System.Int32)">
+            <summary>
+            取得即時路況
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Taoyuan_Traffic.Controllers.V1.TRA.TraController.GetTraDailyTimeTable(System.String,System.String,System.String,System.String)">
             <summary>
             取得公車路線資料
@@ -631,6 +637,11 @@
             </summary>
         </member>
         <member name="P:Taoyuan_Traffic.Models.Interface.IParking.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Interface.IRealTime.Entity">
             <summary>
             傳回使用的資料庫實體
             </summary>
@@ -827,6 +838,42 @@
             新增熱門關鍵字
             </summary>
         </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.RealTimeRespository._db">
+            <summary>
+            (私有) 資料庫實體資料集合
+            </summary>
+        </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.RealTimeRespository._now">
+            <summary>
+            目前時間
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.RealTimeRespository.#ctor">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.RealTimeRespository.#ctor(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            倉儲建構子
+            </summary>
+            <param name="context">實體資料集合</param>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.RealTimeRespository.Finalize">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Repository.RealTimeRespository.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.RealTimeRespository.Dispose">
+            <summary>
+            資源釋放
+            </summary>
+        </member>
         <member name="F:Taoyuan_Traffic.Models.Repository.TraRepository._db">
             <summary>
             (私有) 資料庫實體資料集合
@@ -995,6 +1042,13 @@
             <returns>資料倉儲介面</returns>
         </member>
         <member name="M:Taoyuan_Traffic.Models.DataFactory.AlertRespository(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            通用資料倉儲
+            </summary>
+            <param name="dataContext">資料實體</param>
+            <returns>資料倉儲介面</returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.DataFactory.RealTimeRespository(Taoyuan_Traffic.Models.DataClassesDataContext)">
             <summary>
             通用資料倉儲
             </summary>

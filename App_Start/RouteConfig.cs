@@ -44,6 +44,12 @@ namespace Taoyuan_Traffic
             );
 
             routes.MapRoute(
+                name: "RealTimeApiV1",
+                url: "api/v1/RealTime/{controller}/{action}",
+                namespaces: new string[] { "RealTimeTrafficInfoController" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

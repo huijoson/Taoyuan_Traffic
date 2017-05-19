@@ -24,16 +24,19 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         // GET: BusRoute
         public async Task<ActionResult> Index()
         {
-            var BusRouteSource = await new BusPubFunc().GetBusRouteData();
-            //將JSON反序列化的資料填進資料庫中
-            using (IBusRoute repos = DataFactory.BusRouteRepository())
-            {
-                repos.AddBusRoute(BusRouteSource);
-            }
-            //IEnumerable<BusRoute> record;
-            //DataClassesDataContext db = new DataClassesDataContext();
+            //var BusRouteSource = await GetBusRouteData();
+            //Setting target Url
+            string targetURI = ConfigurationManager.AppSettings["BusRouteURL"].ToString() + "?$format=JSON";
+            HttpClient client = new HttpClient();
+            client.MaxResponseContentBufferSize = Int32.MaxValue;
+            //Get Json String
+            var response = await client.GetStringAsync(targetURI);
+            //Deserialize
+            var collection = JsonConvert.DeserializeObject<IEnumerable<BusRouteDeserialize>>(response);
+            IBusRoute repos = DataFactory.BusRouteRepository();
 
-            //record = (from o in db.BusRoute select o).AsEnumerable();
+            //將JSON反序列化的資料填進資料庫中
+            repos.AddBusRoute(collection);
 
             return View();
         }
@@ -82,5 +85,43 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
             return Content(JsonConvert.SerializeObject(repos.GetSearchRoute(keyword)), "application/json");
         }
 
+        //公車路線用快取
+        public async Task<IEnumerable<BusRouteDeserialize>> GetBusRouteData()
+        {
+            //setting cache
+            string cacheName = "BusCache";
+
+            ObjectCache cache = MemoryCache.Default;
+            CacheItem cacheContents = cache.GetCacheItem(cacheName);
+
+            if (cacheContents == null)
+            {
+                return await RetriveBusRouteData(cacheName);
+            }
+            else
+            {
+                return cacheContents.Value as IEnumerable<BusRouteDeserialize>;
+            }
+        }
+
+        public async Task<IEnumerable<BusRouteDeserialize>> RetriveBusRouteData(string cacheName)
+        {
+            //Setting target Url
+            string targetURI = ConfigurationManager.AppSettings["BusRouteURL"].ToString() + "?$format=JSON";
+            HttpClient client = new HttpClient();
+            client.MaxResponseContentBufferSize = Int32.MaxValue;
+            //Get Json String
+            var response = await client.GetStringAsync(targetURI);
+            //Deserialize
+            var collection = JsonConvert.DeserializeObject<IEnumerable<BusRouteDeserialize>>(response);
+            //setting cache policy
+            CacheItemPolicy policy = new CacheItemPolicy();
+            policy.AbsoluteExpiration = DateTime.Now.AddMinutes(0);
+
+            ObjectCache cacheItem = MemoryCache.Default;
+            cacheItem.Add(cacheName, collection, policy);
+
+            return collection;
+        }
     }
 }

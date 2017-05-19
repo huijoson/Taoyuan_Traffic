@@ -149,7 +149,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
             IHttpActionResult responseResult;
             IBusStop repos = DataFactory.BusStopRepository();
             //Get Json String
-            var busStopSource = await new BusPubFunc().GetBusStopData(routeName);
+            var busStopSource = await new BusStopController().GetBusStopData(routeName);
             //將需要的欄位取出後序列化
             var jsonSerialize = JsonConvert.SerializeObject(repos.GetBusStop(busStopSource));
             //做成JSON字串包裝到最後輸出
@@ -172,5 +172,6 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
             this.ImplementationNotes = implementationNotes;
         }
     }
+    
 }
 
