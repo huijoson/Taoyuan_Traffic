@@ -50,6 +50,12 @@ namespace Taoyuan_Traffic
             );
 
             routes.MapRoute(
+                name: "UBikeApiV1",
+                url: "api/v1/UBike/{controller}/{action}",
+                namespaces: new string[] { "UBikeInfoController" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

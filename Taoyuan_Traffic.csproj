@@ -419,6 +419,7 @@
     <Compile Include="Controllers\V1\TRA\TraLineController.cs" />
     <Compile Include="Controllers\V1\TRA\TraPubFunc.cs" />
     <Compile Include="Controllers\V1\TRA\TraStationController.cs" />
+    <Compile Include="Controllers\V1\UBike\UBikeInfoController.cs" />
     <Compile Include="Controllers\V1\Weather\TaoyuanWeatherController.cs" />
     <Compile Include="Controllers\V1\Weather\WeatherController.cs" />
     <Compile Include="Global.asax.cs">
@@ -430,6 +431,7 @@
     <Compile Include="Models\Interface\IParking.cs" />
     <Compile Include="Models\Interface\IRealTime.cs" />
     <Compile Include="Models\Interface\ITraLine.cs" />
+    <Compile Include="Models\Interface\IUBike.cs" />
     <Compile Include="Models\Interface\IWeather.cs" />
     <Compile Include="Models\Repository\AlertRespository.cs" />
     <Compile Include="Models\Repository\BusRouteRepository.cs" />
@@ -437,6 +439,7 @@
     <Compile Include="Models\Repository\ParkingRespository.cs" />
     <Compile Include="Models\Repository\RealTimeRespository.cs" />
     <Compile Include="Models\Repository\TraRepository.cs" />
+    <Compile Include="Models\Repository\UBikeRepository.cs" />
     <Compile Include="Models\Repository\WeatherRespository.cs" />
     <Compile Include="Models\runUriTask.cs" />
     <Compile Include="ViewModels\Alert\AlertDeserialize.cs" />
@@ -466,6 +469,8 @@
     <Compile Include="ViewModels\TRA\TraDailyTimeTableDeserialize.cs" />
     <Compile Include="ViewModels\TRA\TraStationDeserialize.cs" />
     <Compile Include="ViewModels\TRA\TraLineDeserialize.cs" />
+    <Compile Include="Controllers\V1\UBike\UBikeController.cs" />
+    <Compile Include="ViewModels\Ubike\UBikeDeserialize.cs" />
     <Compile Include="ViewModels\Weather\PublicSub.cs" />
     <Compile Include="ViewModels\Weather\Weather3DayDeserialize.cs" />
     <Compile Include="ViewModels\Weather\WeatherCI.cs" />
@@ -492,6 +497,7 @@
     <Content Include="Views\Parking\Index.cshtml" />
     <Content Include="Views\AlertCust\Index.cshtml" />
     <Content Include="Views\RealTimeTrafficInfo\Index.cshtml" />
+    <Content Include="Views\UBikeInfo\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

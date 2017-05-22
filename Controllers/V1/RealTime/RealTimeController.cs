@@ -1,12 +1,11 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Swashbuckle.Swagger.Annotations;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.Models.Interface;
+using Taoyuan_Traffic.ViewModels.RealTime;
 
 namespace Taoyuan_Traffic.Controllers.V1.RealTime
 {
@@ -17,9 +16,10 @@ namespace Taoyuan_Traffic.Controllers.V1.RealTime
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/v1/ReealTime/GetReealTimeInfo")]
-        //[ResponseType(typeof(Weather3DayDeserialize))]
-        //[SwaggerImplementationNotes("取得所有公車路線")]
+        [Route("api/v1/RealTime/GetRealTimeInfo")]
+        [SwaggerResponse(HttpStatusCode.OK, "", typeof(RealTimeInfoDeserialize))]
+        [SwaggerResponse(HttpStatusCode.NotFound)]
+        [SwaggerImplementationNotes("取得即時路況資訊")]
         public IHttpActionResult GetSearchWeather(float y, float x, int radius)
         {
             //Initial

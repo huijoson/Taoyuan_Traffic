@@ -1,16 +1,13 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
+using Swashbuckle.Swagger.Annotations;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Description;
 using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.Models.Interface;
+using System.Web.Http.Description;
 using Taoyuan_Traffic.ViewModels.TRA;
+using System.Threading.Tasks;
 
 namespace Taoyuan_Traffic.Controllers.V1.TRA
 {
@@ -27,6 +24,9 @@ namespace Taoyuan_Traffic.Controllers.V1.TRA
         [HttpGet]
         [Route("api/v1/Tra/TraDailyTimeTable/GetRouteInfo")]
         [ResponseType(typeof(TraDailyTimeTableDeserialize))]
+        [SwaggerResponse(HttpStatusCode.OK, "", typeof(TraDailyTimeTableDeserialize))]
+        [SwaggerResponse(HttpStatusCode.NotFound)]
+        [SwaggerImplementationNotes("取得台鐵路線及時刻資訊")]
         public async Task<IHttpActionResult> GetTraDailyTimeTable(string originSation, string destionation, string trainDate, string trainAfterTime)
         {
 

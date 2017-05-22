@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.JsonPatch.Operations;
-using Newtonsoft.Json;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using Swashbuckle.Swagger;
+﻿using Newtonsoft.Json;
+using Swashbuckle.Swagger.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
-using System.Runtime.Caching;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -31,8 +29,9 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         /// <returns></returns>
         [HttpGet]
         [Route("api/v1/Bus/BusRoute/GetAllRoute")]
-        [ResponseType(typeof(GetRoute))]
-        [SwaggerImplementationNotes("取得所有公車路線")]
+        [SwaggerResponse(HttpStatusCode.OK, "", typeof(GetRoute))]
+        [SwaggerResponse(HttpStatusCode.NotFound)]
+        [SwaggerImplementationNotes("取得所有公車路線資訊")]
         public IHttpActionResult GetAllRoute()
         {
             //Initial
@@ -56,7 +55,9 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         /// <returns></returns>
         [HttpGet]
         [Route("api/v1/Bus/BusRoute/GetRouteInfo")]
-        [ResponseType(typeof(BusEstimatedTimeDeserialize))]
+        [SwaggerResponse(HttpStatusCode.OK, "", typeof(BusEstimatedTimeDeserialize))]
+        [SwaggerResponse(HttpStatusCode.NotFound)]
+        [SwaggerImplementationNotes("取得公車路線資料")]
         public async Task<IHttpActionResult> GetBusEstimatedInfo(string routeName, string direction = "0'%20or%20Direction%20eq%20%20'1")
         {
             //Initial
@@ -89,6 +90,9 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         [HttpGet]
         [Route("api/v1/Bus/BusRoute/GetSearchRoute")]
         [ResponseType(typeof(GetRoute))]
+        [SwaggerResponse(HttpStatusCode.OK, "", typeof(GetRoute))]
+        [SwaggerResponse(HttpStatusCode.NotFound)]
+        [SwaggerImplementationNotes("關鍵字搜尋公車路線")]
         public IHttpActionResult GetSearchRoute(string keyword)
         {
             //Initial
@@ -112,6 +116,9 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         [HttpGet]
         [Route("api/v1/Bus/BusRoute/GetDynamicBusInfo")]
         [ResponseType(typeof(BusDynamicDeserialize))]
+        [SwaggerResponse(HttpStatusCode.OK, "", typeof(BusDynamicDeserialize))]
+        [SwaggerResponse(HttpStatusCode.NotFound)]
+        [SwaggerImplementationNotes("取得路線公車動態資訊")]
         public async Task<IHttpActionResult> GetDynamicBusInfo(string routeName)
         {
             //Initial
@@ -142,7 +149,9 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         /// <returns></returns>
         [HttpGet]
         [Route("api/v1/Bus/BusRoute/GetBusStopInfo")]
-        [ResponseType(typeof(BusStopDeserialize))]
+        [SwaggerResponse(HttpStatusCode.OK, "", typeof(BusDynamicDeserialize))]
+        [SwaggerResponse(HttpStatusCode.NotFound)]
+        [SwaggerImplementationNotes("取得公車站牌資訊")]
         public async Task<IHttpActionResult> GetBusStopInfo(string routeName = "")
         {
             //Initial
@@ -161,17 +170,5 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
             return responseResult;
         }
     }
-
-    [AttributeUsage(AttributeTargets.Method)]
-    public class SwaggerImplementationNotesAttribute : Attribute
-    {
-        public string ImplementationNotes { get; private set; }
-
-        public SwaggerImplementationNotesAttribute(string implementationNotes)
-        {
-            this.ImplementationNotes = implementationNotes;
-        }
-    }
-    
 }
 

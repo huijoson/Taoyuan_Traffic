@@ -606,6 +606,12 @@
             <param name="trainAfterTime">乘車時間</param>
             <returns></returns>
         </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.UBike.UBikeController.GetUBikeInfo">
+            <summary>
+            取得YouBike資訊
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Taoyuan_Traffic.Controllers.V1.Weather.TaoyuanWeatherController.GetSearchWeather(System.String,System.String,System.String)">
             <summary>
             取得搜尋天氣資訊
@@ -647,6 +653,11 @@
             </summary>
         </member>
         <member name="P:Taoyuan_Traffic.Models.Interface.ITraLine.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Interface.IUBike.Entity">
             <summary>
             傳回使用的資料庫實體
             </summary>
@@ -922,6 +933,42 @@
             </summary>
             <param name="traStationResource"></param>
         </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.UBikeRepository._db">
+            <summary>
+            (私有) 資料庫實體資料集合
+            </summary>
+        </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.UBikeRepository._now">
+            <summary>
+            目前時間
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.UBikeRepository.#ctor">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.UBikeRepository.#ctor(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            倉儲建構子
+            </summary>
+            <param name="context">實體資料集合</param>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.UBikeRepository.Finalize">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Repository.UBikeRepository.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.UBikeRepository.Dispose">
+            <summary>
+            資源釋放
+            </summary>
+        </member>
         <member name="F:Taoyuan_Traffic.Models.Repository.WeatherRespository._db">
             <summary>
             (私有) 資料庫實體資料集合
@@ -1049,6 +1096,13 @@
             <returns>資料倉儲介面</returns>
         </member>
         <member name="M:Taoyuan_Traffic.Models.DataFactory.RealTimeRespository(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            通用資料倉儲
+            </summary>
+            <param name="dataContext">資料實體</param>
+            <returns>資料倉儲介面</returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.DataFactory.UBikeRespository(Taoyuan_Traffic.Models.DataClassesDataContext)">
             <summary>
             通用資料倉儲
             </summary>

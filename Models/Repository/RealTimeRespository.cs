@@ -138,7 +138,11 @@ namespace Taoyuan_Traffic.Models.Repository
                                                              y1 = o.y1,
                                                              happentime = o.happentime,
                                                              roadtype = o.roadtype,
-                                                             road = o.road
+                                                             road = o.road,
+                                                             modDttm = o.modDttm,
+                                                             comment = o.comment,
+                                                             happendate = o.happendate,
+                                                             x1 = o.x1
                                                          }).ToList();
             return realtimeList;
         }

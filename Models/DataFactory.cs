@@ -89,5 +89,15 @@ namespace Taoyuan_Traffic.Models
         {
             return new RealTimeRespository(dataContext);
         }
+
+        /// <summary>
+        /// 通用資料倉儲
+        /// </summary>
+        /// <param name="dataContext">資料實體</param>
+        /// <returns>資料倉儲介面</returns>
+        public static IUBike UBikeRespository(DataClassesDataContext dataContext = null)
+        {
+            return new UBikeRepository(dataContext);
+        }
     }
 }

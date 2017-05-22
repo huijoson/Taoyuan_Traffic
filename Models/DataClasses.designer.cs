@@ -57,6 +57,9 @@ namespace Taoyuan_Traffic.Models
     partial void InsertRealTimeTable(RealTimeTable instance);
     partial void UpdateRealTimeTable(RealTimeTable instance);
     partial void DeleteRealTimeTable(RealTimeTable instance);
+    partial void InsertUBikeTable(UBikeTable instance);
+    partial void UpdateUBikeTable(UBikeTable instance);
+    partial void DeleteUBikeTable(UBikeTable instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -158,6 +161,14 @@ namespace Taoyuan_Traffic.Models
 			get
 			{
 				return this.GetTable<RealTimeTable>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UBikeTable> UBikeTable
+		{
+			get
+			{
+				return this.GetTable<UBikeTable>();
 			}
 		}
 	}
@@ -3071,6 +3082,404 @@ namespace Taoyuan_Traffic.Models
 					this._x1 = value;
 					this.SendPropertyChanged("x1");
 					this.Onx1Changed();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UBikeTable")]
+	public partial class UBikeTable : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int @__id;
+		
+		private string _sno;
+		
+		private string _sna;
+		
+		private string _tot;
+		
+		private string _sbi;
+		
+		private string _sarea;
+		
+		private string _mday;
+		
+		private string _lat;
+		
+		private string _lng;
+		
+		private string _ar;
+		
+		private string _sareaen;
+		
+		private string _snaen;
+		
+		private string _aren;
+		
+		private string _bemp;
+		
+		private string _act;
+		
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void On_idChanging(int value);
+    partial void On_idChanged();
+    partial void OnsnoChanging(string value);
+    partial void OnsnoChanged();
+    partial void OnsnaChanging(string value);
+    partial void OnsnaChanged();
+    partial void OntotChanging(string value);
+    partial void OntotChanged();
+    partial void OnsbiChanging(string value);
+    partial void OnsbiChanged();
+    partial void OnsareaChanging(string value);
+    partial void OnsareaChanged();
+    partial void OnmdayChanging(string value);
+    partial void OnmdayChanged();
+    partial void OnlatChanging(string value);
+    partial void OnlatChanged();
+    partial void OnlngChanging(string value);
+    partial void OnlngChanged();
+    partial void OnarChanging(string value);
+    partial void OnarChanged();
+    partial void OnsareaenChanging(string value);
+    partial void OnsareaenChanged();
+    partial void OnsnaenChanging(string value);
+    partial void OnsnaenChanged();
+    partial void OnarenChanging(string value);
+    partial void OnarenChanged();
+    partial void OnbempChanging(string value);
+    partial void OnbempChanged();
+    partial void OnactChanging(string value);
+    partial void OnactChanged();
+    #endregion
+		
+		public UBikeTable()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_id]", Storage="__id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int _id
+		{
+			get
+			{
+				return this.@__id;
+			}
+			set
+			{
+				if ((this.@__id != value))
+				{
+					this.On_idChanging(value);
+					this.SendPropertyChanging();
+					this.@__id = value;
+					this.SendPropertyChanged("_id");
+					this.On_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sno", DbType="NVarChar(50)")]
+		public string sno
+		{
+			get
+			{
+				return this._sno;
+			}
+			set
+			{
+				if ((this._sno != value))
+				{
+					this.OnsnoChanging(value);
+					this.SendPropertyChanging();
+					this._sno = value;
+					this.SendPropertyChanged("sno");
+					this.OnsnoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sna", DbType="NVarChar(50)")]
+		public string sna
+		{
+			get
+			{
+				return this._sna;
+			}
+			set
+			{
+				if ((this._sna != value))
+				{
+					this.OnsnaChanging(value);
+					this.SendPropertyChanging();
+					this._sna = value;
+					this.SendPropertyChanged("sna");
+					this.OnsnaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tot", DbType="NVarChar(50)")]
+		public string tot
+		{
+			get
+			{
+				return this._tot;
+			}
+			set
+			{
+				if ((this._tot != value))
+				{
+					this.OntotChanging(value);
+					this.SendPropertyChanging();
+					this._tot = value;
+					this.SendPropertyChanged("tot");
+					this.OntotChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sbi", DbType="NVarChar(50)")]
+		public string sbi
+		{
+			get
+			{
+				return this._sbi;
+			}
+			set
+			{
+				if ((this._sbi != value))
+				{
+					this.OnsbiChanging(value);
+					this.SendPropertyChanging();
+					this._sbi = value;
+					this.SendPropertyChanged("sbi");
+					this.OnsbiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sarea", DbType="NVarChar(50)")]
+		public string sarea
+		{
+			get
+			{
+				return this._sarea;
+			}
+			set
+			{
+				if ((this._sarea != value))
+				{
+					this.OnsareaChanging(value);
+					this.SendPropertyChanging();
+					this._sarea = value;
+					this.SendPropertyChanged("sarea");
+					this.OnsareaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mday", DbType="NVarChar(50)")]
+		public string mday
+		{
+			get
+			{
+				return this._mday;
+			}
+			set
+			{
+				if ((this._mday != value))
+				{
+					this.OnmdayChanging(value);
+					this.SendPropertyChanging();
+					this._mday = value;
+					this.SendPropertyChanged("mday");
+					this.OnmdayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lat", DbType="NVarChar(50)")]
+		public string lat
+		{
+			get
+			{
+				return this._lat;
+			}
+			set
+			{
+				if ((this._lat != value))
+				{
+					this.OnlatChanging(value);
+					this.SendPropertyChanging();
+					this._lat = value;
+					this.SendPropertyChanged("lat");
+					this.OnlatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lng", DbType="NVarChar(50)")]
+		public string lng
+		{
+			get
+			{
+				return this._lng;
+			}
+			set
+			{
+				if ((this._lng != value))
+				{
+					this.OnlngChanging(value);
+					this.SendPropertyChanging();
+					this._lng = value;
+					this.SendPropertyChanged("lng");
+					this.OnlngChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ar", DbType="NVarChar(100)")]
+		public string ar
+		{
+			get
+			{
+				return this._ar;
+			}
+			set
+			{
+				if ((this._ar != value))
+				{
+					this.OnarChanging(value);
+					this.SendPropertyChanging();
+					this._ar = value;
+					this.SendPropertyChanged("ar");
+					this.OnarChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sareaen", DbType="NVarChar(100)")]
+		public string sareaen
+		{
+			get
+			{
+				return this._sareaen;
+			}
+			set
+			{
+				if ((this._sareaen != value))
+				{
+					this.OnsareaenChanging(value);
+					this.SendPropertyChanging();
+					this._sareaen = value;
+					this.SendPropertyChanged("sareaen");
+					this.OnsareaenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_snaen", DbType="NVarChar(100)")]
+		public string snaen
+		{
+			get
+			{
+				return this._snaen;
+			}
+			set
+			{
+				if ((this._snaen != value))
+				{
+					this.OnsnaenChanging(value);
+					this.SendPropertyChanging();
+					this._snaen = value;
+					this.SendPropertyChanged("snaen");
+					this.OnsnaenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_aren", DbType="NVarChar(100)")]
+		public string aren
+		{
+			get
+			{
+				return this._aren;
+			}
+			set
+			{
+				if ((this._aren != value))
+				{
+					this.OnarenChanging(value);
+					this.SendPropertyChanging();
+					this._aren = value;
+					this.SendPropertyChanged("aren");
+					this.OnarenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bemp", DbType="NVarChar(50)")]
+		public string bemp
+		{
+			get
+			{
+				return this._bemp;
+			}
+			set
+			{
+				if ((this._bemp != value))
+				{
+					this.OnbempChanging(value);
+					this.SendPropertyChanging();
+					this._bemp = value;
+					this.SendPropertyChanged("bemp");
+					this.OnbempChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_act", DbType="NVarChar(50)")]
+		public string act
+		{
+			get
+			{
+				return this._act;
+			}
+			set
+			{
+				if ((this._act != value))
+				{
+					this.OnactChanging(value);
+					this.SendPropertyChanging();
+					this._act = value;
+					this.SendPropertyChanged("act");
+					this.OnactChanged();
 				}
 			}
 		}

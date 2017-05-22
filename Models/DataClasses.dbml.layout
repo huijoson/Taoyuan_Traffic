@@ -56,5 +56,11 @@
         <elementListCompartment Id="27765385-0837-48f8-b1e9-7c0ec4d05dee" absoluteBounds="2.515, 6.21, 1.9700000000000002, 2.6404520670572915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="d8c20fc0-28ad-4aca-b3ff-42473c5b5893" absoluteBounds="0.5, 5.25, 2, 3.5700402832031246">
+      <DataClassMoniker Name="/DataClassesDataContext/UBikeTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4fd03970-bba9-413a-b9bb-0920de981996" absoluteBounds="0.51500000000000012, 5.71, 1.9700000000000002, 3.010040283203125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

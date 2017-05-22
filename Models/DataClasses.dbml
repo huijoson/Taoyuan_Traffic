@@ -144,4 +144,23 @@
       <Column Name="x1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.UBikeTable" Member="UBikeTable">
+    <Type Name="UBikeTable">
+      <Column Name="[_id]" Member="_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="sno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sna" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tot" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sbi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sarea" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="mday" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ar" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="sareaen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="snaen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="aren" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="bemp" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="act" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Description;
 using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.Models.Interface;
-using Taoyuan_Traffic.ViewModels.Weather;
 
 namespace Taoyuan_Traffic.Controllers.V1.Weather
 {
@@ -16,8 +16,8 @@ namespace Taoyuan_Traffic.Controllers.V1.Weather
         /// <returns></returns>
         [HttpGet]
         [Route("api/v1/Weather/GetSearchWeather")]
-        //[ResponseType(typeof(Weather3DayDeserialize))]
-        //[SwaggerImplementationNotes("取得所有公車路線")]
+        [SwaggerResponse(HttpStatusCode.NotFound)]
+        [SwaggerImplementationNotes("取得天氣預報資訊")]
         public IHttpActionResult GetSearchWeather(string attr, string date, string local = "桃園區")
         {
             //Initial
