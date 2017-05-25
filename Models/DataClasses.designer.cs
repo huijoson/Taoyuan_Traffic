@@ -60,6 +60,12 @@ namespace Taoyuan_Traffic.Models
     partial void InsertUBikeTable(UBikeTable instance);
     partial void UpdateUBikeTable(UBikeTable instance);
     partial void DeleteUBikeTable(UBikeTable instance);
+    partial void InsertRestTable(RestTable instance);
+    partial void UpdateRestTable(RestTable instance);
+    partial void DeleteRestTable(RestTable instance);
+    partial void InsertFreeWayTable(FreeWayTable instance);
+    partial void UpdateFreeWayTable(FreeWayTable instance);
+    partial void DeleteFreeWayTable(FreeWayTable instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -169,6 +175,22 @@ namespace Taoyuan_Traffic.Models
 			get
 			{
 				return this.GetTable<UBikeTable>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RestTable> RestTable
+		{
+			get
+			{
+				return this.GetTable<RestTable>();
+			}
+		}
+		
+		public System.Data.Linq.Table<FreeWayTable> FreeWayTable
+		{
+			get
+			{
+				return this.GetTable<FreeWayTable>();
 			}
 		}
 	}
@@ -3480,6 +3502,442 @@ namespace Taoyuan_Traffic.Models
 					this._act = value;
 					this.SendPropertyChanged("act");
 					this.OnactChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RestTable")]
+	public partial class RestTable : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _OpenTime;
+		
+		private string _PhoneNum;
+		
+		private string _Class;
+		
+		private string _Addr;
+		
+		private string _Name;
+		
+		private string _Vocation;
+		
+		private int @__id;
+		
+		private string _Area;
+		
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnOpenTimeChanging(string value);
+    partial void OnOpenTimeChanged();
+    partial void OnPhoneNumChanging(string value);
+    partial void OnPhoneNumChanged();
+    partial void OnClassChanging(string value);
+    partial void OnClassChanged();
+    partial void OnAddrChanging(string value);
+    partial void OnAddrChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnVocationChanging(string value);
+    partial void OnVocationChanged();
+    partial void On_idChanging(int value);
+    partial void On_idChanged();
+    partial void OnAreaChanging(string value);
+    partial void OnAreaChanged();
+    #endregion
+		
+		public RestTable()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OpenTime", DbType="NVarChar(50)")]
+		public string OpenTime
+		{
+			get
+			{
+				return this._OpenTime;
+			}
+			set
+			{
+				if ((this._OpenTime != value))
+				{
+					this.OnOpenTimeChanging(value);
+					this.SendPropertyChanging();
+					this._OpenTime = value;
+					this.SendPropertyChanged("OpenTime");
+					this.OnOpenTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNum", DbType="NVarChar(50)")]
+		public string PhoneNum
+		{
+			get
+			{
+				return this._PhoneNum;
+			}
+			set
+			{
+				if ((this._PhoneNum != value))
+				{
+					this.OnPhoneNumChanging(value);
+					this.SendPropertyChanging();
+					this._PhoneNum = value;
+					this.SendPropertyChanged("PhoneNum");
+					this.OnPhoneNumChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Class", DbType="NVarChar(50)")]
+		public string Class
+		{
+			get
+			{
+				return this._Class;
+			}
+			set
+			{
+				if ((this._Class != value))
+				{
+					this.OnClassChanging(value);
+					this.SendPropertyChanging();
+					this._Class = value;
+					this.SendPropertyChanged("Class");
+					this.OnClassChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Addr", DbType="NVarChar(50)")]
+		public string Addr
+		{
+			get
+			{
+				return this._Addr;
+			}
+			set
+			{
+				if ((this._Addr != value))
+				{
+					this.OnAddrChanging(value);
+					this.SendPropertyChanging();
+					this._Addr = value;
+					this.SendPropertyChanged("Addr");
+					this.OnAddrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vocation", DbType="NVarChar(50)")]
+		public string Vocation
+		{
+			get
+			{
+				return this._Vocation;
+			}
+			set
+			{
+				if ((this._Vocation != value))
+				{
+					this.OnVocationChanging(value);
+					this.SendPropertyChanging();
+					this._Vocation = value;
+					this.SendPropertyChanged("Vocation");
+					this.OnVocationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_id]", Storage="__id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int _id
+		{
+			get
+			{
+				return this.@__id;
+			}
+			set
+			{
+				if ((this.@__id != value))
+				{
+					this.On_idChanging(value);
+					this.SendPropertyChanging();
+					this.@__id = value;
+					this.SendPropertyChanged("_id");
+					this.On_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="NVarChar(50)")]
+		public string Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this.OnAreaChanging(value);
+					this.SendPropertyChanging();
+					this._Area = value;
+					this.SendPropertyChanged("Area");
+					this.OnAreaChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FreeWayTable")]
+	public partial class FreeWayTable : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _rID;
+		
+		private string _name;
+		
+		private string _addr;
+		
+		private string _phoneNum;
+		
+		private string _freephoneNum;
+		
+		private string _SmallCar;
+		
+		private string _LargeCar;
+		
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnrIDChanging(int value);
+    partial void OnrIDChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnaddrChanging(string value);
+    partial void OnaddrChanged();
+    partial void OnphoneNumChanging(string value);
+    partial void OnphoneNumChanged();
+    partial void OnfreephoneNumChanging(string value);
+    partial void OnfreephoneNumChanged();
+    partial void OnSmallCarChanging(string value);
+    partial void OnSmallCarChanged();
+    partial void OnLargeCarChanging(string value);
+    partial void OnLargeCarChanged();
+    #endregion
+		
+		public FreeWayTable()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int rID
+		{
+			get
+			{
+				return this._rID;
+			}
+			set
+			{
+				if ((this._rID != value))
+				{
+					this.OnrIDChanging(value);
+					this.SendPropertyChanging();
+					this._rID = value;
+					this.SendPropertyChanged("rID");
+					this.OnrIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_addr", DbType="NVarChar(50)")]
+		public string addr
+		{
+			get
+			{
+				return this._addr;
+			}
+			set
+			{
+				if ((this._addr != value))
+				{
+					this.OnaddrChanging(value);
+					this.SendPropertyChanging();
+					this._addr = value;
+					this.SendPropertyChanged("addr");
+					this.OnaddrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phoneNum", DbType="NVarChar(50)")]
+		public string phoneNum
+		{
+			get
+			{
+				return this._phoneNum;
+			}
+			set
+			{
+				if ((this._phoneNum != value))
+				{
+					this.OnphoneNumChanging(value);
+					this.SendPropertyChanging();
+					this._phoneNum = value;
+					this.SendPropertyChanged("phoneNum");
+					this.OnphoneNumChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_freephoneNum", DbType="NVarChar(50)")]
+		public string freephoneNum
+		{
+			get
+			{
+				return this._freephoneNum;
+			}
+			set
+			{
+				if ((this._freephoneNum != value))
+				{
+					this.OnfreephoneNumChanging(value);
+					this.SendPropertyChanging();
+					this._freephoneNum = value;
+					this.SendPropertyChanged("freephoneNum");
+					this.OnfreephoneNumChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SmallCar", DbType="NVarChar(50)")]
+		public string SmallCar
+		{
+			get
+			{
+				return this._SmallCar;
+			}
+			set
+			{
+				if ((this._SmallCar != value))
+				{
+					this.OnSmallCarChanging(value);
+					this.SendPropertyChanging();
+					this._SmallCar = value;
+					this.SendPropertyChanged("SmallCar");
+					this.OnSmallCarChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LargeCar", DbType="NVarChar(50)")]
+		public string LargeCar
+		{
+			get
+			{
+				return this._LargeCar;
+			}
+			set
+			{
+				if ((this._LargeCar != value))
+				{
+					this.OnLargeCarChanging(value);
+					this.SendPropertyChanging();
+					this._LargeCar = value;
+					this.SendPropertyChanged("LargeCar");
+					this.OnLargeCarChanged();
 				}
 			}
 		}

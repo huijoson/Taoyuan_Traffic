@@ -127,7 +127,10 @@ namespace Taoyuan_Traffic.Models.Repository
                                                         lat = o.lat,
                                                         lng = o.lng,
                                                         sbi = o.sbi,
-                                                        mday = o.mday
+                                                        mday = o.mday,
+                                                        aren = o.aren,
+                                                        sno = o.sno,
+                                                        tot = o.tot
                                                     }).ToList();
             return UBikeInfoList;
         }

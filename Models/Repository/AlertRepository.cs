@@ -7,7 +7,7 @@ using Taoyuan_Traffic.ViewModels.Alert;
 
 namespace Taoyuan_Traffic.Models.Repository
 {
-    public class AlertRespository : IAlert
+    public class AlertRepository : IAlert
     {
         /// <summary>
         /// (私有) 資料庫實體資料集合
@@ -22,7 +22,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// <summary>
         /// 倉儲建構子
         /// </summary>
-        public AlertRespository()
+        public AlertRepository()
         {
             this._db = new DataClassesDataContext();
 
@@ -32,7 +32,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// 倉儲建構子
         /// </summary>
         /// <param name="context">實體資料集合</param>
-        public AlertRespository(DataClassesDataContext context = null)
+        public AlertRepository(DataClassesDataContext context = null)
         {
             this._db = (context == null ? new DataClassesDataContext() : context);
         }
@@ -40,7 +40,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// <summary>
         /// 倉儲建構子
         /// </summary>
-        ~AlertRespository()
+        ~AlertRepository()
         {
             this.Dispose(false);
         }

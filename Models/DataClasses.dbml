@@ -163,4 +163,27 @@
       <Column Name="act" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.RestTable" Member="RestTable">
+    <Type Name="RestTable">
+      <Column Name="OpenTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PhoneNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Class" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Addr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Vocation" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[_id]" Member="_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Area" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FreeWayTable" Member="FreeWayTable">
+    <Type Name="FreeWayTable">
+      <Column Name="rID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="addr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="phoneNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="freephoneNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SmallCar" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LargeCar" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

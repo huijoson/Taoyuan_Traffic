@@ -7,7 +7,7 @@ using Taoyuan_Traffic.ViewModels.RealTime;
 
 namespace Taoyuan_Traffic.Models.Repository
 {
-    public class RealTimeRespository : IRealTime
+    public class RealTimeRepository : IRealTime
     {
         /// <summary>
         /// (私有) 資料庫實體資料集合
@@ -22,7 +22,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// <summary>
         /// 倉儲建構子
         /// </summary>
-        public RealTimeRespository()
+        public RealTimeRepository()
         {
             this._db = new DataClassesDataContext();
 
@@ -32,7 +32,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// 倉儲建構子
         /// </summary>
         /// <param name="context">實體資料集合</param>
-        public RealTimeRespository(DataClassesDataContext context = null)
+        public RealTimeRepository(DataClassesDataContext context = null)
         {
             this._db = (context == null ? new DataClassesDataContext() : context);
         }
@@ -40,7 +40,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// <summary>
         /// 倉儲建構子
         /// </summary>
-        ~RealTimeRespository()
+        ~RealTimeRepository()
         {
             this.Dispose(false);
         }

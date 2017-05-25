@@ -7,7 +7,7 @@ using Taoyuan_Traffic.ViewModels.Weather;
 
 namespace Taoyuan_Traffic.Models.Repository
 {
-    public class WeatherRespository : IWeather
+    public class WeatherRepository : IWeather
     {
         /// <summary>
         /// (私有) 資料庫實體資料集合
@@ -22,7 +22,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// <summary>
         /// 倉儲建構子
         /// </summary>
-        public WeatherRespository()
+        public WeatherRepository()
         {
             this._db = new DataClassesDataContext();
 
@@ -32,7 +32,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// 倉儲建構子
         /// </summary>
         /// <param name="context">實體資料集合</param>
-        public WeatherRespository(DataClassesDataContext context = null)
+        public WeatherRepository(DataClassesDataContext context = null)
         {
             this._db = (context == null ? new DataClassesDataContext() : context);
         }
@@ -40,7 +40,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// <summary>
         /// 倉儲建構子
         /// </summary>
-        ~WeatherRespository()
+        ~WeatherRepository()
         {
             this.Dispose(false);
         }

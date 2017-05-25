@@ -56,6 +56,18 @@ namespace Taoyuan_Traffic
             );
 
             routes.MapRoute(
+                name: "RestApiV1",
+                url: "api/v1/Rest/{controller}/{action}",
+                namespaces: new string[] { "RestInfoController" }
+            );
+
+            routes.MapRoute(
+                name: "FreeWayApiV1",
+                url: "api/v1/FreeWay/{controller}/{action}",
+                namespaces: new string[] { "FreeWayInfoController" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

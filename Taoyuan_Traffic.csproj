@@ -409,10 +409,14 @@
     <Compile Include="Controllers\V1\Bus\BusDynamicController.cs" />
     <Compile Include="Controllers\V1\Bus\BusRouteController.cs" />
     <Compile Include="Controllers\V1\Bus\BusStopController.cs" />
+    <Compile Include="Controllers\V1\FreeWay\FreeWayController.cs" />
+    <Compile Include="Controllers\V1\FreeWay\FreeWayInfoController.cs" />
     <Compile Include="Controllers\V1\Park\ParkingController.cs" />
     <Compile Include="Controllers\V1\Park\ParkingOutController.cs" />
     <Compile Include="Controllers\V1\RealTime\RealTimeController.cs" />
     <Compile Include="Controllers\V1\RealTime\RealTimeTrafficInfoController.cs" />
+    <Compile Include="Controllers\V1\Rest\RestController.cs" />
+    <Compile Include="Controllers\V1\Rest\RestInfoController.cs" />
     <Compile Include="Controllers\V1\TRA\TraClassController.cs" />
     <Compile Include="Controllers\V1\TRA\TraController.cs" />
     <Compile Include="Controllers\V1\TRA\TraDailyTimeTableController.cs" />
@@ -428,19 +432,23 @@
     <Compile Include="Models\Interface\IAlert.cs" />
     <Compile Include="Models\Interface\IBusRoute.cs" />
     <Compile Include="Models\Interface\IBusStop.cs" />
+    <Compile Include="Models\Interface\IFreeWay.cs" />
     <Compile Include="Models\Interface\IParking.cs" />
     <Compile Include="Models\Interface\IRealTime.cs" />
+    <Compile Include="Models\Interface\IRest.cs" />
     <Compile Include="Models\Interface\ITraLine.cs" />
     <Compile Include="Models\Interface\IUBike.cs" />
     <Compile Include="Models\Interface\IWeather.cs" />
-    <Compile Include="Models\Repository\AlertRespository.cs" />
+    <Compile Include="Models\Repository\AlertRepository.cs" />
     <Compile Include="Models\Repository\BusRouteRepository.cs" />
     <Compile Include="Models\Repository\BusStopRepository.cs" />
+    <Compile Include="Models\Repository\FreeWayRepository.cs" />
+    <Compile Include="Models\Repository\RestRepository.cs" />
     <Compile Include="Models\Repository\ParkingRespository.cs" />
-    <Compile Include="Models\Repository\RealTimeRespository.cs" />
+    <Compile Include="Models\Repository\RealTimeRepository.cs" />
     <Compile Include="Models\Repository\TraRepository.cs" />
     <Compile Include="Models\Repository\UBikeRepository.cs" />
-    <Compile Include="Models\Repository\WeatherRespository.cs" />
+    <Compile Include="Models\Repository\WeatherRepository.cs" />
     <Compile Include="Models\runUriTask.cs" />
     <Compile Include="ViewModels\Alert\AlertDeserialize.cs" />
     <Compile Include="ViewModels\Alert\AlertInfo.cs" />
@@ -462,8 +470,10 @@
     <Compile Include="ViewModels\Bus\GetRoute.cs" />
     <Compile Include="ViewModels\Bus\BusRouteDeserialize.cs" />
     <Compile Include="ViewModels\Bus\PublicSub.cs" />
+    <Compile Include="ViewModels\FreeWay\FreeWayDeserialize.cs" />
     <Compile Include="ViewModels\Parking\ParkingDeserialize.cs" />
     <Compile Include="ViewModels\RealTime\RealTimeInfoDeserialize.cs" />
+    <Compile Include="ViewModels\Rest\RestDeserialize.cs" />
     <Compile Include="ViewModels\TRA\PublicSub.cs" />
     <Compile Include="ViewModels\TRA\TraClassDeserialize.cs" />
     <Compile Include="ViewModels\TRA\TraDailyTimeTableDeserialize.cs" />
@@ -484,8 +494,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\BusDynamic\Index.cshtml" />
-    <Content Include="Views\BusRoute\Index.cshtml" />
-    <Content Include="Views\BusRoute\JsonBusEstimatedInfo.cshtml" />
+    <Content Include="Views\BusStop\BusRoute\Index.cshtml" />
+    <Content Include="Views\BusStop\BusRoute\JsonBusEstimatedInfo.cshtml" />
     <Content Include="Views\BusStop\JsonBusStopInfo.cshtml" />
     <Content Include="Views\BusStop\Index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
@@ -498,6 +508,7 @@
     <Content Include="Views\AlertCust\Index.cshtml" />
     <Content Include="Views\RealTimeTrafficInfo\Index.cshtml" />
     <Content Include="Views\UBikeInfo\Index.cshtml" />
+    <Content Include="Views\RestInfo\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -508,6 +519,7 @@
   <ItemGroup>
     <Folder Include="CustomContent\Images\" />
     <Folder Include="Views\API\" />
+    <Folder Include="Views\FreeWayInfo\" />
     <Folder Include="Views\ParkingA\" />
     <Folder Include="Views\StationOfLine\" />
     <Folder Include="Views\TraDailyTimeTable\" />
