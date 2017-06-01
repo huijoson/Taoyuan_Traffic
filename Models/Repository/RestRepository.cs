@@ -85,7 +85,7 @@ namespace Taoyuan_Traffic.Models.Repository
 
         public void AddRestInfo(IEnumerable<RestDeserialize> addRestResource)
         {
-            _db.ExecuteCommand("DELETE FROM Rest");
+            _db.ExecuteCommand("TRUNCATE TABLE Rest");
             foreach (RestDeserialize item in addRestResource)
             {
                 var newRestInfo = new Rest
@@ -101,8 +101,8 @@ namespace Taoyuan_Traffic.Models.Repository
 
                 };
                 _db.Rest.InsertOnSubmit(newRestInfo);
-                _db.SubmitChanges();
             }
+            _db.SubmitChanges();
         }
 
         public List<RestDeserialize> GetRestInfo()

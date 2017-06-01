@@ -91,7 +91,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// </summary>
         public void AddOutParking(IEnumerable<ParkingDeserialize> addParkingResource)
         {
-            _db.ExecuteCommand("DELETE FROM Parking");
+            _db.ExecuteCommand("TRUNCATE TABLE Parking");
             foreach (ParkingDeserialize item in addParkingResource)
             {
                 var newParking = new Parking
@@ -111,8 +111,8 @@ namespace Taoyuan_Traffic.Models.Repository
 
                 };
                 _db.Parking.InsertOnSubmit(newParking);
-                _db.SubmitChanges();
             }
+            _db.SubmitChanges();
         }
 
         public List<ParkingDeserialize> GetOutParkingInfo()

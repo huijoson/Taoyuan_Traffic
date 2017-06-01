@@ -89,7 +89,7 @@ namespace Taoyuan_Traffic.Models.Repository
         public void AddBusInfo(IEnumerable<BusDynamicDeserialize> AddBusDynamicSource)
         {
             var count = 1;
-            _db.ExecuteCommand("DELETE FROM BusDynamic");
+            _db.ExecuteCommand("TRUNCATE TABLE BusDynamic");
             foreach (BusDynamicDeserialize item in AddBusDynamicSource)
             {
                 var newBusInfo = new BusDynamic
@@ -118,8 +118,8 @@ namespace Taoyuan_Traffic.Models.Repository
                 };
                 count++;
                 _db.BusDynamic.InsertOnSubmit(newBusInfo);
-                _db.SubmitChanges();
             }
+            _db.SubmitChanges();
         }
 
         public List<BusDynamicDeserialize> GetBusDynamicInfo(IEnumerable<BusDynamicDeserialize> busDynamicCol)

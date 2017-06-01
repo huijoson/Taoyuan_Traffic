@@ -86,7 +86,7 @@ namespace Taoyuan_Traffic.Models.Repository
         public void AddAlertInfo(IEnumerable<AlertDeserialize> alertResource)
         {
             var count = 1;
-            _db.ExecuteCommand("DELETE FROM Alert");
+            _db.ExecuteCommand("TRUNCATE TABLE Alert");
             foreach (AlertDeserialize item in alertResource)
             {
                 var newAlertClass = new Alert
@@ -99,8 +99,8 @@ namespace Taoyuan_Traffic.Models.Repository
                 };
                 count++;
                 _db.Alert.InsertOnSubmit(newAlertClass);
-                _db.SubmitChanges();
             }
+            _db.SubmitChanges();
         }
 
         public List<AlertInfo> getAlertInfo(string keyWord)

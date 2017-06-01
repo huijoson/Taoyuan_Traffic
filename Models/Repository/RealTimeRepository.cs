@@ -85,7 +85,7 @@ namespace Taoyuan_Traffic.Models.Repository
 
         public void addRealTimeInfo(IEnumerable<RealTimeInfoDeserialize> realTimeInfoSource)
         {
-            _db.ExecuteCommand("DELETE FROM RealTime");
+            _db.ExecuteCommand("TRUNCATE TABLE RealTime");
             foreach (RealTimeInfoDeserialize item in realTimeInfoSource)
             {
                 var newRealTime = new RealTime
@@ -104,12 +104,9 @@ namespace Taoyuan_Traffic.Models.Repository
                     comment = item.comment,
                     happentime = item.happentime,
                 };
-
-
-
                 _db.RealTime.InsertOnSubmit(newRealTime);
-                _db.SubmitChanges();
             }
+            _db.SubmitChanges();
         }
 
         public List<RealTimeInfoDeserialize> getRealTimeInfo(float latitude, float longitude, int radius)

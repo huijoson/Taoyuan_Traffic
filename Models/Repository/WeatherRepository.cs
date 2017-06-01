@@ -87,7 +87,7 @@ namespace Taoyuan_Traffic.Models.Repository
         {
             var count = 1;
             
-            _db.ExecuteCommand("DELETE FROM Weather");
+            _db.ExecuteCommand("TRUNCATE TABLE Weather");
             foreach (Weather3DayDeserialize item in weatherInfoSource)
             {
                 int elementCount = item.weatherElement.Count();
@@ -114,11 +114,11 @@ namespace Taoyuan_Traffic.Models.Repository
 
                         
                         _db.Weather.InsertOnSubmit(newWeather);
-                        _db.SubmitChanges();
                         count++;
                     }
                 }
             }
+            _db.SubmitChanges();
         }
 
         public object GetWeatherSearch(string attr, string date, string local)

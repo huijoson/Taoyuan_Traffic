@@ -89,7 +89,7 @@ namespace Taoyuan_Traffic.Models.Repository
         public void AddBusRoute(IEnumerable<BusRouteDeserialize> AddBusRouteSource)
         {
             var count = 1;
-            _db.ExecuteCommand("DELETE FROM BusRoute");
+            _db.ExecuteCommand("TRUNCATE TABLE BusRoute");
             foreach (BusRouteDeserialize item in AddBusRouteSource)
             {
                 var newBusRoute = new BusRoute { };
@@ -149,8 +149,8 @@ namespace Taoyuan_Traffic.Models.Repository
                 }
                 count++;
                 _db.BusRoute.InsertOnSubmit(newBusRoute);
-                _db.SubmitChanges();
             }
+            _db.SubmitChanges();
         }
 
         /// <summary>

@@ -91,7 +91,7 @@ namespace Taoyuan_Traffic.Models.Repository
         public void AddTraLine(IEnumerable<TraLineDeserialize> traLineResource)
         {
             var count = 1;
-            _db.ExecuteCommand("DELETE FROM TraLine");
+            _db.ExecuteCommand("TRUNCATE TABLE TraLine");
             foreach (TraLineDeserialize item in traLineResource)
             {
                 var newTraLine = new TraLine
@@ -117,7 +117,7 @@ namespace Taoyuan_Traffic.Models.Repository
         public void AddStation(IEnumerable<TraStationDeserialize> traStationResource)
         {
             var count = 1;
-            _db.ExecuteCommand("DELETE FROM TraStation");
+            _db.ExecuteCommand("TRUNCATE TABLE TraStation");
             foreach (TraStationDeserialize item in traStationResource)
             {
                 var newTraStation = new TraStation
@@ -143,7 +143,7 @@ namespace Taoyuan_Traffic.Models.Repository
         public void AddTraClass(IEnumerable<TraClassDeserialize> traClassResource)
         {
             var count = 1;
-            _db.ExecuteCommand("DELETE FROM TraClass");
+            _db.ExecuteCommand("TRUNCATE TABLE TraClass");
             foreach (TraClassDeserialize item in traClassResource)
             {
                 var newTraClass = new TraClass
@@ -154,8 +154,8 @@ namespace Taoyuan_Traffic.Models.Repository
                 };
                 count++;
                 _db.TraClass.InsertOnSubmit(newTraClass);
-                _db.SubmitChanges();
             }
+            _db.SubmitChanges();
         } 
     
         public List<TraLineDeserialize> GetTraLine()
