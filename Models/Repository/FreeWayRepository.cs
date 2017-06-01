@@ -85,7 +85,7 @@ namespace Taoyuan_Traffic.Models.Repository
 
         public List<FreeWayDeserialize> GetFreeWayInfo()
         {
-            List<FreeWayDeserialize> FreeWayInfoList = (from o in _db.FreeWayTable
+            List<FreeWayDeserialize> FreeWayInfoList = (from o in _db.FreeWay
                                                     select new FreeWayDeserialize
                                                     {
                                                         rID = o.rID,

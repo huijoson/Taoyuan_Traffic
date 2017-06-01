@@ -14,6 +14,9 @@ namespace Taoyuan_Traffic.Controllers.V1.RealTime
         /// <summary>
         /// 取得即時路況
         /// </summary>
+        /// <param name="radius">半徑範圍(公尺)</param>
+        /// <param name="x">經度</param>
+        /// <param name="y">緯度</param>
         /// <returns></returns>
         [HttpGet]
         [Route("api/v1/RealTime/GetRealTimeInfo")]
@@ -24,7 +27,7 @@ namespace Taoyuan_Traffic.Controllers.V1.RealTime
         {
             //Initial
             IHttpActionResult responseResult;
-            IRealTime repos = DataFactory.RealTimeRespository();
+            IRealTime repos = DataFactory.RealTimeRepository();
             //序列化撈出來的資料
             var jsonSerialize = JsonConvert.SerializeObject(repos.getRealTimeInfo(y, x, radius));
             //做成JSON字串包裝到最後輸出

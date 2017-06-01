@@ -84,10 +84,10 @@ namespace Taoyuan_Traffic.Models.Repository
         #endregion 實作IDisposable
         public void AddUBikeInfo(IEnumerable<UBikeDeserialize> addUBikeResource)
         {
-            _db.ExecuteCommand("DELETE FROM UBikeTable");
+            _db.ExecuteCommand("DELETE FROM UBike");
             foreach (UBikeDeserialize item in addUBikeResource)
             {
-                var newUBikeInfo = new UBikeTable
+                var newUBikeInfo = new UBike
                 {
                     _id = item._id,
                     sarea = item.sarea,
@@ -106,14 +106,14 @@ namespace Taoyuan_Traffic.Models.Repository
                     mday = item.mday
 
                 };
-                _db.UBikeTable.InsertOnSubmit(newUBikeInfo);
+                _db.UBike.InsertOnSubmit(newUBikeInfo);
                 _db.SubmitChanges();
             }
         }
 
         public List<UBikeDeserialize> GetUbikeInfo()
         {
-            List<UBikeDeserialize> UBikeInfoList = (from o in _db.UBikeTable
+            List<UBikeDeserialize> UBikeInfoList = (from o in _db.UBike
                                                     select new UBikeDeserialize
                                                     {
                                                         _id = o._id,

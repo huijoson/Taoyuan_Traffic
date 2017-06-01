@@ -164,12 +164,10 @@ namespace Taoyuan_Traffic.Models.Repository
                                                        RouteUID = o.RouteUID,
                                                        RouteID = o.RouteID,
                                                        RouteName = o.RouteName,
-                                                       GoDirection = o.GoDirection.HasValue ? o.GoDirection.Value : 0,
-                                                       BackDirection = o.BackDirection.HasValue ? o.BackDirection.Value : 0,
+                                                       Direction = o.BackDirection.HasValue ? o.BackDirection.Value : 0,
                                                        DepartureStopNameZh = o.DepartureStopNameZh,
                                                        DestinationStopNameZh = o.DestinationStopNameZh,
-                                                       GoHeadsign = o.GoHeadsign,
-                                                       BackHeadsign = o.BackHeadsign
+                                                       Headsign = o.BackHeadsign==null ? o.BackHeadsign : o.GoHeadsign,
                                                    }).ToList();
 
             return routeList;
@@ -187,12 +185,10 @@ namespace Taoyuan_Traffic.Models.Repository
                                                        RouteUID = o.RouteUID,
                                                        RouteID = o.RouteID,
                                                        RouteName = o.RouteName,
-                                                       GoDirection = o.GoDirection.HasValue ? o.GoDirection.Value : 0,
-                                                       BackDirection = o.BackDirection.HasValue ? o.BackDirection.Value : 0,
+                                                       Direction = o.BackDirection.HasValue ? o.BackDirection.Value : 0,
                                                        DepartureStopNameZh = o.DepartureStopNameZh,
                                                        DestinationStopNameZh = o.DestinationStopNameZh,
-                                                       GoHeadsign = o.GoHeadsign,
-                                                       BackHeadsign = o.BackHeadsign
+                                                       Headsign = o.BackHeadsign == null ? o.BackHeadsign : o.GoHeadsign,
                                                    }).ToList();
 
             return routeList;

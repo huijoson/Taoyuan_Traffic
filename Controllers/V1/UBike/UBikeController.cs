@@ -28,7 +28,7 @@ namespace Taoyuan_Traffic.Controllers.V1.UBike
         {
             //Initial
             IHttpActionResult responseResult;
-            IUBike repos = DataFactory.UBikeRespository();
+            IUBike repos = DataFactory.UBikeRepository();
             //序列化撈出來的資料
             var jsonSerialize = JsonConvert.SerializeObject(repos.GetUbikeInfo());
             //做成JSON字串包裝到最後輸出

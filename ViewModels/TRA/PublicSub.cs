@@ -30,22 +30,73 @@ namespace Taoyuan_Traffic.ViewModels.TRA
 
     public class Dailytraininfo
     {
+        /// <summary>
+        /// 車次代碼
+        /// </summary>
         public string TrainNo { get; set; }
+        /// <summary>
+        /// 順逆行 = ['0: 順行', '1: 逆行']
+        /// </summary>
         public int Direction { get; set; }
+        /// <summary>
+        /// 列車起點車站代號
+        /// </summary>
         public string StartingStationID { get; set; }
+        /// <summary>
+        /// 列車起點車站名稱
+        /// </summary>
         public Startingstationname StartingStationName { get; set; }
+        /// <summary>
+        /// 列車終點車站代號
+        /// </summary>
         public string EndingStationID { get; set; }
+        /// <summary>
+        /// 列車終點車站名稱
+        /// </summary>
         public Endingstationname EndingStationName { get; set; }
+        /// <summary>
+        /// 列車車種代碼
+        /// </summary>
         public string TrainClassificationID { get; set; }
+        /// <summary>
+        /// 山海線類型 = ['0: 不經山海線', '1: 山線', '2: 海線']
+        /// </summary>
         public int TripLine { get; set; }
+        /// <summary>
+        /// 是否提供輪椅服務
+        /// </summary>
         public bool WheelchairFlag { get; set; }
+        /// <summary>
+        /// 是否提供行李服務
+        /// </summary>
         public bool PackageServiceFlag { get; set; }
+        /// <summary>
+        /// 是否提供餐車服務 
+        /// </summary>
         public bool DiningFlag { get; set; }
+        /// <summary>
+        /// 是否可攜帶自行車
+        /// </summary>
         public bool BikeFlag { get; set; }
+        /// <summary>
+        /// 是否設有哺乳室
+        /// </summary>
         public bool BreastFeedingFlag { get; set; }
+        /// <summary>
+        /// 是否每日行駛
+        /// </summary>
         public bool DailyFlag { get; set; }
+        /// <summary>
+        /// 是否為加班車
+        /// </summary>
         public bool ServiceAddedFlag { get; set; }
+        /// <summary>
+        /// 附註說明
+        /// </summary>
         public Note Note { get; set; }
+        /// <summary>
+        /// 資料更新日期
+        /// </summary>
         public string UpdateDate { get; set; }
     }
 

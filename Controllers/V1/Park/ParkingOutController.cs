@@ -23,7 +23,7 @@ namespace Taoyuan_Traffic.Controllers.V1.PARK
         {
 
             //Initialize
-            IParking repos = DataFactory.ParkingRespository();
+            IParking repos = DataFactory.ParkingRepository();
 
             //Setting target Url
             string targetURI = ConfigurationManager.AppSettings["ParkingInfoURL"].ToString();
@@ -47,7 +47,7 @@ namespace Taoyuan_Traffic.Controllers.V1.PARK
         public ActionResult JsonParkingInfo()
         {   
             //Initialize
-            IParking repos = DataFactory.ParkingRespository();
+            IParking repos = DataFactory.ParkingRepository();
 
             return Content(JsonConvert.SerializeObject(repos.GetOutParkingInfo()), "application/json");
         }

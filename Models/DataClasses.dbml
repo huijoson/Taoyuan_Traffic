@@ -1,5 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Taoyuan_Traffic" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLSERVER;Initial Catalog=Taoyuan_Traffic;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Taoyuan_TrafficConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Alert" Member="Alert">
+    <Type Name="Alert">
+      <Column Name="alertID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="updated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="text" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="term" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Weather" Member="Weather">
+    <Type Name="Weather">
+      <Column Name="wID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="locationName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="geocode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="elementName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="startTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="endTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="elementValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="parameterName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="parameterValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="dataTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="elementMeasure" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.BusDynamic" Member="BusDynamic">
     <Type Name="BusDynamic">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -53,6 +79,69 @@
       <Column Name="UpdateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.FreeWay" Member="FreeWay">
+    <Type Name="FreeWay">
+      <Column Name="rID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="addr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="phoneNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="freephoneNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SmallCar" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LargeCar" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Parking" Member="Parking">
+    <Type Name="Parking">
+      <Column Name="parkName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="areaId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="wgsX" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="totalSpace" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="introduction" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="wgsY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="parkId" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="payGuide" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[_id]" Member="_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="surplusSpace" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="areaName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RealTime" Member="RealTime">
+    <Type Name="RealTime">
+      <Column Name="region" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="srcdetail" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="areaNm" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="UID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="direction" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="y1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="happentime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="roadtype" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="road" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="modDttm" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="comment" Type="System.String" DbType="NVarChar(600)" CanBeNull="true" />
+      <Column Name="happendate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="x1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Rest" Member="Rest">
+    <Type Name="Rest">
+      <Column Name="OpenTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PhoneNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Class" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Addr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Vocation" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[_id]" Member="_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Area" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TraClass" Member="TraClass">
+    <Type Name="TraClass">
+      <Column Name="TrainClassificationID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Zh_tw" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="En" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.TraLine" Member="TraLine">
     <Type Name="TraLine">
       <Column Name="[LineNo]" Member="LineNo" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -78,74 +167,8 @@
       <Column Name="ReservationCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TraClass" Member="TraClass">
-    <Type Name="TraClass">
-      <Column Name="TrainClassificationID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Zh_tw" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="En" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ParkingInfo" Member="ParkingInfo">
-    <Type Name="ParkingInfo">
-      <Column Name="parkName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="areaId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="wgsX" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="totalSpace" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="introduction" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="wgsY" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="parkId" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="payGuide" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="[_id]" Member="_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="surplusSpace" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="areaName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.WeatherTable" Member="WeatherTable">
-    <Type Name="WeatherTable">
-      <Column Name="wID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="locationName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="geocode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="elementName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="startTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="endTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="elementValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="parameterName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="parameterValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="dataTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="elementMeasure" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.AlertTable" Member="AlertTable">
-    <Type Name="AlertTable">
-      <Column Name="alertID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="updated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="text" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="term" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.RealTimeTable" Member="RealTimeTable">
-    <Type Name="RealTimeTable">
-      <Column Name="region" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="srcdetail" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="areaNm" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="UID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="direction" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="y1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="happentime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="roadtype" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="road" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="modDttm" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="comment" Type="System.String" DbType="NVarChar(600)" CanBeNull="true" />
-      <Column Name="happendate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="x1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.UBikeTable" Member="UBikeTable">
-    <Type Name="UBikeTable">
+  <Table Name="dbo.UBike" Member="UBike">
+    <Type Name="UBike">
       <Column Name="[_id]" Member="_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="sno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="sna" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
@@ -163,27 +186,15 @@
       <Column Name="act" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.RestTable" Member="RestTable">
-    <Type Name="RestTable">
-      <Column Name="OpenTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="PhoneNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Class" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Addr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+  <Table Name="dbo.Texi" Member="Texi">
+    <Type Name="Texi">
+      <Column Name="tID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Vocation" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[_id]" Member="_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Lon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Addr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PhoneNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Area" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.FreeWayTable" Member="FreeWayTable">
-    <Type Name="FreeWayTable">
-      <Column Name="rID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="addr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="phoneNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="freephoneNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SmallCar" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="LargeCar" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

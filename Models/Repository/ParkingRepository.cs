@@ -8,7 +8,7 @@ using Taoyuan_Traffic.ViewModels.Parking;
 
 namespace Taoyuan_Traffic.Models.Repository
 {
-    public class ParkingRespository : IParking
+    public class ParkingRepository : IParking
     {
         /// <summary>
         /// (私有) 資料庫實體資料集合
@@ -23,7 +23,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// <summary>
         /// 倉儲建構子
         /// </summary>
-        public ParkingRespository()
+        public ParkingRepository()
         {
             this._db = new DataClassesDataContext();
 
@@ -33,7 +33,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// 倉儲建構子
         /// </summary>
         /// <param name="context">實體資料集合</param>
-        public ParkingRespository(DataClassesDataContext context = null)
+        public ParkingRepository(DataClassesDataContext context = null)
         {
             this._db = (context == null ? new DataClassesDataContext() : context);
         }
@@ -41,7 +41,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// <summary>
         /// 倉儲建構子
         /// </summary>
-        ~ParkingRespository()
+        ~ParkingRepository()
         {
             this.Dispose(false);
         }
@@ -91,10 +91,10 @@ namespace Taoyuan_Traffic.Models.Repository
         /// </summary>
         public void AddOutParking(IEnumerable<ParkingDeserialize> addParkingResource)
         {
-            _db.ExecuteCommand("DELETE FROM ParkingInfo");
+            _db.ExecuteCommand("DELETE FROM Parking");
             foreach (ParkingDeserialize item in addParkingResource)
             {
-                var newParking = new ParkingInfo
+                var newParking = new Parking
                 {
                     parkName = item.parkName,
                     areaId = item.areaId,
@@ -110,16 +110,16 @@ namespace Taoyuan_Traffic.Models.Repository
                     areaName = item.areaName
 
                 };
-                _db.ParkingInfo.InsertOnSubmit(newParking);
+                _db.Parking.InsertOnSubmit(newParking);
                 _db.SubmitChanges();
             }
         }
 
         public List<ParkingDeserialize> GetOutParkingInfo()
         {
-            List<ParkingDeserialize> parkingInfoList = (from o in _db.ParkingInfo
+            List<ParkingDeserialize> parkingInfoList = (from o in _db.Parking
 
-                                                         select new ParkingDeserialize()
+                                                        select new ParkingDeserialize()
                                                          {
                                                             parkName = o.parkName,
                                                             areaId = o.areaId,

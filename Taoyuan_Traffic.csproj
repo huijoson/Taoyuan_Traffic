@@ -417,6 +417,8 @@
     <Compile Include="Controllers\V1\RealTime\RealTimeTrafficInfoController.cs" />
     <Compile Include="Controllers\V1\Rest\RestController.cs" />
     <Compile Include="Controllers\V1\Rest\RestInfoController.cs" />
+    <Compile Include="Controllers\V1\Texi\TexiController.cs" />
+    <Compile Include="Controllers\V1\Texi\TexiInfoController.cs" />
     <Compile Include="Controllers\V1\TRA\TraClassController.cs" />
     <Compile Include="Controllers\V1\TRA\TraController.cs" />
     <Compile Include="Controllers\V1\TRA\TraDailyTimeTableController.cs" />
@@ -436,6 +438,7 @@
     <Compile Include="Models\Interface\IParking.cs" />
     <Compile Include="Models\Interface\IRealTime.cs" />
     <Compile Include="Models\Interface\IRest.cs" />
+    <Compile Include="Models\Interface\ITexi.cs" />
     <Compile Include="Models\Interface\ITraLine.cs" />
     <Compile Include="Models\Interface\IUBike.cs" />
     <Compile Include="Models\Interface\IWeather.cs" />
@@ -444,8 +447,9 @@
     <Compile Include="Models\Repository\BusStopRepository.cs" />
     <Compile Include="Models\Repository\FreeWayRepository.cs" />
     <Compile Include="Models\Repository\RestRepository.cs" />
-    <Compile Include="Models\Repository\ParkingRespository.cs" />
+    <Compile Include="Models\Repository\ParkingRepository.cs" />
     <Compile Include="Models\Repository\RealTimeRepository.cs" />
+    <Compile Include="Models\Repository\TexiRepository.cs" />
     <Compile Include="Models\Repository\TraRepository.cs" />
     <Compile Include="Models\Repository\UBikeRepository.cs" />
     <Compile Include="Models\Repository\WeatherRepository.cs" />
@@ -474,6 +478,7 @@
     <Compile Include="ViewModels\Parking\ParkingDeserialize.cs" />
     <Compile Include="ViewModels\RealTime\RealTimeInfoDeserialize.cs" />
     <Compile Include="ViewModels\Rest\RestDeserialize.cs" />
+    <Compile Include="ViewModels\Texi\TexiDeserialize.cs" />
     <Compile Include="ViewModels\TRA\PublicSub.cs" />
     <Compile Include="ViewModels\TRA\TraClassDeserialize.cs" />
     <Compile Include="ViewModels\TRA\TraDailyTimeTableDeserialize.cs" />
@@ -522,6 +527,7 @@
     <Folder Include="Views\FreeWayInfo\" />
     <Folder Include="Views\ParkingA\" />
     <Folder Include="Views\StationOfLine\" />
+    <Folder Include="Views\TexiInfo\" />
     <Folder Include="Views\TraDailyTimeTable\" />
   </ItemGroup>
   <ItemGroup>

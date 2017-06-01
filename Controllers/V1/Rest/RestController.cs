@@ -28,7 +28,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Rest
         {
             //Initial
             IHttpActionResult responseResult;
-            IRest repos = DataFactory.RestRespository();
+            IRest repos = DataFactory.RestRepository();
             //序列化撈出來的資料
             var jsonSerialize = JsonConvert.SerializeObject(repos.GetRestInfo());
             //做成JSON字串包裝到最後輸出

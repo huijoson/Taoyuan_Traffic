@@ -22,7 +22,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Alert
         public async Task<ActionResult> Index()
         {
             //Initialize
-            IAlert repos = DataFactory.AlertRespository();
+            IAlert repos = DataFactory.AlertRepository();
             
 
             //Setting target Url
@@ -45,11 +45,11 @@ namespace Taoyuan_Traffic.Controllers.V1.Alert
         /// 取得災害警示資訊
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetAlertInfo()
+        public ActionResult GetAlertInfo(string keyWord)
         {
             //Initial Variables
-            IAlert repos = DataFactory.AlertRespository();
-            return Content(JsonConvert.SerializeObject(repos.getAlertInfo()), "application/json");
+            IAlert repos = DataFactory.AlertRepository();
+            return Content(JsonConvert.SerializeObject(repos.getAlertInfo(keyWord)), "application/json");
         }
         //災害防變用快取
         public async Task<IEnumerable<AlertDeserialize>> GetAlertData()

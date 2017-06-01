@@ -28,7 +28,7 @@ namespace Taoyuan_Traffic.Controllers.V1.FreeWay
         {
             //Initial
             IHttpActionResult responseResult;
-            IFreeWay repos = DataFactory.FreeWayRespository();
+            IFreeWay repos = DataFactory.FreeWayRepository();
             //序列化撈出來的資料
             var jsonSerialize = JsonConvert.SerializeObject(repos.GetFreeWayInfo());
             //做成JSON字串包裝到最後輸出

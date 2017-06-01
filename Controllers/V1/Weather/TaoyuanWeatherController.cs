@@ -27,7 +27,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Weather
             string targetURI = ConfigurationManager.AppSettings["WeatherInfoURL"].ToString() + "/?elementName=Wx,PoP,T,CI&sort=time";
             var jsonResponse = "";
             StringBuilder jsonResultSB = new StringBuilder();
-            IWeather repos = DataFactory.WeatherRespository();
+            IWeather repos = DataFactory.WeatherRepository();
             
             //Get HTTPRequest RESPONSE Custom JSON FORMAT
             var webRequest = System.Net.WebRequest.Create(targetURI);
@@ -70,7 +70,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Weather
         public ActionResult GetSearchWeather(string attr, string date, string local = "桃園區")
         {
             //Initial Variables
-            IWeather repos = DataFactory.WeatherRespository();
+            IWeather repos = DataFactory.WeatherRepository();
             return Content(JsonConvert.SerializeObject(repos.GetWeatherSearch(attr, date, local)), "application/json");
         }
     }

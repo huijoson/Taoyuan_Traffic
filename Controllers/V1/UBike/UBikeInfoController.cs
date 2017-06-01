@@ -21,7 +21,7 @@ namespace Taoyuan_Traffic.Controllers.V1.UBike
         public async Task<ActionResult> Index()
         {
             //Initialize
-            IUBike repos = DataFactory.UBikeRespository();
+            IUBike repos = DataFactory.UBikeRepository();
 
 
             //Setting target Url
@@ -44,7 +44,7 @@ namespace Taoyuan_Traffic.Controllers.V1.UBike
         public ActionResult GetUBikeInfo()
         {
             //Initial Variables
-            IUBike repos = DataFactory.UBikeRespository();
+            IUBike repos = DataFactory.UBikeRepository();
             return Content(JsonConvert.SerializeObject(repos.GetUbikeInfo()), "application/json");
         }
     }

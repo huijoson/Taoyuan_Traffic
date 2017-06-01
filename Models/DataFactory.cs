@@ -55,9 +55,9 @@ namespace Taoyuan_Traffic.Models
         /// </summary>
         /// <param name="dataContext">資料實體</param>
         /// <returns>資料倉儲介面</returns>
-        public static IParking ParkingRespository(DataClassesDataContext dataContext = null)
+        public static IParking ParkingRepository(DataClassesDataContext dataContext = null)
         {
-            return new ParkingRespository(dataContext);
+            return new ParkingRepository(dataContext);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Taoyuan_Traffic.Models
         /// </summary>
         /// <param name="dataContext">資料實體</param>
         /// <returns>資料倉儲介面</returns>
-        public static IWeather WeatherRespository(DataClassesDataContext dataContext = null)
+        public static IWeather WeatherRepository(DataClassesDataContext dataContext = null)
         {
             return new WeatherRepository(dataContext);
         }
@@ -75,7 +75,7 @@ namespace Taoyuan_Traffic.Models
         /// </summary>
         /// <param name="dataContext">資料實體</param>
         /// <returns>資料倉儲介面</returns>
-        public static IAlert AlertRespository(DataClassesDataContext dataContext = null)
+        public static IAlert AlertRepository(DataClassesDataContext dataContext = null)
         {
             return new AlertRepository(dataContext);
         }
@@ -85,7 +85,7 @@ namespace Taoyuan_Traffic.Models
         /// </summary>
         /// <param name="dataContext">資料實體</param>
         /// <returns>資料倉儲介面</returns>
-        public static IRealTime RealTimeRespository(DataClassesDataContext dataContext = null)
+        public static IRealTime RealTimeRepository(DataClassesDataContext dataContext = null)
         {
             return new RealTimeRepository(dataContext);
         }
@@ -95,7 +95,7 @@ namespace Taoyuan_Traffic.Models
         /// </summary>
         /// <param name="dataContext">資料實體</param>
         /// <returns>資料倉儲介面</returns>
-        public static IUBike UBikeRespository(DataClassesDataContext dataContext = null)
+        public static IUBike UBikeRepository(DataClassesDataContext dataContext = null)
         {
             return new UBikeRepository(dataContext);
         }
@@ -105,7 +105,7 @@ namespace Taoyuan_Traffic.Models
         /// </summary>
         /// <param name="dataContext">資料實體</param>
         /// <returns>資料倉儲介面</returns>
-        public static IRest RestRespository(DataClassesDataContext dataContext = null)
+        public static IRest RestRepository(DataClassesDataContext dataContext = null)
         {
             return new RestRepository(dataContext);
         }
@@ -115,9 +115,19 @@ namespace Taoyuan_Traffic.Models
         /// </summary>
         /// <param name="dataContext">資料實體</param>
         /// <returns>資料倉儲介面</returns>
-        public static IFreeWay FreeWayRespository(DataClassesDataContext dataContext = null)
+        public static IFreeWay FreeWayRepository(DataClassesDataContext dataContext = null)
         {
             return new FreeWayRepository(dataContext);
+        }
+
+        /// <summary>
+        /// 通用資料倉儲
+        /// </summary>
+        /// <param name="dataContext">資料實體</param>
+        /// <returns>資料倉儲介面</returns>
+        public static ITexi TexiRepository(DataClassesDataContext dataContext = null)
+        {
+            return new TexiRepository(dataContext);
         }
     }
 }

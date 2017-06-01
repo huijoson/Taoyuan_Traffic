@@ -50,7 +50,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         /// <summary>
         /// 取得公車路線資料
         /// </summary>
-        /// <param name="routeName">路線名稱</param>
+        /// <param name="routeName">路線代號(如:137)</param>
         /// <param name="direction">去返</param>
         /// <returns></returns>
         [HttpGet]
@@ -145,7 +145,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         /// <summary>
         /// 取得公車站牌資訊
         /// </summary>
-        /// <param name="routeName">路線名稱</param>
+        /// <param name="routeName">路線代號</param>
         /// <returns></returns>
         [HttpGet]
         [Route("api/v1/Bus/BusRoute/GetBusStopInfo")]

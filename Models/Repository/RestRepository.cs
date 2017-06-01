@@ -83,12 +83,12 @@ namespace Taoyuan_Traffic.Models.Repository
 
         #endregion 實作IDisposable
 
-        public void AddRestInfo(IEnumerable<RestDeserialize> addUBikeResource)
+        public void AddRestInfo(IEnumerable<RestDeserialize> addRestResource)
         {
-            _db.ExecuteCommand("DELETE FROM RestTable");
-            foreach (RestDeserialize item in addUBikeResource)
+            _db.ExecuteCommand("DELETE FROM Rest");
+            foreach (RestDeserialize item in addRestResource)
             {
-                var newRestInfo = new RestTable
+                var newRestInfo = new Rest
                 {
                     _id = item._id,
                     OpenTime = item.營業時間,
@@ -100,15 +100,15 @@ namespace Taoyuan_Traffic.Models.Repository
                     Area = item.區域,
 
                 };
-                _db.RestTable.InsertOnSubmit(newRestInfo);
+                _db.Rest.InsertOnSubmit(newRestInfo);
                 _db.SubmitChanges();
             }
         }
 
         public List<RestDeserialize> GetRestInfo()
         {
-            List<RestDeserialize> RestInfoList = (from o in _db.RestTable
-                                                    select new RestDeserialize
+            List<RestDeserialize> RestInfoList = (from o in _db.Rest
+                                                  select new RestDeserialize
                                                     {
                                                         _id = o._id,
                                                         營業時間 = o.OpenTime,

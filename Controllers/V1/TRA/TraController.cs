@@ -16,10 +16,10 @@ namespace Taoyuan_Traffic.Controllers.V1.TRA
         /// <summary>
         /// 取得公車路線資料
         /// </summary>
-        /// <param name="originSation">去</param>
-        /// <param name="destionation">回</param>
-        /// <param name="trainDate">乘車日期</param>
-        /// <param name="trainAfterTime">乘車時間</param>
+        /// <param name="originSation">去站(中文，如臺北)</param>
+        /// <param name="destionation">回站(中文，如臺南)</param>
+        /// <param name="trainDate">乘車日期(2017-05-25)</param>
+        /// <param name="trainAfterTime">希望乘車時間(17:30)</param>
         /// <returns></returns>
         [HttpGet]
         [Route("api/v1/Tra/TraDailyTimeTable/GetRouteInfo")]

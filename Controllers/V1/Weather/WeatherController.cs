@@ -13,6 +13,9 @@ namespace Taoyuan_Traffic.Controllers.V1.Weather
         /// <summary>
         /// 取得天氣資訊
         /// </summary>
+        /// <param name="attr">天氣屬性(Wx:天氣示意, PoP:降雨率, T:溫度, CI:舒適度)</param>
+        /// <param name="date">日期(如:2017-05-26 21:00:00)</param>
+        /// <param name="local">區域(如:桃園區)</param>
         /// <returns></returns>
         [HttpGet]
         [Route("api/v1/Weather/GetSearchWeather")]
@@ -22,7 +25,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Weather
         {
             //Initial
             IHttpActionResult responseResult;
-            IWeather repos = DataFactory.WeatherRespository();
+            IWeather repos = DataFactory.WeatherRepository();
             //序列化撈出來的資料
             var jsonSerialize = JsonConvert.SerializeObject(repos.GetWeatherSearch(attr, date, local));
             //做成JSON字串包裝到最後輸出

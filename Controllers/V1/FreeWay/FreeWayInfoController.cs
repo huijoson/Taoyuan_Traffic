@@ -20,7 +20,7 @@ namespace Taoyuan_Traffic.Controllers.V1.FreeWay
         public ActionResult GetFreeWayInfo()
         {
             //Initialize
-            IFreeWay repos = DataFactory.FreeWayRespository();
+            IFreeWay repos = DataFactory.FreeWayRepository();
 
             //return radius range Info
             return Content(JsonConvert.SerializeObject(repos.GetFreeWayInfo()), "application/json");

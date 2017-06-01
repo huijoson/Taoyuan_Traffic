@@ -21,7 +21,7 @@ namespace Taoyuan_Traffic.Controllers.V1.RealTime
         public async Task<ActionResult> Index()
         {
             //Initialize
-            IRealTime repos = DataFactory.RealTimeRespository();
+            IRealTime repos = DataFactory.RealTimeRepository();
             //Setting target Url
             string targetURI = ConfigurationManager.AppSettings["RealTimeInfoURL"].ToString();
             HttpClient client = new HttpClient();
@@ -41,7 +41,7 @@ namespace Taoyuan_Traffic.Controllers.V1.RealTime
         {
 
             //Initialize
-            IRealTime repos = DataFactory.RealTimeRespository();
+            IRealTime repos = DataFactory.RealTimeRepository();
             
             //return radius range Info
             return Content(JsonConvert.SerializeObject(repos.getRealTimeInfo(y, x, radius)), "application/json");

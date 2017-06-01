@@ -20,7 +20,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Rest
         public async Task<ActionResult> Index()
         {
             //Initialize
-            IRest repos = DataFactory.RestRespository();
+            IRest repos = DataFactory.RestRepository();
 
 
             //Setting target Url
@@ -43,7 +43,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Rest
         public ActionResult GetRestInfo()
         {
             //Initial Variables
-            IRest repos = DataFactory.RestRespository();
+            IRest repos = DataFactory.RestRepository();
             return Content(JsonConvert.SerializeObject(repos.GetRestInfo()), "application/json");
         }
     }

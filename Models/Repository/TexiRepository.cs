@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Taoyuan_Traffic.Models.Interface;
-using Taoyuan_Traffic.ViewModels.Alert;
+using Taoyuan_Traffic.ViewModels.Text;
 
 namespace Taoyuan_Traffic.Models.Repository
 {
-    public class AlertRepository : IAlert
+    public class TexiRepository : ITexi
     {
         /// <summary>
         /// (私有) 資料庫實體資料集合
@@ -22,7 +22,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// <summary>
         /// 倉儲建構子
         /// </summary>
-        public AlertRepository()
+        public TexiRepository()
         {
             this._db = new DataClassesDataContext();
 
@@ -32,7 +32,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// 倉儲建構子
         /// </summary>
         /// <param name="context">實體資料集合</param>
-        public AlertRepository(DataClassesDataContext context = null)
+        public TexiRepository(DataClassesDataContext context = null)
         {
             this._db = (context == null ? new DataClassesDataContext() : context);
         }
@@ -40,7 +40,7 @@ namespace Taoyuan_Traffic.Models.Repository
         /// <summary>
         /// 倉儲建構子
         /// </summary>
-        ~AlertRepository()
+        ~TexiRepository()
         {
             this.Dispose(false);
         }
@@ -83,38 +83,21 @@ namespace Taoyuan_Traffic.Models.Repository
 
         #endregion 實作IDisposable
 
-        public void AddAlertInfo(IEnumerable<AlertDeserialize> alertResource)
+        public List<TexiDeserialize> GetTexiInfo()
         {
-            var count = 1;
-            _db.ExecuteCommand("DELETE FROM Alert");
-            foreach (AlertDeserialize item in alertResource)
-            {
-                var newAlertClass = new Alert
-                {
-                    alertID = count,
-                    updated = item.updated,
-                    name = item.author.name,
-                    text = item.summary.text.Replace('\n',' ').Trim(),
-                    term = item.category.term
-                };
-                count++;
-                _db.Alert.InsertOnSubmit(newAlertClass);
-                _db.SubmitChanges();
-            }
-        }
+            List<TexiDeserialize> TexiInfoList = (from o in _db.Texi
+                                                  select new TexiDeserialize
+                                                  {
+                                                      tID = o.tID,
+                                                      Name = o.Name,
+                                                      Lat = o.Lat,
+                                                      Lon = o.Lon,
+                                                      Addr = o.Addr,
+                                                      PhoneNum = o.PhoneNum,
+                                                      Area = o.Area
 
-        public List<AlertInfo> getAlertInfo(string keyWord)
-        {
-            List<AlertInfo> alertList = (from o in _db.Alert
-                                         where o.text.Contains(keyWord)
-                                         select new AlertInfo()
-                                         {
-                                             updated = o.updated.Value,
-                                             name = o.name,
-                                             text = o.text,
-                                             term = o.term
-                                         }).ToList();
-            return alertList;
+                                                  }).ToList();
+            return TexiInfoList;
         }
     }
 }

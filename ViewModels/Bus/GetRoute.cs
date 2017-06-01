@@ -25,11 +25,7 @@ namespace Taoyuan_Traffic.ViewModels
         /// <summary>
         /// 去返程 = ['0: 去程', '1: 返程']
         /// </summary>
-        public int GoDirection { get; set;}
-        /// <summary>
-        /// 去返程 = ['0: 去程', '1: 返程']
-        /// </summary>
-        public int BackDirection { get; set;}
+        public int Direction { get; set;}
         /// <summary>
         /// 起站中文名稱
         /// </summary>
@@ -41,10 +37,6 @@ namespace Taoyuan_Traffic.ViewModels
         /// <summary>
         /// 車頭描述
         /// </summary>
-        public string GoHeadsign { get; set; }
-        /// <summary>
-        /// 車頭描述
-        /// </summary>
-        public string BackHeadsign { get; set; }
+        public string Headsign { get; set; }
     }
 }

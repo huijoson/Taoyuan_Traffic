@@ -85,10 +85,10 @@ namespace Taoyuan_Traffic.Models.Repository
 
         public void addRealTimeInfo(IEnumerable<RealTimeInfoDeserialize> realTimeInfoSource)
         {
-            _db.ExecuteCommand("DELETE FROM RealTimeTable");
+            _db.ExecuteCommand("DELETE FROM RealTime");
             foreach (RealTimeInfoDeserialize item in realTimeInfoSource)
             {
-                var newRealTime = new RealTimeTable
+                var newRealTime = new RealTime
                 {
                     region = item.region,
                     srcdetail = item.srcdetail,
@@ -107,7 +107,7 @@ namespace Taoyuan_Traffic.Models.Repository
 
 
 
-                _db.RealTimeTable.InsertOnSubmit(newRealTime);
+                _db.RealTime.InsertOnSubmit(newRealTime);
                 _db.SubmitChanges();
             }
         }
@@ -123,8 +123,8 @@ namespace Taoyuan_Traffic.Models.Repository
             bound.lagE = longitude + Math.Abs(lagx);
             bound.lagW = longitude - Math.Abs(lagx);
 
-            List<RealTimeInfoDeserialize> realtimeList = (from o in _db.RealTimeTable
-                                                         where Convert.ToDouble(o.y1) <= bound.latN &&
+            List<RealTimeInfoDeserialize> realtimeList = (from o in _db.RealTime
+                                                          where Convert.ToDouble(o.y1) <= bound.latN &&
                                                          Convert.ToDouble(o.y1) >= bound.latS &&
                                                          Convert.ToDouble(o.x1) <= bound.lagE &&
                                                          Convert.ToDouble(o.x1) >= bound.lagW
