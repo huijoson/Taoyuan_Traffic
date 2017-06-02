@@ -10,6 +10,7 @@ using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.ViewModels;
 using Taoyuan_Traffic.Models.Interface;
 using System.Configuration;
+using System.Web.Http;
 
 namespace Taoyuan_Traffic.Controllers.V1.Bus
 {
@@ -17,17 +18,11 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
     /// 站牌資訊
     /// </summary>
     public class BusStopController : Controller
-    {
-        //用來暫存路線名稱
-        public string routName = ""; 
-        
+    {   
 
         // GET: BusStop
         public async Task<ActionResult> Index()
         {
-            var BusStopSource = await GetBusStopData(routName);
-
-
             return View();
         }
 
@@ -38,52 +33,16 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         /// <returns></returns>
         public async Task<ActionResult> JsonBusStopInfo(string routeName)
         {
-            var busStopSource = await GetBusStopData(routName);
             IBusStop repos = DataFactory.BusStopRepository();
-           
+            //Get Json String
+            HttpClient client = new HttpClient();
+            //Setting target Url
+            string targetURI = ConfigurationManager.AppSettings["BusStopURL"].ToString() + "/" + routeName + "?$format=JSON";
+            string response = await client.GetStringAsync(targetURI);
+            //Deserialize
+            var busStopSource = JsonConvert.DeserializeObject<IEnumerable<BusStopDeserialize>>(response);           
 
             return Content(JsonConvert.SerializeObject(repos.GetBusStop(busStopSource)),"application/json");
         }
-
-         //站牌用快取
-
-        public async Task<IEnumerable<BusStopDeserialize>> GetBusStopData(string routeName)
-        {
-            //setting cache
-            string cacheName = "BusCache";
-
-            ObjectCache cache = MemoryCache.Default;
-            CacheItem cacheContents = cache.GetCacheItem(cacheName);
-
-            if (cacheContents == null)
-            {
-                return await RetriveBusStopData(cacheName, routeName);
-            }
-            else
-            {
-                return cacheContents.Value as IEnumerable<BusStopDeserialize>;
-            }
-        }
-
-        public async Task<IEnumerable<BusStopDeserialize>> RetriveBusStopData(string cacheName, string routeName)
-        {
-            //Setting target Url
-            string targetURI = ConfigurationManager.AppSettings["BusStopURL"].ToString() + "/" + routeName + "?$format=JSON";
-            HttpClient client = new HttpClient();
-            client.MaxResponseContentBufferSize = Int32.MaxValue;
-            //Get Json String
-            var response = await client.GetStringAsync(targetURI);
-            //Deserialize
-            var collection = JsonConvert.DeserializeObject<IEnumerable<BusStopDeserialize>>(response);
-            //setting cache policy
-            CacheItemPolicy policy = new CacheItemPolicy();
-            policy.AbsoluteExpiration = DateTime.Now.AddMinutes(0);
-
-            ObjectCache cacheItem = MemoryCache.Default;
-            cacheItem.Add(cacheName, collection, policy);
-
-            return collection;
-        }
-
     }
 }

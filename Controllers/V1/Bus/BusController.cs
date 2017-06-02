@@ -158,7 +158,12 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
             IHttpActionResult responseResult;
             IBusStop repos = DataFactory.BusStopRepository();
             //Get Json String
-            var busStopSource = await new BusStopController().GetBusStopData(routeName);
+            HttpClient client = new HttpClient();
+            //Setting target Url
+            string targetURI = ConfigurationManager.AppSettings["BusStopURL"].ToString() + "/" + routeName + "?$format=JSON";
+            string response = await client.GetStringAsync(targetURI);
+            //Deserialize
+            var busStopSource = JsonConvert.DeserializeObject<IEnumerable<BusStopDeserialize>>(response);
             //將需要的欄位取出後序列化
             var jsonSerialize = JsonConvert.SerializeObject(repos.GetBusStop(busStopSource));
             //做成JSON字串包裝到最後輸出

@@ -509,7 +509,7 @@
     <Content Include="Views\TraStation\Index.cshtml" />
     <Content Include="Views\TraClass\Index.cshtml" />
     <Content Include="Views\TaoyuanWeather\Index.cshtml" />
-    <Content Include="Views\Parking\Index.cshtml" />
+    <Content Include="Views\ParkingOut\Index.cshtml" />
     <Content Include="Views\AlertCust\Index.cshtml" />
     <Content Include="Views\RealTimeTrafficInfo\Index.cshtml" />
     <Content Include="Views\UBikeInfo\Index.cshtml" />
@@ -525,7 +525,6 @@
     <Folder Include="CustomContent\Images\" />
     <Folder Include="Views\API\" />
     <Folder Include="Views\FreeWayInfo\" />
-    <Folder Include="Views\ParkingA\" />
     <Folder Include="Views\StationOfLine\" />
     <Folder Include="Views\TexiInfo\" />
     <Folder Include="Views\TraDailyTimeTable\" />
