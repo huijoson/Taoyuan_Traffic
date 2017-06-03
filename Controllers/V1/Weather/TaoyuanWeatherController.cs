@@ -34,7 +34,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Weather
             if (webRequest != null)
             {
                 webRequest.Method = "GET";
-                webRequest.Timeout = 20000;
+                webRequest.Timeout = 50000;
                 webRequest.ContentType = "application/json";
                 webRequest.Headers.Add("Authorization", "CWB-43A3A823-91B0-4D35-96E1-D66A1B5277AA");
                 using (System.IO.Stream s = webRequest.GetResponse().GetResponseStream())
@@ -43,9 +43,6 @@ namespace Taoyuan_Traffic.Controllers.V1.Weather
                     {
                         jsonResponse = sr.ReadToEnd();
                         JObject o = (JObject)JsonConvert.DeserializeObject(jsonResponse);
-                        //for (var i=0; i <= o.SelectToken("records").SelectToken("locations").Count(); i++) {
-                        //    jsonResultSB.Append(o.SelectToken("records").SelectToken("locations["+i+"].location").ToString());
-                        //}
                         jsonResultSB.Append(o.SelectToken("records").SelectToken("locations[0].location").ToString());
 
                     }
