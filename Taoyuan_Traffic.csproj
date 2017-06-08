@@ -413,6 +413,7 @@
     <Compile Include="Controllers\V1\FreeWay\FreeWayInfoController.cs" />
     <Compile Include="Controllers\V1\Park\ParkingController.cs" />
     <Compile Include="Controllers\V1\Park\ParkingOutController.cs" />
+    <Compile Include="Controllers\V1\Postman\PostmanController.cs" />
     <Compile Include="Controllers\V1\RealTime\RealTimeController.cs" />
     <Compile Include="Controllers\V1\RealTime\RealTimeTrafficInfoController.cs" />
     <Compile Include="Controllers\V1\Rest\RestController.cs" />
@@ -442,6 +443,8 @@
     <Compile Include="Models\Interface\ITraLine.cs" />
     <Compile Include="Models\Interface\IUBike.cs" />
     <Compile Include="Models\Interface\IWeather.cs" />
+    <Compile Include="Models\Postman\PostmanCollection.cs" />
+    <Compile Include="Models\Postman\PostmanRequest.cs" />
     <Compile Include="Models\Repository\AlertRepository.cs" />
     <Compile Include="Models\Repository\BusRouteRepository.cs" />
     <Compile Include="Models\Repository\BusStopRepository.cs" />
@@ -525,6 +528,7 @@
     <Folder Include="CustomContent\Images\" />
     <Folder Include="Views\API\" />
     <Folder Include="Views\FreeWayInfo\" />
+    <Folder Include="Views\Postman\" />
     <Folder Include="Views\StationOfLine\" />
     <Folder Include="Views\TexiInfo\" />
     <Folder Include="Views\TraDailyTimeTable\" />

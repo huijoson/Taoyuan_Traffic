@@ -5,7 +5,6 @@ using System.Web;
 
 namespace Taoyuan_Traffic.ViewModels
 {
-
     public class BusDynamicDeserialize
     {
         /// <summary>

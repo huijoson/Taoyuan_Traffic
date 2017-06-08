@@ -68,6 +68,12 @@ namespace Taoyuan_Traffic
             );
 
             routes.MapRoute(
+                name: "Postman",
+                url: "api/v1/Postman/{controller}/{action}",
+                namespaces: new string[] { "PostmanController" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
