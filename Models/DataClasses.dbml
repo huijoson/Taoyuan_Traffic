@@ -9,23 +9,6 @@
       <Column Name="term" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Weather" Member="Weather">
-    <Type Name="Weather">
-      <Column Name="wID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="locationName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="geocode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="elementName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="startTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="endTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="elementValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="parameterName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="parameterValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="dataTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="elementMeasure" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.BusDynamic" Member="BusDynamic">
     <Type Name="BusDynamic">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -169,9 +152,27 @@
       <Column Name="Area" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Weather" Member="Weather">
+    <Type Name="Weather">
+      <Column Name="WID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="locationName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="geocode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="elementName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="startTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="endTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="elementValue" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="parameterName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="parameterValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="dataTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="elementMeasure" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.BusRoute" Member="BusRoute">
     <Type Name="BusRoute">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CityType" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="RouteUID" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="RouteID" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="AuthorityID" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
@@ -191,6 +192,27 @@
       <Column Name="DepartureStopNameZh" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="DestinationStopNameZh" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BusEstimate" Member="BusEstimate">
+    <Type Name="BusEstimate">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CityType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PlateNumb" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="StopUID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="StopID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Stopname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="RouteUID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="RouteID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Routename" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SubRouteUID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SubRouteID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Subroutename" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Direction" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MessageType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NextBusTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SrcUpdateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="UpdateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>

@@ -129,5 +129,15 @@ namespace Taoyuan_Traffic.Models
         {
             return new TexiRepository(dataContext);
         }
+
+        /// <summary>
+        /// 通用資料倉儲
+        /// </summary>
+        /// <param name="dataContext">資料實體</param>
+        /// <returns>資料倉儲介面</returns>
+        //public static IProduct ProductRepository(DataClassesDataContext dataContext = null)
+        //{
+        //    return new ProductRepositor(dataContext);
+        //}
     }
 }

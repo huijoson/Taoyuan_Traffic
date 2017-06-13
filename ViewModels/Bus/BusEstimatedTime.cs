@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Taoyuan_Traffic.ViewModels
 {
-    public class BusEstimatedTimeDeserialize
+    public class BusEstimatedTime
     {
         /// <summary>
         /// 車牌號碼 [値為値為-1時，表示目前該站位無車輛行駛]
@@ -22,7 +22,7 @@ namespace Taoyuan_Traffic.ViewModels
         /// <summary>
         /// 站牌名
         /// </summary>
-        public Stopname StopName { get; set; }
+        public string StopName { get; set; }
         /// <summary>
         /// 路線唯一識別代碼，規則為 {業管機關代碼} + {RouteID}，其中 {業管機關代碼} 
         /// </summary>
@@ -34,7 +34,7 @@ namespace Taoyuan_Traffic.ViewModels
         /// <summary>
         /// 路線名稱
         /// </summary>
-        public Routename RouteName { get; set; }
+        public string RouteName { get; set; }
         /// <summary>
         /// 子路線唯一識別代碼，規則為 {業管機關代碼} + {SubRouteID}，其中 {業管機關代碼}
         /// </summary>
@@ -46,7 +46,7 @@ namespace Taoyuan_Traffic.ViewModels
         /// <summary>
         /// 子路線名稱
         /// </summary>
-        public Subroutename SubRouteName { get; set; }
+        public string SubRouteName { get; set; }
         /// <summary>
         /// 去返程 = ['0: 去程', '1: 返程']
         /// </summary>

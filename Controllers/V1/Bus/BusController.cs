@@ -23,22 +23,43 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         //用來暫存路線名稱
         public string routName = "";
 
+        //Taipei: 1, NewTaipei: 2, Taoyuan: 3, Taichung: 4, Tainan: 5, 
+        //Kaohsiung: 6, Keelung: 7, Hsinchu: 8, HsinchuCounty: 9, MiaoliCounty: 10, 
+        //ChanghuaCounty: 11, NantouCounty: 12, YunlinCounty: 13, ChiayiCounty: 14, Chiayi: 15, 
+        //PingtungCounty: 16, YilanCounty: 17, HualienCounty: 18, TaitungCounty: 19, KinmenCounty: 20, 
+        //PenghuCounty: 21, PenghuCounty: 22
+        List<string> listCity = new List<string> { "Taipei", "NewTaipei", "Taoyuan", "Taichung", "Tainan", "Kaohsiung",
+                                                        "Keelung", "Hsinchu", "HsinchuCounty", "MiaoliCounty", "ChanghuaCounty",
+                                                        "NantouCounty", "YunlinCounty", "ChiayiCounty", "Chiayi", "PingtungCounty",
+                                                        "YilanCounty", "HualienCounty", "TaitungCounty", "KinmenCounty", "PenghuCounty",
+                                                        "LienchiangCounty" };
         /// <summary>
         /// 取得所有公車路線
         /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/v1/Bus/BusRoute/GetAllRoute")]
+        /// <param name="city">鄉政英文名稱 Taipei: 1, NewTaipei: 2, Taoyuan: 3, Taichung: 4, Tainan: 5, 
+        ///         Kaohsiung: 6, Keelung: 7, Hsinchu: 8, HsinchuCounty: 9, MiaoliCounty: 10, 
+        ///         ChanghuaCounty: 11, NantouCounty: 12, YunlinCounty: 13, ChiayiCounty: 14, Chiayi: 15,
+        ///         PingtungCounty: 16, YilanCounty: 17, HualienCounty: 18, TaitungCounty: 19, KinmenCounty: 20,
+        ///         PenghuCounty: 21, PenghuCounty: 22</param>
+        /// <param name="keyword">關鍵字</param>
+        /// <returns></returns> 
+        [HttpGet]                        
+        [Route("api/v1/Bus/BusRoute/GetRoute")]
         [SwaggerResponse(HttpStatusCode.OK, "", typeof(GetRoute))]
         [SwaggerResponse(HttpStatusCode.NotFound)]
         [SwaggerImplementationNotes("取得所有公車路線資訊")]
-        public IHttpActionResult GetAllRoute()
+        public IHttpActionResult GetRoute(string city, string keyword="")
         {
             //Initial
             IHttpActionResult responseResult;
             IBusRoute repos = DataFactory.BusRouteRepository();
+            Dictionary<string, int> dicCity = new Dictionary<string, int>();
+            for (int i = 0; i <= listCity.Count - 1; i++)
+            {
+                dicCity.Add(listCity[i], i + 1);
+            }
             //序列化撈出來的資料
-            var jsonSerialize = JsonConvert.SerializeObject(repos.GetAllRoute());
+            var jsonSerialize = JsonConvert.SerializeObject(repos.GetRoute(dicCity.ContainsKey(city) ? dicCity[city] : 1, keyword));
             //做成JSON字串包裝到最後輸出
             StringContent responseMsgString = new StringContent(jsonSerialize, System.Text.Encoding.UTF8, "application/json");
             HttpResponseMessage responseMsg = new HttpResponseMessage() { Content = responseMsgString };
@@ -48,29 +69,30 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         }
 
         /// <summary>
-        /// 取得公車路線資料
+        /// 取得公車到站資料
         /// </summary>
-        /// <param name="routeName">路線代號(如:137)</param>
-        /// <param name="direction">去返</param>
+        /// <param name="city">鄉鎮英文</param>
+        /// <param name="routeName">公車路線名稱</param>
+        /// <param name="direction">去、返(0、1)</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/v1/Bus/BusRoute/GetRouteInfo")]
-        [SwaggerResponse(HttpStatusCode.OK, "", typeof(BusEstimatedTimeDeserialize))]
+        [Route("api/v1/Bus/BusRoute/GetBusEstimatedTime")]
+        [SwaggerResponse(HttpStatusCode.OK, "", typeof(BusEstimatedTime))]
         [SwaggerResponse(HttpStatusCode.NotFound)]
-        [SwaggerImplementationNotes("取得公車路線資料")]
-        public async Task<IHttpActionResult> GetBusEstimatedInfo(string routeName, string direction = "0'%20or%20Direction%20eq%20%20'1")
+        [SwaggerImplementationNotes("取得公車到站資料")]
+        public async Task<IHttpActionResult> GetBusEstimatedTime(string city, string routeName = "", int direction = 0)
         {
-            //Initial
+            //initial variable
             IHttpActionResult responseResult;
+            DateTime now = DateTime.Now;
             IBusRoute repos = DataFactory.BusRouteRepository();
             //Setting target Url
-            string targetURI = ConfigurationManager.AppSettings["BusEstimatedTimeURL"].ToString() +
-                "/" + routeName + "?$filter=Direction%20eq%20'" + direction + "'&$format=JSON";
+            string targetURI = ConfigurationManager.AppSettings["BusEstimatedTimeURL"].ToString() + "/" + city + "?$format=JSON";
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
             //Get Json String
             var response = await client.GetStringAsync(targetURI);
-            //反序列化從交通部撈出來的JSON
+            //Deserialize
             var collection = JsonConvert.DeserializeObject<IEnumerable<BusEstimatedTimeDeserialize>>(response);
             //將需要的欄位取出後序列化
             var jsonSerialize = JsonConvert.SerializeObject(repos.GetBusEstimatedTime(collection));
@@ -133,7 +155,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
             //Deserialize
             var collection = JsonConvert.DeserializeObject<IEnumerable<BusDynamicDeserialize>>(response);
             //將需要的欄位取出後序列化
-            var jsonSerialize = JsonConvert.SerializeObject(repos.GetBusDynamicInfo(collection));
+            var jsonSerialize = JsonConvert.SerializeObject(repos.GetBusDynamicInfo(routeName));
             //做成JSON字串包裝到最後輸出
             StringContent responseMsgString = new StringContent(jsonSerialize, System.Text.Encoding.UTF8, "application/json");
             HttpResponseMessage responseMsg = new HttpResponseMessage() { Content = responseMsgString };
@@ -149,7 +171,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         /// <returns></returns>
         [HttpGet]
         [Route("api/v1/Bus/BusRoute/GetBusStopInfo")]
-        [SwaggerResponse(HttpStatusCode.OK, "", typeof(BusDynamicDeserialize))]
+        [SwaggerResponse(HttpStatusCode.OK, "", typeof(BusStopCustom))]
         [SwaggerResponse(HttpStatusCode.NotFound)]
         [SwaggerImplementationNotes("取得公車站牌資訊")]
         public async Task<IHttpActionResult> GetBusStopInfo(string routeName = "")

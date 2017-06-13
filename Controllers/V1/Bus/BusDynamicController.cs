@@ -54,7 +54,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
 
             IBusDynamic repos = DataFactory.BusDynamicRepository();
 
-            return Content(JsonConvert.SerializeObject(repos.GetBusDynamicInfo(collection)), "application/json");
+            return Content(JsonConvert.SerializeObject(repos.GetBusDynamicInfo(routeName)), "application/json");
         }
 
         public async Task<IEnumerable<BusDynamicDeserialize>> GetBusDynamicData()

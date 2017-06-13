@@ -82,14 +82,16 @@ namespace Taoyuan_Traffic.Models.Repository
         }
 
         #endregion 實作IDisposable
-
-        /// <summary>
-        /// 新增熱門關鍵字
-        /// </summary>
-        public void AddBusRoute(IEnumerable<BusRouteDeserialize> AddBusRouteSource)
+        public void clearBusRouteTable()
         {
-            var count = 1;
             _db.ExecuteCommand("TRUNCATE TABLE BusRoute");
+        }
+        
+        /// <summary>
+        /// 新增公車路線資訊
+        /// </summary>
+        public int AddBusRoute(IEnumerable<BusRouteDeserialize> AddBusRouteSource, int count, int cityType)
+        {
             foreach (BusRouteDeserialize item in AddBusRouteSource)
             {
                 var newBusRoute = new BusRoute { };
@@ -98,6 +100,7 @@ namespace Taoyuan_Traffic.Models.Repository
                     newBusRoute = new BusRoute
                     {
                         ID = count,
+                        CityType = cityType,
                         RouteUID = item.RouteUID,
                         RouteID = item.RouteID,
                         AuthorityID = item.AuthorityID,
@@ -125,6 +128,7 @@ namespace Taoyuan_Traffic.Models.Repository
                     newBusRoute = new BusRoute
                     {
                         ID = count,
+                        CityType = cityType,
                         RouteUID = item.RouteUID,
                         RouteID = item.RouteID,
                         AuthorityID = item.AuthorityID,
@@ -146,14 +150,55 @@ namespace Taoyuan_Traffic.Models.Repository
                 _db.BusRoute.InsertOnSubmit(newBusRoute);
             }
             _db.SubmitChanges();
+            return count;
+        }
+        /// <summary>
+        /// 取得公車到站資訊
+        /// </summary>
+        /// <param name="AddBusEstimateSource"></param>
+        public void AddBusEstimate(IEnumerable<BusEstimatedTimeDeserialize> AddBusEstimateSource)
+        {
+            var count = 1;
+            _db.ExecuteCommand("TRUNCATE TABLE BusEstimate");
+            foreach (BusEstimatedTimeDeserialize item in AddBusEstimateSource)
+            {
+                var newBusEstimate = new BusEstimate { };
+                newBusEstimate = new BusEstimate
+                {
+                    ID = count,
+                    PlateNumb = item.PlateNumb,
+                    StopUID = item.StopUID,
+                    StopID = item.StopID,
+                    Stopname = item.StopName.Zh_tw,
+                    RouteUID = item.RouteUID,
+                    RouteID = item.RouteID,
+                    Routename = item.RouteName.Zh_tw,
+                    SubRouteUID = item.SubRouteUID,
+                    SubRouteID = item.SubRouteID,
+                    Subroutename = item.SubRouteName.Zh_tw,
+                    Direction = item.Direction,
+                    MessageType = item.MessageType,
+                    NextBusTime = item.NextBusTime,
+                    SrcUpdateTime = item.SrcUpdateTime,
+                    UpdateTime = item.UpdateTime
+                };
+                count++;
+                _db.BusEstimate.InsertOnSubmit(newBusEstimate);
+            }
+            _db.SubmitChanges();
         }
 
         /// <summary>
         /// 取得所有路線
         /// </summary>
-        public List<ViewModels.GetRoute> GetAllRoute()
+        public List<ViewModels.GetRoute> GetRoute(int cityType=1, string keyWord="")
         {
             List<ViewModels.GetRoute> routeList = (from o in _db.BusRoute
+                                                   where o.DepartureStopNameZh.Contains(keyWord) |
+                                                        o.DestinationStopNameZh.Contains(keyWord) |
+                                                        o.GoHeadsign.Contains(keyWord) |
+                                                        o.RouteName.Contains(keyWord) &&
+                                                        o.CityType.Equals(cityType)
                                                    select new ViewModels.GetRoute()
                                                    {
                                                        RouteUID = o.RouteUID,
@@ -189,31 +234,32 @@ namespace Taoyuan_Traffic.Models.Repository
             return routeList;
         }
 
-        public List<ViewModels.BusEstimatedTimeDeserialize> GetBusEstimatedTime(IEnumerable<BusEstimatedTimeDeserialize> busEstimated)
+        public List<ViewModels.BusEstimatedTime> GetBusEstimatedTime(IEnumerable<BusEstimatedTimeDeserialize> busEstimatedSource)
         {
-            List<ViewModels.BusEstimatedTimeDeserialize> busEstimatedModelList = new List<BusEstimatedTimeDeserialize>();
-            
-            foreach (BusEstimatedTimeDeserialize item in busEstimated)
-            {
-                BusEstimatedTimeDeserialize busEstimatedModel = new BusEstimatedTimeDeserialize();
-                busEstimatedModel.PlateNumb = item.PlateNumb;
-                busEstimatedModel.StopUID = item.StopUID;
-                busEstimatedModel.StopID = item.StopID;
-                busEstimatedModel.StopName = item.StopName;
-                busEstimatedModel.RouteUID = item.RouteUID;
-                busEstimatedModel.RouteID = item.RouteID;
-                busEstimatedModel.RouteName = item.RouteName;
-                busEstimatedModel.SubRouteUID = item.SubRouteUID;
-                busEstimatedModel.SubRouteID = item.SubRouteID;
-                busEstimatedModel.SubRouteName = item.SubRouteName;
-                busEstimatedModel.Direction = item.Direction;
-                busEstimatedModel.MessageType = item.MessageType;
-                busEstimatedModel.NextBusTime = Convert.ToDateTime(item.NextBusTime.ToString("yyyy-MM-dd HH:mm:ss"));
-                busEstimatedModel.SrcUpdateTime = Convert.ToDateTime(item.SrcUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"));
-                busEstimatedModel.UpdateTime = Convert.ToDateTime(item.UpdateTime.ToString("yyyy-MM-dd HH:mm:ss"));
-                busEstimatedModelList.Add(busEstimatedModel);
-            }
+            List<ViewModels.BusEstimatedTime> busEstimatedModelList = new List<BusEstimatedTime>();
 
+            foreach(ViewModels.BusEstimatedTimeDeserialize item in busEstimatedSource)
+            {
+                BusEstimatedTime Obj = new BusEstimatedTime();
+                Obj.PlateNumb = item.PlateNumb;
+                Obj.StopUID = item.StopUID;
+                Obj.StopID = item.StopID;
+                Obj.StopName = item.StopName.Zh_tw;
+                Obj.RouteUID = item.RouteUID;
+                Obj.RouteID = item.RouteID;
+                Obj.RouteName = item.RouteName.Zh_tw;
+                Obj.RouteUID = item.RouteUID;
+                Obj.SubRouteID = item.SubRouteID;
+                Obj.SubRouteName = item.SubRouteName.Zh_tw;
+                Obj.Direction = item.Direction;
+                Obj.MessageType = item.MessageType;
+                Obj.NextBusTime = item.NextBusTime;
+                Obj.SrcUpdateTime = item.SrcUpdateTime;
+                Obj.UpdateTime = item.UpdateTime;
+                busEstimatedModelList.Add(Obj);
+            }
+            
+            
             return busEstimatedModelList;
         }
     }

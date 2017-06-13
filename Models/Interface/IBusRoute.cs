@@ -14,12 +14,15 @@ namespace Taoyuan_Traffic.Models.Interface
         /// <summary>
         /// 新增公車資訊
         /// </summary>
-        void AddBusRoute(IEnumerable<BusRouteDeserialize> AddBusRouteSource);
+        void clearBusRouteTable();
+        int AddBusRoute(IEnumerable<BusRouteDeserialize> AddBusRouteSource, int count, int cityType);
 
-        List<ViewModels.GetRoute> GetAllRoute();
+        void AddBusEstimate(IEnumerable<BusEstimatedTimeDeserialize> AddBusEstimateSource);
+
+        List<ViewModels.GetRoute> GetRoute(int cityType = 1, string keyWord = "");
 
         List<ViewModels.GetRoute> GetSearchRoute(string keyWord);
 
-        List<ViewModels.BusEstimatedTimeDeserialize> GetBusEstimatedTime(IEnumerable<BusEstimatedTimeDeserialize> busEstimated);
+        List<ViewModels.BusEstimatedTime> GetBusEstimatedTime(IEnumerable<BusEstimatedTimeDeserialize> busEstimatedSource);
     }
 }

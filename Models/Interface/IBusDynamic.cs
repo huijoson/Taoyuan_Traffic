@@ -15,6 +15,6 @@ namespace Taoyuan_Traffic.Models.Interface
         /// 新增公車資訊
         /// </summary>
         void AddBusInfo(IEnumerable<BusDynamicDeserialize> AddBusDynamicSource);
-        List<BusDynamicDeserialize> GetBusDynamicInfo(IEnumerable<BusDynamicDeserialize> busDynamicCol);
+        List<ViewModels.BusDynamic> GetBusDynamicInfo(string routeName);
     }
 }

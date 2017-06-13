@@ -83,11 +83,12 @@ namespace Taoyuan_Traffic.Models.Repository
 
         #endregion 實作IDisposable
 
-        public void addWeatherInfo(IEnumerable<Weather3DayDeserialize> weatherInfoSource)
+        public int addWeatherInfo(IEnumerable<Weather3DayDeserialize> weatherInfoSource, int rowCount)
         {
-            var count = 1;
+
+            var count = rowCount;
             
-            _db.ExecuteCommand("TRUNCATE TABLE Weather");
+            
             foreach (Weather3DayDeserialize item in weatherInfoSource)
             {
                 int elementCount = item.weatherElement.Count();
@@ -95,7 +96,7 @@ namespace Taoyuan_Traffic.Models.Repository
                     int timeCount = item.weatherElement[i].time.Count();
                     for(var j=0; j<=timeCount-1; j++) {
                         var newWeather = new Weather();
-                        newWeather.wID = count;
+                        newWeather.WID = count;
                         newWeather.locationName = item.locationName;
                         newWeather.geocode = item.geocode;
                         newWeather.lat = item.lat;
@@ -119,9 +120,14 @@ namespace Taoyuan_Traffic.Models.Repository
                 }
             }
             _db.SubmitChanges();
+            return count;
+        }
+         public void clearWTTable()
+        {
+            _db.ExecuteCommand("TRUNCATE TABLE Weather");
         }
 
-        public object GetWeatherSearch(string attr, string date, string local)
+        public object GetWeatherSearch(string attr, DateTime date, string local)
         {
             DateTime dt1 = Convert.ToDateTime(date);
             switch (attr)
@@ -129,7 +135,7 @@ namespace Taoyuan_Traffic.Models.Repository
                 case "Wx":
                     List<WeatherWx> weatherListWx = (from o in _db.Weather
                                                      where o.elementName.Contains("Wx")
-                                                       && (Convert.ToDateTime(o.startTime) > dt1)
+                                                       && DateTime.Compare(Convert.ToDateTime(o.startTime), dt1) > 0
                                                        && o.locationName.Contains(local)
                                                    select new WeatherWx()
                                                    {
@@ -144,7 +150,7 @@ namespace Taoyuan_Traffic.Models.Repository
                 case "PoP":
                     List<WeatherPoP> weatherListPoP = (from o in _db.Weather
                                                        where o.elementName.Contains("PoP")
-                                                       && Convert.ToDateTime(o.startTime) > dt1
+                                                       && DateTime.Compare(Convert.ToDateTime(o.startTime), dt1) > 0
                                                        && o.locationName.Contains(local)
                                                    select new WeatherPoP()
                                                    {
@@ -158,29 +164,43 @@ namespace Taoyuan_Traffic.Models.Repository
                 case "T":
                     List<WeatherT> weatherListT = (from o in _db.Weather
                                                    where o.elementName.Contains("T")
-                                                       && Convert.ToDateTime(o.dataTime) > dt1
+                                                       && DateTime.Compare(Convert.ToDateTime(o.startTime), dt1) > 0
                                                        && o.locationName.Contains(local)
                                                    select new WeatherT()
                                                      {
-                                                         dataTime = o.dataTime,
-                                                         elementValue = o.elementValue,
+                                                       startTime = o.startTime,
+                                                       endTime = o.endTime,
+                                                       elementValue = o.elementValue,
                                                          elementMeasure = o.elementMeasure
                                                      }).ToList();
                     return weatherListT;
 
-                case "CI":
-                    List<WeatherCI> weatherListCI = (from o in _db.Weather
-                                                     where o.elementName.Contains("CI")
-                                                   && Convert.ToDateTime(o.dataTime) > dt1
-                                                   && o.locationName.Contains(local)
-                                                   select new WeatherCI()
-                                                   {
-                                                       dataTime = o.dataTime,
-                                                       elementValue = o.elementValue,
-                                                       parameterValue = o.parameterValue,
-                                                       parameterName = o.parameterName
-                                                   }).ToList();
-                    return weatherListCI;
+                case "WeatherDescription":
+                    List<WeatherDescription> weatherListDescription = (from o in _db.Weather
+                                                                       where o.elementName.Contains("WeatherDescription")
+                                                                       && DateTime.Compare(Convert.ToDateTime(o.startTime), dt1) > 0
+                                                                       && o.locationName.Contains(local)
+                                                                        select new WeatherDescription()
+                                                                        {
+                                                                            startTime = o.startTime,
+                                                                            endTime = o.endTime,
+                                                                            elementValue = o.elementValue
+                                                                        }).ToList();
+                    return weatherListDescription;
+
+                //case "CI":
+                //    List<WeatherCI> weatherListCI = (from o in _db.Weather
+                //                                     where o.elementName.Contains("CI")
+                //                                   && Convert.ToDateTime(o.dataTime) > dt1
+                //                                   && o.locationName.Contains(local)
+                //                                   select new WeatherCI()
+                //                                   {
+                //                                       dataTime = o.dataTime,
+                //                                       elementValue = o.elementValue,
+                //                                       parameterValue = o.parameterValue,
+                //                                       parameterName = o.parameterName
+                //                                   }).ToList();
+                //    return weatherListCI;
 
                 default:
                     return null;

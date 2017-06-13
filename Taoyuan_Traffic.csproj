@@ -114,6 +114,9 @@
     <Reference Include="Microsoft.DotNet.PlatformAbstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.DotNet.PlatformAbstractions.1.1.1\lib\net451\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.1.0.0\lib\netstandard1.1\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.1.1.1\lib\netstandard1.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
     </Reference>
@@ -407,13 +410,14 @@
     <Compile Include="Controllers\V1\Alert\AlertCustController.cs" />
     <Compile Include="Controllers\V1\Bus\BusController.cs" />
     <Compile Include="Controllers\V1\Bus\BusDynamicController.cs" />
+    <Compile Include="Controllers\V1\Bus\BusEstimateController.cs" />
     <Compile Include="Controllers\V1\Bus\BusRouteController.cs" />
     <Compile Include="Controllers\V1\Bus\BusStopController.cs" />
     <Compile Include="Controllers\V1\FreeWay\FreeWayController.cs" />
     <Compile Include="Controllers\V1\FreeWay\FreeWayInfoController.cs" />
     <Compile Include="Controllers\V1\Park\ParkingController.cs" />
     <Compile Include="Controllers\V1\Park\ParkingOutController.cs" />
-    <Compile Include="Controllers\V1\Postman\PostmanController.cs" />
+    <Compile Include="Controllers\V1\Product\ProductController.cs" />
     <Compile Include="Controllers\V1\RealTime\RealTimeController.cs" />
     <Compile Include="Controllers\V1\RealTime\RealTimeTrafficInfoController.cs" />
     <Compile Include="Controllers\V1\Rest\RestController.cs" />
@@ -437,18 +441,18 @@
     <Compile Include="Models\Interface\IBusStop.cs" />
     <Compile Include="Models\Interface\IFreeWay.cs" />
     <Compile Include="Models\Interface\IParking.cs" />
+    <Compile Include="Models\Interface\IProduct.cs" />
     <Compile Include="Models\Interface\IRealTime.cs" />
     <Compile Include="Models\Interface\IRest.cs" />
     <Compile Include="Models\Interface\ITexi.cs" />
     <Compile Include="Models\Interface\ITraLine.cs" />
     <Compile Include="Models\Interface\IUBike.cs" />
     <Compile Include="Models\Interface\IWeather.cs" />
-    <Compile Include="Models\Postman\PostmanCollection.cs" />
-    <Compile Include="Models\Postman\PostmanRequest.cs" />
     <Compile Include="Models\Repository\AlertRepository.cs" />
     <Compile Include="Models\Repository\BusRouteRepository.cs" />
     <Compile Include="Models\Repository\BusStopRepository.cs" />
     <Compile Include="Models\Repository\FreeWayRepository.cs" />
+    <Compile Include="Models\Repository\ProductRepository.cs" />
     <Compile Include="Models\Repository\RestRepository.cs" />
     <Compile Include="Models\Repository\ParkingRepository.cs" />
     <Compile Include="Models\Repository\RealTimeRepository.cs" />
@@ -471,6 +475,7 @@
     <Compile Include="Models\Interface\IBusDynamic.cs" />
     <Compile Include="Models\Repository\BusDynamicRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Bus\BusEstimatedTime.cs" />
     <Compile Include="ViewModels\Bus\BusEstimatedTimeDeserialize.cs" />
     <Compile Include="ViewModels\Bus\BusStopCustom.cs" />
     <Compile Include="ViewModels\Bus\BusStopDeserialize.cs" />
@@ -494,6 +499,7 @@
     <Compile Include="ViewModels\Weather\WeatherCI.cs" />
     <Compile Include="ViewModels\Weather\WeatherPoP.cs" />
     <Compile Include="ViewModels\Weather\WeatherT.cs" />
+    <Compile Include="ViewModels\Weather\WeatherDescription.cs" />
     <Compile Include="ViewModels\Weather\WeatherWx.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -517,6 +523,7 @@
     <Content Include="Views\RealTimeTrafficInfo\Index.cshtml" />
     <Content Include="Views\UBikeInfo\Index.cshtml" />
     <Content Include="Views\RestInfo\Index.cshtml" />
+    <Content Include="Views\BusEstimate\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -529,6 +536,7 @@
     <Folder Include="Views\API\" />
     <Folder Include="Views\FreeWayInfo\" />
     <Folder Include="Views\Postman\" />
+    <Folder Include="Views\Product\" />
     <Folder Include="Views\StationOfLine\" />
     <Folder Include="Views\TexiInfo\" />
     <Folder Include="Views\TraDailyTimeTable\" />

@@ -122,33 +122,37 @@ namespace Taoyuan_Traffic.Models.Repository
             _db.SubmitChanges();
         }
 
-        public List<BusDynamicDeserialize> GetBusDynamicInfo(IEnumerable<BusDynamicDeserialize> busDynamicCol)
+        public List<ViewModels.BusDynamic> GetBusDynamicInfo(string routeName)
         {
-            List<ViewModels.BusDynamicDeserialize> busDynamicModelList = new List<BusDynamicDeserialize>();
-
-            foreach (BusDynamicDeserialize item in busDynamicCol)
+            List<ViewModels.BusDynamic> busDynamicModelList = new List<ViewModels.BusDynamic>();
+            var query = (from o in _db.BusDynamic select o).AsEnumerable();
+            foreach(var item in query)
             {
-                BusDynamicDeserialize busDynamicModel = new BusDynamicDeserialize();
-
-                busDynamicModel.RouteID = item.RouteID;
-                busDynamicModel.PlateNumb = item.PlateNumb;
-                busDynamicModel.OperatorID = item.OperatorID;
-                busDynamicModel.RouteUID = item.RouteUID;
-                busDynamicModel.RouteName = item.RouteName;
-                busDynamicModel.SubRouteUID = item.SubRouteUID;
-                busDynamicModel.SubRouteID = item.SubRouteID;
-                busDynamicModel.SubRouteName = item.SubRouteName;
-                busDynamicModel.Direction = item.Direction;
-                busDynamicModel.BusPosition = item.BusPosition;
-                busDynamicModel.Speed = item.Speed;
-                busDynamicModel.Azimuth = item.Azimuth;
-                busDynamicModel.DutyStatus = item.DutyStatus;
-                busDynamicModel.BusStatus = item.BusStatus;
-                busDynamicModel.MessageType = item.MessageType;
-                busDynamicModel.GPSTime = Convert.ToDateTime(item.GPSTime.ToString("yyyy-MM-dd HH:mm:ss"));
-                busDynamicModel.SrcUpdateTime = Convert.ToDateTime(item.SrcUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"));
-                busDynamicModel.UpdateTime = Convert.ToDateTime(item.UpdateTime.ToString("yyyy-MM-dd HH:mm:ss"));
-                busDynamicModelList.Add(busDynamicModel);
+                ViewModels.BusDynamic busD = new ViewModels.BusDynamic();
+                Routename rN = new Routename();
+                Subroutename srN = new Subroutename();
+                busD.RouteID = item.RouteID;
+                busD.PlateNumb = item.PlateNumb;
+                busD.OperatorID = item.OperatorID;
+                busD.RouteUID = item.RouteUID;
+                rN.Zh_tw = item.RouteName;
+                busD.RouteName = rN;
+                busD.SubRouteUID = item.SubRouteUID;
+                busD.SubRouteID = item.SubRouteID;
+                srN.Zh_tw = item.SubRouteName;
+                busD.SubRouteName = srN;
+                busD.Direction = item.Direction.HasValue?item.Direction.Value:0;
+                busD.PositionLat = item.PositionLat.HasValue ? item.PositionLat.Value : 0;
+                busD.PositionLon = item.PositionLon.HasValue ? item.PositionLon.Value : 0;
+                busD.Speed = item.Speed.HasValue ? item.Speed.Value : 0;
+                busD.Azimuth = item.Azimuth.HasValue ? item.Azimuth.Value : 0;
+                busD.DutyStatus = item.DutyStatus.HasValue ? item.DutyStatus.Value : 0;
+                busD.BusStatus = item.BusStatus.HasValue ? item.BusStatus.Value : 0;
+                busD.MessageType = item.MessageType.HasValue ? item.MessageType.Value : 0;
+                busD.GPSTime = item.GPSTime.HasValue ? item.GPSTime.Value : DateTime.Now;
+                busD.SrcUpdateTime = item.SrcUpdateTime.HasValue ? item.SrcUpdateTime.Value : DateTime.Now;
+                busD.UpdateTime = item.UpdateTime.HasValue ? item.UpdateTime.Value : DateTime.Now;
+                busDynamicModelList.Add(busD);
             }
 
             return busDynamicModelList;

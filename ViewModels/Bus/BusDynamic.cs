@@ -46,15 +46,16 @@ namespace Taoyuan_Traffic.ViewModels
         /// <summary>
         /// 車輛位置經度
         /// </summary>
-        public Busposition BusPosition { get; set; }
+        public double PositionLat { get; set; }
+        public double PositionLon { get; set; }
         /// <summary>
         /// 行駛速度(kph) 
         /// </summary>
-        public float Speed { get; set; }
+        public double Speed { get; set; }
         /// <summary>
         /// 方位角
         /// </summary>
-        public float Azimuth { get; set; }
+        public double Azimuth { get; set; }
         /// <summary>
         /// 勤務狀態 = ['0: 正常', '1: 開始', '2: 結束']
         /// </summary>

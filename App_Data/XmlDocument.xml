@@ -499,18 +499,25 @@
             Bus
             </summary>
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusController.GetAllRoute">
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusController.GetRoute(System.String,System.String)">
             <summary>
             取得所有公車路線
             </summary>
-            <returns></returns>
+            <param name="city">鄉政英文名稱 Taipei: 1, NewTaipei: 2, Taoyuan: 3, Taichung: 4, Tainan: 5, 
+                    Kaohsiung: 6, Keelung: 7, Hsinchu: 8, HsinchuCounty: 9, MiaoliCounty: 10, 
+                    ChanghuaCounty: 11, NantouCounty: 12, YunlinCounty: 13, ChiayiCounty: 14, Chiayi: 15,
+                    PingtungCounty: 16, YilanCounty: 17, HualienCounty: 18, TaitungCounty: 19, KinmenCounty: 20,
+                    PenghuCounty: 21, PenghuCounty: 22</param>
+            <param name="keyword">關鍵字</param>
+            <returns></returns> 
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusController.GetBusEstimatedInfo(System.String,System.String)">
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusController.GetBusEstimatedTime(System.String,System.String,System.Int32)">
             <summary>
-            取得公車路線資料
+            取得公車到站資料
             </summary>
-            <param name="routeName">路線代號(如:137)</param>
-            <param name="direction">去返</param>
+            <param name="city">鄉鎮英文</param>
+            <param name="routeName">公車路線名稱</param>
+            <param name="direction">去、返(0、1)</param>
             <returns></returns>
         </member>
         <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusController.GetSearchRoute(System.String)">
@@ -552,18 +559,19 @@
             公車路線資訊
             </summary>
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusRouteController.JsonAllRoute">
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusRouteController.GetRoute(System.String,System.String)">
             <summary>
-            取得所有桃園公車路線
+            取得公車路線
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusRouteController.JsonBusEstimatedInfo(System.String,System.String)">
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusRouteController.GetBusEstimatedTime(System.String,System.String,System.Int32)">
             <summary>
             取得公車路線資訊並轉成JSON輸出
             </summary>
+            <param name="city">鄉鎮英文</param>
             <param name="routeName">公車路線名稱</param>
-            <param name="direction">回、返(0、1)</param>
+            <param name="direction">去、返(0、1)</param>
             <returns></returns>
         </member>
         <member name="M:Taoyuan_Traffic.Controllers.V1.Bus.BusRouteController.JsonSearchRoute(System.String)">
@@ -595,6 +603,27 @@
             <summary>
             取得停車場資訊
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Product.ProductController.GetSearchRoute(System.String)">
+            <summary>
+            關鍵字搜尋公車路線
+            </summary>
+            <param name="keyword">關鍵字(路線名稱、路線代號)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Product.ProductController.GetDynamicBusInfo(System.String)">
+            <summary>
+            取得路線公車動態資訊
+            </summary>
+            <param name="routeName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Product.ProductController.GetBusStopInfo(System.String)">
+            <summary>
+            取得公車站牌資訊
+            </summary>
+            <param name="routeName">路線代號</param>
             <returns></returns>
         </member>
         <member name="M:Taoyuan_Traffic.Controllers.V1.RealTime.RealTimeController.GetSearchWeather(System.Single,System.Single,System.Int32)">
@@ -634,7 +663,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.V1.Weather.TaoyuanWeatherController.GetSearchWeather(System.String,System.String,System.String)">
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Weather.TaoyuanWeatherController.GetSearchWeather(System.String,System.DateTime,System.String)">
             <summary>
             取得搜尋天氣資訊
             </summary>
@@ -643,11 +672,11 @@
             <param name="local"></param>
             <returns></returns>
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.V1.Weather.WeatherController.GetSearchWeather(System.String,System.String,System.String)">
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Weather.WeatherController.GetSearchWeather(System.String,System.DateTime,System.String)">
             <summary>
             取得天氣資訊
             </summary>
-            <param name="attr">天氣屬性(Wx:天氣示意, PoP:降雨率, T:溫度, CI:舒適度)</param>
+            <param name="attr">天氣屬性(Wx:天氣示意, PoP:降雨率, T:溫度, WeatherDescription:天氣敘述)</param>
             <param name="date">日期(如:2017-05-26 21:00:00)</param>
             <param name="local">區域(如:桃園區)</param>
             <returns></returns>
@@ -662,7 +691,7 @@
             傳回使用的資料庫實體
             </summary>
         </member>
-        <member name="M:Taoyuan_Traffic.Models.Interface.IBusRoute.AddBusRoute(System.Collections.Generic.IEnumerable{Taoyuan_Traffic.ViewModels.BusRouteDeserialize})">
+        <member name="M:Taoyuan_Traffic.Models.Interface.IBusRoute.clearBusRouteTable">
             <summary>
             新增公車資訊
             </summary>
@@ -673,6 +702,11 @@
             </summary>
         </member>
         <member name="P:Taoyuan_Traffic.Models.Interface.IParking.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Interface.IProduct.Entity">
             <summary>
             傳回使用的資料庫實體
             </summary>
@@ -707,12 +741,12 @@
             傳回使用的資料庫實體
             </summary>
         </member>
-        <member name="M:Taoyuan_Traffic.Models.Interface.IWeather.addWeatherInfo(System.Collections.Generic.IEnumerable{Taoyuan_Traffic.ViewModels.Weather.Weather3DayDeserialize})">
+        <member name="M:Taoyuan_Traffic.Models.Interface.IWeather.addWeatherInfo(System.Collections.Generic.IEnumerable{Taoyuan_Traffic.ViewModels.Weather.Weather3DayDeserialize},System.Int32)">
             <summary>
             新增天氣資訊
             </summary>
         </member>
-        <member name="M:Taoyuan_Traffic.Models.Interface.IWeather.GetWeatherSearch(System.String,System.String,System.String)">
+        <member name="M:Taoyuan_Traffic.Models.Interface.IWeather.GetWeatherSearch(System.String,System.DateTime,System.String)">
             <summary>
             取得搜尋的天氣資訊
             </summary>
@@ -802,12 +836,18 @@
             資源釋放
             </summary>
         </member>
-        <member name="M:Taoyuan_Traffic.Models.Repository.BusRouteRepository.AddBusRoute(System.Collections.Generic.IEnumerable{Taoyuan_Traffic.ViewModels.BusRouteDeserialize})">
+        <member name="M:Taoyuan_Traffic.Models.Repository.BusRouteRepository.AddBusRoute(System.Collections.Generic.IEnumerable{Taoyuan_Traffic.ViewModels.BusRouteDeserialize},System.Int32,System.Int32)">
             <summary>
-            新增熱門關鍵字
+            新增公車路線資訊
             </summary>
         </member>
-        <member name="M:Taoyuan_Traffic.Models.Repository.BusRouteRepository.GetAllRoute">
+        <member name="M:Taoyuan_Traffic.Models.Repository.BusRouteRepository.AddBusEstimate(System.Collections.Generic.IEnumerable{Taoyuan_Traffic.ViewModels.BusEstimatedTimeDeserialize})">
+            <summary>
+            取得公車到站資訊
+            </summary>
+            <param name="AddBusEstimateSource"></param>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.BusRouteRepository.GetRoute(System.Int32,System.String)">
             <summary>
             取得所有路線
             </summary>
@@ -880,6 +920,42 @@
             </summary>
         </member>
         <member name="M:Taoyuan_Traffic.Models.Repository.FreeWayRepository.Dispose">
+            <summary>
+            資源釋放
+            </summary>
+        </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.ProductRepository._db">
+            <summary>
+            (私有) 資料庫實體資料集合
+            </summary>
+        </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.ProductRepository._now">
+            <summary>
+            目前時間
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.ProductRepository.#ctor">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.ProductRepository.#ctor(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            倉儲建構子
+            </summary>
+            <param name="context">實體資料集合</param>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.ProductRepository.Finalize">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Repository.ProductRepository.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.ProductRepository.Dispose">
             <summary>
             資源釋放
             </summary>
@@ -1363,7 +1439,7 @@
             去返程 = ['0: 去程', '1: 返程']
             </summary>
         </member>
-        <member name="P:Taoyuan_Traffic.ViewModels.BusDynamic.BusPosition">
+        <member name="P:Taoyuan_Traffic.ViewModels.BusDynamic.PositionLat">
             <summary>
             車輛位置經度
             </summary>
@@ -1494,6 +1570,81 @@
             </summary>
         </member>
         <member name="P:Taoyuan_Traffic.ViewModels.BusDynamicDeserialize.UpdateTime">
+            <summary>
+            本平台資料更新時間
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.PlateNumb">
+            <summary>
+            車牌號碼 [値為値為-1時，表示目前該站位無車輛行駛]
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.StopUID">
+            <summary>
+            站牌唯一識別代碼，規則為 {業管機關代碼} + {StopID}，其中 {業管機關代碼} 
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.StopID">
+            <summary>
+            地區既用中之站牌代碼(為原資料內碼)
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.StopName">
+            <summary>
+            站牌名
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.RouteUID">
+            <summary>
+            路線唯一識別代碼，規則為 {業管機關代碼} + {RouteID}，其中 {業管機關代碼} 
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.RouteID">
+            <summary>
+            地區既用中之路線代碼(為原資料內碼)
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.RouteName">
+            <summary>
+            路線名稱
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.SubRouteUID">
+            <summary>
+            子路線唯一識別代碼，規則為 {業管機關代碼} + {SubRouteID}，其中 {業管機關代碼}
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.SubRouteID">
+            <summary>
+            地區既用中之子路線代碼(為原資料內碼) 
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.SubRouteName">
+            <summary>
+            子路線名稱
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.Direction">
+            <summary>
+            去返程 = ['0: 去程', '1: 返程']
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.MessageType">
+            <summary>
+            資料型態種類 = ['0: 未知', '1: 定期', '2: 非定期']
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.NextBusTime">
+            <summary>
+            下一班公車到達時間
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.SrcUpdateTime">
+            <summary>
+            來源端平台資料更新時間
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.UpdateTime">
             <summary>
             本平台資料更新時間
             </summary>
