@@ -44,7 +44,7 @@ namespace Taoyuan_Traffic.Controllers.V1.PARK
         }
 
 
-        public ActionResult JsonParkingInfo()
+        public ActionResult GetParking()
         {   
             //Initialize
             IParking repos = DataFactory.ParkingRepository();

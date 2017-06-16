@@ -82,9 +82,13 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
             //initial variable
             DateTime now = DateTime.Now;
             IBusRoute repos = DataFactory.BusRouteRepository();
-
+            int flag = 0;
+            if(city == "Taipei")
+            {
+                flag = 1;
+            }
             //Setting target Url
-            string targetURI = ConfigurationManager.AppSettings["BusEstimatedTimeURL"].ToString() + "/" + city + "?$format=JSON";
+            string targetURI = ConfigurationManager.AppSettings["BusEstimatedTimeURL"].ToString() + "/" + city + "/" + routeName + "?$format=JSON";
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
             //Get Json String
@@ -92,7 +96,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
             //Deserialize
             var collection = JsonConvert.DeserializeObject<IEnumerable<BusEstimatedTimeDeserialize>>(response);
             string afterNow = (DateTime.Now - now).ToString();
-            return Content(JsonConvert.SerializeObject(repos.GetBusEstimatedTime(collection)), "application/json");
+            return Content(JsonConvert.SerializeObject(repos.GetBusEstimatedTime(collection, flag)), "application/json");
         }
         /// <summary>
         /// 關鍵字搜尋公車路線

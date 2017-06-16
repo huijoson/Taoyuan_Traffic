@@ -122,36 +122,32 @@ namespace Taoyuan_Traffic.Models.Repository
             _db.SubmitChanges();
         }
 
-        public List<ViewModels.BusDynamic> GetBusDynamicInfo(string routeName)
+        public List<ViewModels.BusDynamic> GetBusDynamicInfo(IEnumerable<ViewModels.BusDynamicDeserialize> BusDynamicSource)
         {
             List<ViewModels.BusDynamic> busDynamicModelList = new List<ViewModels.BusDynamic>();
-            var query = (from o in _db.BusDynamic select o).AsEnumerable();
-            foreach(var item in query)
+            foreach(BusDynamicDeserialize item in BusDynamicSource)
             {
                 ViewModels.BusDynamic busD = new ViewModels.BusDynamic();
-                Routename rN = new Routename();
-                Subroutename srN = new Subroutename();
+
                 busD.RouteID = item.RouteID;
                 busD.PlateNumb = item.PlateNumb;
                 busD.OperatorID = item.OperatorID;
                 busD.RouteUID = item.RouteUID;
-                rN.Zh_tw = item.RouteName;
-                busD.RouteName = rN;
+                busD.RouteName = item.RouteName;
                 busD.SubRouteUID = item.SubRouteUID;
                 busD.SubRouteID = item.SubRouteID;
-                srN.Zh_tw = item.SubRouteName;
-                busD.SubRouteName = srN;
-                busD.Direction = item.Direction.HasValue?item.Direction.Value:0;
-                busD.PositionLat = item.PositionLat.HasValue ? item.PositionLat.Value : 0;
-                busD.PositionLon = item.PositionLon.HasValue ? item.PositionLon.Value : 0;
-                busD.Speed = item.Speed.HasValue ? item.Speed.Value : 0;
-                busD.Azimuth = item.Azimuth.HasValue ? item.Azimuth.Value : 0;
-                busD.DutyStatus = item.DutyStatus.HasValue ? item.DutyStatus.Value : 0;
-                busD.BusStatus = item.BusStatus.HasValue ? item.BusStatus.Value : 0;
-                busD.MessageType = item.MessageType.HasValue ? item.MessageType.Value : 0;
-                busD.GPSTime = item.GPSTime.HasValue ? item.GPSTime.Value : DateTime.Now;
-                busD.SrcUpdateTime = item.SrcUpdateTime.HasValue ? item.SrcUpdateTime.Value : DateTime.Now;
-                busD.UpdateTime = item.UpdateTime.HasValue ? item.UpdateTime.Value : DateTime.Now;
+                busD.SubRouteName = item.SubRouteName;
+                busD.Direction = item.Direction;
+                busD.PositionLat = item.BusPosition.PositionLat;
+                busD.PositionLon = item.BusPosition.PositionLon;
+                busD.Speed = item.Speed;
+                busD.Azimuth = item.Azimuth;
+                busD.DutyStatus = item.DutyStatus;
+                busD.BusStatus = item.BusStatus;
+                busD.MessageType = item.MessageType;
+                busD.GPSTime = item.GPSTime;
+                busD.SrcUpdateTime = item.SrcUpdateTime;
+                busD.UpdateTime = item.UpdateTime;
                 busDynamicModelList.Add(busD);
             }
 

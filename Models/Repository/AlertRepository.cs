@@ -89,18 +89,22 @@ namespace Taoyuan_Traffic.Models.Repository
             _db.ExecuteCommand("TRUNCATE TABLE Alert");
             foreach (AlertDeserialize item in alertResource)
             {
-                var newAlertClass = new Alert
+                Alert alertObj = new Alert();
+
+                alertObj.alertID = count;
+                alertObj.updated = item.updated;
+                alertObj.name = item.author.name;
+                if (item.summary.text != null)
                 {
-                    alertID = count,
-                    updated = item.updated,
-                    name = item.author.name,
-                    text = item.summary.text.Replace('\n',' ').Trim(),
-                    term = item.category.term
+                    alertObj.text = item.summary.text.Replace('\n', ' ').Trim();
                 };
+                alertObj.term = item.category.term;
+
                 count++;
-                _db.Alert.InsertOnSubmit(newAlertClass);
+                _db.Alert.InsertOnSubmit(alertObj);
+                _db.SubmitChanges();
             }
-            _db.SubmitChanges();
+            
         }
 
         public List<AlertInfo> getAlertInfo(string keyWord)

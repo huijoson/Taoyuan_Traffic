@@ -234,29 +234,53 @@ namespace Taoyuan_Traffic.Models.Repository
             return routeList;
         }
 
-        public List<ViewModels.BusEstimatedTime> GetBusEstimatedTime(IEnumerable<BusEstimatedTimeDeserialize> busEstimatedSource)
+        public List<ViewModels.BusEstimatedTime> GetBusEstimatedTime(IEnumerable<BusEstimatedTimeDeserialize> busEstimatedSource, int flag)
         {
             List<ViewModels.BusEstimatedTime> busEstimatedModelList = new List<BusEstimatedTime>();
 
-            foreach(ViewModels.BusEstimatedTimeDeserialize item in busEstimatedSource)
+            if (flag == 0)
             {
-                BusEstimatedTime Obj = new BusEstimatedTime();
-                Obj.PlateNumb = item.PlateNumb;
-                Obj.StopUID = item.StopUID;
-                Obj.StopID = item.StopID;
-                Obj.StopName = item.StopName.Zh_tw;
-                Obj.RouteUID = item.RouteUID;
-                Obj.RouteID = item.RouteID;
-                Obj.RouteName = item.RouteName.Zh_tw;
-                Obj.RouteUID = item.RouteUID;
-                Obj.SubRouteID = item.SubRouteID;
-                Obj.SubRouteName = item.SubRouteName.Zh_tw;
-                Obj.Direction = item.Direction;
-                Obj.MessageType = item.MessageType;
-                Obj.NextBusTime = item.NextBusTime;
-                Obj.SrcUpdateTime = item.SrcUpdateTime;
-                Obj.UpdateTime = item.UpdateTime;
-                busEstimatedModelList.Add(Obj);
+                foreach (ViewModels.BusEstimatedTimeDeserialize item in busEstimatedSource)
+                {
+                    BusEstimatedTime Obj = new BusEstimatedTime();
+                    Obj.PlateNumb = item.PlateNumb;
+                    Obj.StopUID = item.StopUID;
+                    Obj.StopID = item.StopID;
+                    Obj.StopName = item.StopName.Zh_tw;
+                    Obj.RouteUID = item.RouteUID;
+                    Obj.RouteID = item.RouteID;
+                    Obj.RouteName = item.RouteName.Zh_tw;
+                    Obj.RouteUID = item.RouteUID;
+                    Obj.SubRouteID = item.SubRouteID;
+                    Obj.SubRouteName = item.SubRouteName.Zh_tw;
+                    Obj.Direction = item.Direction;
+                    Obj.MessageType = item.MessageType;
+                    Obj.NextBusTime = item.NextBusTime;
+                    Obj.SrcUpdateTime = item.SrcUpdateTime;
+                    Obj.UpdateTime = item.UpdateTime;
+                    busEstimatedModelList.Add(Obj);
+                }
+            }
+            else
+            {
+                foreach (ViewModels.BusEstimatedTimeDeserialize item in busEstimatedSource)
+                {
+                    BusEstimatedTime Obj = new BusEstimatedTime();
+                    Obj.PlateNumb = item.PlateNumb;
+                    Obj.StopUID = item.StopUID;
+                    Obj.StopID = item.StopID;
+                    Obj.StopName = item.StopName.Zh_tw;
+                    Obj.RouteUID = item.RouteUID;
+                    Obj.RouteID = item.RouteID;
+                    Obj.RouteName = item.RouteName.Zh_tw;
+                    Obj.RouteUID = item.RouteUID;
+                    Obj.Direction = item.Direction;
+                    Obj.MessageType = item.MessageType;
+                    Obj.NextBusTime = item.NextBusTime;
+                    Obj.SrcUpdateTime = item.SrcUpdateTime;
+                    Obj.UpdateTime = item.UpdateTime;
+                    busEstimatedModelList.Add(Obj);
+                }
             }
             
             

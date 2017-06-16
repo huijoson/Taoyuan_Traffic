@@ -12,7 +12,7 @@ namespace Taoyuan_Traffic.Controllers.V1.RealTime
     public class RealTimeController : ApiController
     {
         /// <summary>
-        /// 取得即時路況
+        /// 取得即時路況(全台)
         /// </summary>
         /// <param name="radius">半徑範圍(公尺)</param>
         /// <param name="x">經度</param>

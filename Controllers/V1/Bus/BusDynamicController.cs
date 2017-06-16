@@ -18,6 +18,16 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
 {
     public class BusDynamicController : Controller
     {
+        //Taipei: 1, NewTaipei: 2, Taoyuan: 3, Taichung: 4, Tainan: 5, 
+        //Kaohsiung: 6, Keelung: 7, Hsinchu: 8, HsinchuCounty: 9, MiaoliCounty: 10, 
+        //ChanghuaCounty: 11, NantouCounty: 12, YunlinCounty: 13, ChiayiCounty: 14, Chiayi: 15, 
+        //PingtungCounty: 16, YilanCounty: 17, HualienCounty: 18, TaitungCounty: 19, KinmenCounty: 20, 
+        //PenghuCounty: 21, PenghuCounty: 22
+        List<string> listCity = new List<string> { "Taipei", "NewTaipei", "Taoyuan", "Taichung", "Tainan", "Kaohsiung",
+                                                        "Keelung", "Hsinchu", "HsinchuCounty", "MiaoliCounty", "ChanghuaCounty",
+                                                        "NantouCounty", "YunlinCounty", "ChiayiCounty", "Chiayi", "PingtungCounty",
+                                                        "YilanCounty", "HualienCounty", "TaitungCounty", "KinmenCounty", "PenghuCounty",
+                                                        "PenghuCounty" };
         /// <summary>
         /// 動態公車項目
         /// </summary>
@@ -41,10 +51,14 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         /// </summary>
         /// <param name="routeName"></param>
         /// <returns></returns>
-        public async Task<ActionResult> JsonRouteBusInfo(string routeName)
+        public async Task<ActionResult> GetDynamicBusInfo(string cityEN,string routeName)
         {
+            //initial variable
+            DateTime now = DateTime.Now;
+            IBusDynamic repos = DataFactory.BusDynamicRepository();
+
             //Setting target Url
-            string targetURI = ConfigurationManager.AppSettings["BusDynamicInfoURL"].ToString() + "/" + routeName.ToString() + "?$format=JSON";
+            string targetURI = ConfigurationManager.AppSettings["BusDynamicInfoURL"].ToString() + "/" + cityEN + "/" + routeName + "?$format=JSON";
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
             //Get Json String
@@ -52,9 +66,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
             //Deserialize
             var collection = JsonConvert.DeserializeObject<IEnumerable<BusDynamicDeserialize>>(response);
 
-            IBusDynamic repos = DataFactory.BusDynamicRepository();
-
-            return Content(JsonConvert.SerializeObject(repos.GetBusDynamicInfo(routeName)), "application/json");
+            return Content(JsonConvert.SerializeObject(repos.GetBusDynamicInfo(collection)), "application/json");
         }
 
         public async Task<IEnumerable<BusDynamicDeserialize>> GetBusDynamicData()

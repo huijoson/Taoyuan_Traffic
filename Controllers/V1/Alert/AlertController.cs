@@ -12,7 +12,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Alert
     public class AlertController : ApiController
     {
         /// <summary>
-        /// 取得災害警示資訊
+        /// 取得災害警示資訊(全台)
         /// </summary>
         /// <param name="keyWord">鄉鎮區(如:桃園)</param>
         /// <returns></returns>

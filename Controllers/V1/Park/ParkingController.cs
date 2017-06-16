@@ -17,12 +17,12 @@ namespace Taoyuan_Traffic.Controllers.V1.Park
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/v1/Park/Parking/JsonParkingInfo")]
+        [Route("api/v1/Park/Parking/GetParking")]
         [SwaggerResponse(HttpStatusCode.OK, "", typeof(ParkingDeserialize))]
         [SwaggerResponse(HttpStatusCode.NotFound)]
-        [SwaggerImplementationNotes("取得停車場資訊")]
+        [SwaggerImplementationNotes("取得停車場資訊(桃園地區)")]
         //[SwaggerImplementationNotes("取得所有公車路線")]
-        public IHttpActionResult JsonParkingInfo()
+        public IHttpActionResult GetParking()
         {
             //Initial
             IHttpActionResult responseResult;

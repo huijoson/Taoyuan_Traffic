@@ -20,11 +20,11 @@ namespace Taoyuan_Traffic.Controllers.V1.Rest
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/v1/Rest/GetRestInfo")]
+        [Route("api/v1/Rest/GetRest")]
         [SwaggerResponse(HttpStatusCode.OK, "", typeof(RestDeserialize))]
         [SwaggerResponse(HttpStatusCode.NotFound)]
         [SwaggerImplementationNotes("取得充電站資訊")]
-        public IHttpActionResult GetRestInfo()
+        public IHttpActionResult GetRest()
         {
             //Initial
             IHttpActionResult responseResult;

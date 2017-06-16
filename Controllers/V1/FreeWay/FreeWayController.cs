@@ -20,11 +20,11 @@ namespace Taoyuan_Traffic.Controllers.V1.FreeWay
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/v1/FreeWay/GetFreeWayInfo")]
+        [Route("api/v1/FreeWay/GetFreeWay")]
         [SwaggerResponse(HttpStatusCode.OK, "", typeof(FreeWayDeserialize))]
         [SwaggerResponse(HttpStatusCode.NotFound)]
         [SwaggerImplementationNotes("取得道路救援資訊")]
-        public IHttpActionResult GetRestInfo()
+        public IHttpActionResult GetFreeWay()
         {
             //Initial
             IHttpActionResult responseResult;

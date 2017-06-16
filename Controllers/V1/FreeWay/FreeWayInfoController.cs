@@ -17,7 +17,7 @@ namespace Taoyuan_Traffic.Controllers.V1.FreeWay
             return View();
         }
 
-        public ActionResult GetFreeWayInfo()
+        public ActionResult GetFreeWay()
         {
             //Initialize
             IFreeWay repos = DataFactory.FreeWayRepository();

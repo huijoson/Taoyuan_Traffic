@@ -31,13 +31,13 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
         /// </summary>
         /// <param name="routeName">路線名稱</param>
         /// <returns></returns>
-        public async Task<ActionResult> JsonBusStopInfo(string routeName)
+        public async Task<ActionResult> GetBusStopInfo(string cityEN, string routeName)
         {
             IBusStop repos = DataFactory.BusStopRepository();
             //Get Json String
             HttpClient client = new HttpClient();
             //Setting target Url
-            string targetURI = ConfigurationManager.AppSettings["BusStopURL"].ToString() + "/" + routeName + "?$format=JSON";
+            string targetURI = ConfigurationManager.AppSettings["BusStopURL"].ToString() + "/" + cityEN + "/" + routeName + "?$format=JSON";
             string response = await client.GetStringAsync(targetURI);
             //Deserialize
             var busStopSource = JsonConvert.DeserializeObject<IEnumerable<BusStopDeserialize>>(response);           

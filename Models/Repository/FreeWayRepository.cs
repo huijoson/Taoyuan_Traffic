@@ -89,10 +89,10 @@ namespace Taoyuan_Traffic.Models.Repository
                                                     select new FreeWayDeserialize
                                                     {
                                                         rID = o.rID,
-                                                        name = o.name,
+                                                        name = o.name.Trim().Replace(" ", ""),
                                                         addr = o.addr.Trim().Replace(" ",""),
-                                                        phoneNum = o.phoneNum,
-                                                        freephoneNum = o.freephoneNum,
+                                                        phoneNum = o.phoneNum.Trim().Replace(" ", ""),
+                                                        freephoneNum = o.freephoneNum.Trim().Replace(" ", ""),
                                                         smallCar = o.SmallCar,
                                                         largeCar = o.LargeCar
                                                     }).ToList();

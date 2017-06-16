@@ -11,6 +11,8 @@ using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.Models.Interface;
 using Taoyuan_Traffic.ViewModels;
 using Taoyuan_Traffic.ViewModels.Alert;
+using Taoyuan_Traffic.ViewModels.FreeWay;
+using Taoyuan_Traffic.ViewModels.Parking;
 
 namespace Taoyuan_Traffic.Controllers.V1.Product
 {
@@ -23,45 +25,68 @@ namespace Taoyuan_Traffic.Controllers.V1.Product
         }
         #region 公車資訊
         /// <summary>
-        /// 取得所有公車路線
+        /// 取得所有公車路線(含關鍵字)
         /// </summary>
+        /// <param name="cityType">Taipei: 1, NewTaipei: 2, Taoyuan: 3, Taichung: 4, Tainan: 5, 
+        ///Kaohsiung: 6, Keelung: 7, Hsinchu: 8, HsinchuCounty: 9, MiaoliCounty: 10, 
+        ///ChanghuaCounty: 11, NantouCounty: 12, YunlinCounty: 13, ChiayiCounty: 14, Chiayi: 15, 
+        ///PingtungCounty: 16, YilanCounty: 17, HualienCounty: 18, TaitungCounty: 19, KinmenCounty: 20, 
+        ///PenghuCounty: 21, PenghuCounty: 22</param>
+        ///<param name="keyWord">關鍵字搜尋</param>
         /// <returns></returns>
-        //public List<GetRoute> GetRouteInfo()
-        //{
-        //    IBusRoute repos = DataFactory.BusRouteRepository();
-        //    return repos.GetAllRoute();
-        //}
+        public List<GetRoute> GetRoute(int cityType, string keyWord)
+        {
+            IBusRoute repos = DataFactory.BusRouteRepository();
+            return repos.GetRoute(cityType, keyWord);
+        }
         /// <summary>
         /// 取得公車路線資料
         /// </summary>
         /// <param name="routeName">路線代號(如:137)</param>
         /// <param name="direction">去返</param>
-        ///// <returns></returns>
-        //public List<BusEstimatedTime> GetBusEstimatedInfo(string routeName, int direction = 0)
-        //{
-        //    IBusRoute repos = DataFactory.BusRouteRepository();
-        //    return repos.GetBusEstimatedTime(routeName, direction);
-        //}
-        /// <summary>
-        /// 關鍵字搜尋公車路線
-        /// </summary>
-        /// <param name="keyword">關鍵字(路線名稱、路線代號)</param>
         /// <returns></returns>
-        public List<GetRoute> GetSearchRoute(string keyword)
+        public async Task<List<BusEstimatedTime>> GetBusEstimated(string city, string routeName = "", int direction = 0)
         {
+            //initial variable
+            DateTime now = DateTime.Now;
             IBusRoute repos = DataFactory.BusRouteRepository();
-            return repos.GetSearchRoute(keyword);
+            int flag = 0;
+            if (city == "Taipei")
+            {
+                flag = 1;
+            }
+            //Setting target Url
+            string targetURI = ConfigurationManager.AppSettings["BusEstimatedTimeURL"].ToString() + "/" + city + "/" + routeName + "?$format=JSON";
+            HttpClient client = new HttpClient();
+            client.MaxResponseContentBufferSize = Int32.MaxValue;
+            //Get Json String
+            var response = await client.GetStringAsync(targetURI);
+            //Deserialize
+            var collection = JsonConvert.DeserializeObject<IEnumerable<BusEstimatedTimeDeserialize>>(response);
+            string afterNow = (DateTime.Now - now).ToString();
+            return repos.GetBusEstimatedTime(collection, flag);
         }
-
         /// <summary>
         /// 取得路線公車動態資訊
         /// </summary>
         /// <param name="routeName"></param>
         /// <returns></returns>
-        public List<ViewModels.BusDynamic> GetDynamicBusInfo(string routeName)
+        public async Task<List<ViewModels.BusDynamic>> GetDynamicBus(string cityEN, string routeName)
         {
+            //initial variable
+            DateTime now = DateTime.Now;
             IBusDynamic repos = DataFactory.BusDynamicRepository();
-            return repos.GetBusDynamicInfo(routeName);
+
+            //Setting target Url
+            string targetURI = ConfigurationManager.AppSettings["BusDynamicInfoURL"].ToString() + "/" + cityEN + "/" + routeName + "?$format=JSON";
+            HttpClient client = new HttpClient();
+            client.MaxResponseContentBufferSize = Int32.MaxValue;
+            //Get Json String
+            var response = await client.GetStringAsync(targetURI);
+            //Deserialize
+            var collection = JsonConvert.DeserializeObject<IEnumerable<BusDynamicDeserialize>>(response);
+
+            return repos.GetBusDynamicInfo(collection);
         }
 
         /// <summary>
@@ -69,26 +94,55 @@ namespace Taoyuan_Traffic.Controllers.V1.Product
         /// </summary>
         /// <param name="routeName">路線代號</param>
         /// <returns></returns>
-        public async Task<List<BusStopCustom>> GetBusStopInfo(string routeName)
+        public async Task<List<BusStopCustom>> GetBusStop(string cityEN, string routeName)
         {
             IBusStop repos = DataFactory.BusStopRepository();
             //Get Json String
             HttpClient client = new HttpClient();
             //Setting target Url
-            string targetURI = ConfigurationManager.AppSettings["BusStopURL"].ToString() + "/" + routeName + "?$format=JSON";
+            string targetURI = ConfigurationManager.AppSettings["BusStopURL"].ToString() + "/" + cityEN + "/" + routeName + "?$format=JSON";
             string response = await client.GetStringAsync(targetURI);
             //Deserialize
             var busStopSource = JsonConvert.DeserializeObject<IEnumerable<BusStopDeserialize>>(response);
 
             return repos.GetBusStop(busStopSource);
         }
-        #endregion 公車資訊
+        #endregion
+
         #region 災害資訊
+        /// <summary>
+        /// 取得災害警示資訊(全台)
+        /// </summary>
+        /// <param name="keyWord">鄉鎮區(如:桃園)</param>
+        /// <returns></returns>
         public List<AlertInfo> GetAlertInfo(string keyWord)
         {
+            //Initial Variables
             IAlert repos = DataFactory.AlertRepository();
+
             return repos.getAlertInfo(keyWord);
         }
-        #endregion 災害資訊
+        #endregion
+
+        #region 取得道路救援資訊(全省國道)
+        public List<FreeWayDeserialize> GetFreeWay()
+        {
+            //Initialize
+            IFreeWay repos = DataFactory.FreeWayRepository();
+
+            //return radius range Info
+            return repos.GetFreeWayInfo();
+        }
+        #endregion
+
+        #region 室外停車場資訊(桃園地區)
+        public List<ParkingDeserialize> GetParking()
+        {
+            //Initialize
+            IParking repos = DataFactory.ParkingRepository();
+
+            return repos.GetOutParkingInfo();
+        }
+        #endregion
     }
 }
