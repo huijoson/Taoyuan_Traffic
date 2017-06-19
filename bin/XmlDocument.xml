@@ -649,6 +649,25 @@
             <param name="keyWord">鄉鎮區(如:桃園)</param>
             <returns></returns>
         </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Product.ProductController.GetRealTime(System.Single,System.Single,System.Int32)">
+            <summary>
+            取得即時路況(全台)
+            </summary>
+            <param name="radius">半徑範圍(公尺)</param>
+            <param name="x">經度</param>
+            <param name="y">緯度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Product.ProductController.GetTraDTT(System.String,System.String,System.String,System.String)">
+            <summary>
+            取得公車路線資料
+            </summary>
+            <param name="originSation">去站(中文，如臺北)</param>
+            <param name="destionation">回站(中文，如臺南)</param>
+            <param name="trainDate">乘車日期(2017-05-25)</param>
+            <param name="trainAfterTime">希望乘車時間(17:30)</param>
+            <returns></returns>
+        </member>
         <member name="M:Taoyuan_Traffic.Controllers.V1.RealTime.RealTimeController.GetSearchWeather(System.Single,System.Single,System.Int32)">
             <summary>
             取得即時路況(全台)
@@ -699,7 +718,12 @@
             <summary>
             取得天氣資訊
             </summary>
-            <param name="attr">天氣屬性(Wx:天氣示意, PoP:降雨率, T:溫度, WeatherDescription:天氣敘述)</param>
+            <param name="attr">天氣屬性(           
+            Wx:天氣示意, 
+            PoP:降雨率, 
+            T:溫度, 
+            WeatherDescription:天氣敘述,
+            Wind:風速、風向 )</param>
             <param name="date">日期(如:2017-05-26 21:00:00)</param>
             <param name="local">區域(如:桃園區)</param>
             <returns></returns>

@@ -500,6 +500,7 @@
     <Compile Include="ViewModels\Weather\WeatherPoP.cs" />
     <Compile Include="ViewModels\Weather\WeatherT.cs" />
     <Compile Include="ViewModels\Weather\WeatherDescription.cs" />
+    <Compile Include="ViewModels\Weather\WeatherWind.cs" />
     <Compile Include="ViewModels\Weather\WeatherWx.cs" />
   </ItemGroup>
   <ItemGroup>

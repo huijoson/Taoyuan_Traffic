@@ -60,9 +60,6 @@ namespace Taoyuan_Traffic.Models
     partial void InsertTexi(Texi instance);
     partial void UpdateTexi(Texi instance);
     partial void DeleteTexi(Texi instance);
-    partial void InsertWeather(Weather instance);
-    partial void UpdateWeather(Weather instance);
-    partial void DeleteWeather(Weather instance);
     partial void InsertBusRoute(BusRoute instance);
     partial void UpdateBusRoute(BusRoute instance);
     partial void DeleteBusRoute(BusRoute instance);
@@ -72,6 +69,9 @@ namespace Taoyuan_Traffic.Models
     partial void InsertAlert(Alert instance);
     partial void UpdateAlert(Alert instance);
     partial void DeleteAlert(Alert instance);
+    partial void InsertWeather(Weather instance);
+    partial void UpdateWeather(Weather instance);
+    partial void DeleteWeather(Weather instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -184,14 +184,6 @@ namespace Taoyuan_Traffic.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Weather> Weather
-		{
-			get
-			{
-				return this.GetTable<Weather>();
-			}
-		}
-		
 		public System.Data.Linq.Table<BusRoute> BusRoute
 		{
 			get
@@ -213,6 +205,14 @@ namespace Taoyuan_Traffic.Models
 			get
 			{
 				return this.GetTable<Alert>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Weather> Weather
+		{
+			get
+			{
+				return this.GetTable<Weather>();
 			}
 		}
 	}
@@ -3069,356 +3069,6 @@ namespace Taoyuan_Traffic.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Weather")]
-	public partial class Weather : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _WID;
-		
-		private string _locationName;
-		
-		private string _geocode;
-		
-		private string _lat;
-		
-		private string _lon;
-		
-		private string _elementName;
-		
-		private string _startTime;
-		
-		private string _endTime;
-		
-		private string _elementValue;
-		
-		private string _parameterName;
-		
-		private string _parameterValue;
-		
-		private string _dataTime;
-		
-		private string _elementMeasure;
-		
-    #region 擴充性方法定義
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnWIDChanging(int value);
-    partial void OnWIDChanged();
-    partial void OnlocationNameChanging(string value);
-    partial void OnlocationNameChanged();
-    partial void OngeocodeChanging(string value);
-    partial void OngeocodeChanged();
-    partial void OnlatChanging(string value);
-    partial void OnlatChanged();
-    partial void OnlonChanging(string value);
-    partial void OnlonChanged();
-    partial void OnelementNameChanging(string value);
-    partial void OnelementNameChanged();
-    partial void OnstartTimeChanging(string value);
-    partial void OnstartTimeChanged();
-    partial void OnendTimeChanging(string value);
-    partial void OnendTimeChanged();
-    partial void OnelementValueChanging(string value);
-    partial void OnelementValueChanged();
-    partial void OnparameterNameChanging(string value);
-    partial void OnparameterNameChanged();
-    partial void OnparameterValueChanging(string value);
-    partial void OnparameterValueChanged();
-    partial void OndataTimeChanging(string value);
-    partial void OndataTimeChanged();
-    partial void OnelementMeasureChanging(string value);
-    partial void OnelementMeasureChanged();
-    #endregion
-		
-		public Weather()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int WID
-		{
-			get
-			{
-				return this._WID;
-			}
-			set
-			{
-				if ((this._WID != value))
-				{
-					this.OnWIDChanging(value);
-					this.SendPropertyChanging();
-					this._WID = value;
-					this.SendPropertyChanged("WID");
-					this.OnWIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_locationName", DbType="NVarChar(50)")]
-		public string locationName
-		{
-			get
-			{
-				return this._locationName;
-			}
-			set
-			{
-				if ((this._locationName != value))
-				{
-					this.OnlocationNameChanging(value);
-					this.SendPropertyChanging();
-					this._locationName = value;
-					this.SendPropertyChanged("locationName");
-					this.OnlocationNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_geocode", DbType="NVarChar(50)")]
-		public string geocode
-		{
-			get
-			{
-				return this._geocode;
-			}
-			set
-			{
-				if ((this._geocode != value))
-				{
-					this.OngeocodeChanging(value);
-					this.SendPropertyChanging();
-					this._geocode = value;
-					this.SendPropertyChanged("geocode");
-					this.OngeocodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lat", DbType="NVarChar(50)")]
-		public string lat
-		{
-			get
-			{
-				return this._lat;
-			}
-			set
-			{
-				if ((this._lat != value))
-				{
-					this.OnlatChanging(value);
-					this.SendPropertyChanging();
-					this._lat = value;
-					this.SendPropertyChanged("lat");
-					this.OnlatChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lon", DbType="NVarChar(50)")]
-		public string lon
-		{
-			get
-			{
-				return this._lon;
-			}
-			set
-			{
-				if ((this._lon != value))
-				{
-					this.OnlonChanging(value);
-					this.SendPropertyChanging();
-					this._lon = value;
-					this.SendPropertyChanged("lon");
-					this.OnlonChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_elementName", DbType="NVarChar(50)")]
-		public string elementName
-		{
-			get
-			{
-				return this._elementName;
-			}
-			set
-			{
-				if ((this._elementName != value))
-				{
-					this.OnelementNameChanging(value);
-					this.SendPropertyChanging();
-					this._elementName = value;
-					this.SendPropertyChanged("elementName");
-					this.OnelementNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_startTime", DbType="NVarChar(50)")]
-		public string startTime
-		{
-			get
-			{
-				return this._startTime;
-			}
-			set
-			{
-				if ((this._startTime != value))
-				{
-					this.OnstartTimeChanging(value);
-					this.SendPropertyChanging();
-					this._startTime = value;
-					this.SendPropertyChanged("startTime");
-					this.OnstartTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_endTime", DbType="NVarChar(50)")]
-		public string endTime
-		{
-			get
-			{
-				return this._endTime;
-			}
-			set
-			{
-				if ((this._endTime != value))
-				{
-					this.OnendTimeChanging(value);
-					this.SendPropertyChanging();
-					this._endTime = value;
-					this.SendPropertyChanged("endTime");
-					this.OnendTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_elementValue", DbType="NVarChar(200)")]
-		public string elementValue
-		{
-			get
-			{
-				return this._elementValue;
-			}
-			set
-			{
-				if ((this._elementValue != value))
-				{
-					this.OnelementValueChanging(value);
-					this.SendPropertyChanging();
-					this._elementValue = value;
-					this.SendPropertyChanged("elementValue");
-					this.OnelementValueChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parameterName", DbType="NVarChar(50)")]
-		public string parameterName
-		{
-			get
-			{
-				return this._parameterName;
-			}
-			set
-			{
-				if ((this._parameterName != value))
-				{
-					this.OnparameterNameChanging(value);
-					this.SendPropertyChanging();
-					this._parameterName = value;
-					this.SendPropertyChanged("parameterName");
-					this.OnparameterNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parameterValue", DbType="NVarChar(50)")]
-		public string parameterValue
-		{
-			get
-			{
-				return this._parameterValue;
-			}
-			set
-			{
-				if ((this._parameterValue != value))
-				{
-					this.OnparameterValueChanging(value);
-					this.SendPropertyChanging();
-					this._parameterValue = value;
-					this.SendPropertyChanged("parameterValue");
-					this.OnparameterValueChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dataTime", DbType="NVarChar(50)")]
-		public string dataTime
-		{
-			get
-			{
-				return this._dataTime;
-			}
-			set
-			{
-				if ((this._dataTime != value))
-				{
-					this.OndataTimeChanging(value);
-					this.SendPropertyChanging();
-					this._dataTime = value;
-					this.SendPropertyChanged("dataTime");
-					this.OndataTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_elementMeasure", DbType="NVarChar(50)")]
-		public string elementMeasure
-		{
-			get
-			{
-				return this._elementMeasure;
-			}
-			set
-			{
-				if ((this._elementMeasure != value))
-				{
-					this.OnelementMeasureChanging(value);
-					this.SendPropertyChanging();
-					this._elementMeasure = value;
-					this.SendPropertyChanged("elementMeasure");
-					this.OnelementMeasureChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BusRoute")]
 	public partial class BusRoute : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4564,6 +4214,380 @@ namespace Taoyuan_Traffic.Models
 					this._term = value;
 					this.SendPropertyChanged("term");
 					this.OntermChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Weather")]
+	public partial class Weather : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _WID;
+		
+		private string _locationName;
+		
+		private string _geocode;
+		
+		private string _lat;
+		
+		private string _lon;
+		
+		private string _elementName;
+		
+		private string _startTime;
+		
+		private string _endTime;
+		
+		private string _elementValue;
+		
+		private string _parameterName;
+		
+		private string _parameterValue;
+		
+		private string _dataTime;
+		
+		private string _elementMeasure;
+		
+		private string _parameterUnit;
+		
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnWIDChanging(int value);
+    partial void OnWIDChanged();
+    partial void OnlocationNameChanging(string value);
+    partial void OnlocationNameChanged();
+    partial void OngeocodeChanging(string value);
+    partial void OngeocodeChanged();
+    partial void OnlatChanging(string value);
+    partial void OnlatChanged();
+    partial void OnlonChanging(string value);
+    partial void OnlonChanged();
+    partial void OnelementNameChanging(string value);
+    partial void OnelementNameChanged();
+    partial void OnstartTimeChanging(string value);
+    partial void OnstartTimeChanged();
+    partial void OnendTimeChanging(string value);
+    partial void OnendTimeChanged();
+    partial void OnelementValueChanging(string value);
+    partial void OnelementValueChanged();
+    partial void OnparameterNameChanging(string value);
+    partial void OnparameterNameChanged();
+    partial void OnparameterValueChanging(string value);
+    partial void OnparameterValueChanged();
+    partial void OndataTimeChanging(string value);
+    partial void OndataTimeChanged();
+    partial void OnelementMeasureChanging(string value);
+    partial void OnelementMeasureChanged();
+    partial void OnparameterUnitChanging(string value);
+    partial void OnparameterUnitChanged();
+    #endregion
+		
+		public Weather()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int WID
+		{
+			get
+			{
+				return this._WID;
+			}
+			set
+			{
+				if ((this._WID != value))
+				{
+					this.OnWIDChanging(value);
+					this.SendPropertyChanging();
+					this._WID = value;
+					this.SendPropertyChanged("WID");
+					this.OnWIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_locationName", DbType="NVarChar(50)")]
+		public string locationName
+		{
+			get
+			{
+				return this._locationName;
+			}
+			set
+			{
+				if ((this._locationName != value))
+				{
+					this.OnlocationNameChanging(value);
+					this.SendPropertyChanging();
+					this._locationName = value;
+					this.SendPropertyChanged("locationName");
+					this.OnlocationNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_geocode", DbType="NVarChar(50)")]
+		public string geocode
+		{
+			get
+			{
+				return this._geocode;
+			}
+			set
+			{
+				if ((this._geocode != value))
+				{
+					this.OngeocodeChanging(value);
+					this.SendPropertyChanging();
+					this._geocode = value;
+					this.SendPropertyChanged("geocode");
+					this.OngeocodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lat", DbType="NVarChar(50)")]
+		public string lat
+		{
+			get
+			{
+				return this._lat;
+			}
+			set
+			{
+				if ((this._lat != value))
+				{
+					this.OnlatChanging(value);
+					this.SendPropertyChanging();
+					this._lat = value;
+					this.SendPropertyChanged("lat");
+					this.OnlatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lon", DbType="NVarChar(50)")]
+		public string lon
+		{
+			get
+			{
+				return this._lon;
+			}
+			set
+			{
+				if ((this._lon != value))
+				{
+					this.OnlonChanging(value);
+					this.SendPropertyChanging();
+					this._lon = value;
+					this.SendPropertyChanged("lon");
+					this.OnlonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_elementName", DbType="NVarChar(50)")]
+		public string elementName
+		{
+			get
+			{
+				return this._elementName;
+			}
+			set
+			{
+				if ((this._elementName != value))
+				{
+					this.OnelementNameChanging(value);
+					this.SendPropertyChanging();
+					this._elementName = value;
+					this.SendPropertyChanged("elementName");
+					this.OnelementNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_startTime", DbType="NVarChar(50)")]
+		public string startTime
+		{
+			get
+			{
+				return this._startTime;
+			}
+			set
+			{
+				if ((this._startTime != value))
+				{
+					this.OnstartTimeChanging(value);
+					this.SendPropertyChanging();
+					this._startTime = value;
+					this.SendPropertyChanged("startTime");
+					this.OnstartTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_endTime", DbType="NVarChar(50)")]
+		public string endTime
+		{
+			get
+			{
+				return this._endTime;
+			}
+			set
+			{
+				if ((this._endTime != value))
+				{
+					this.OnendTimeChanging(value);
+					this.SendPropertyChanging();
+					this._endTime = value;
+					this.SendPropertyChanged("endTime");
+					this.OnendTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_elementValue", DbType="NVarChar(200)")]
+		public string elementValue
+		{
+			get
+			{
+				return this._elementValue;
+			}
+			set
+			{
+				if ((this._elementValue != value))
+				{
+					this.OnelementValueChanging(value);
+					this.SendPropertyChanging();
+					this._elementValue = value;
+					this.SendPropertyChanged("elementValue");
+					this.OnelementValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parameterName", DbType="NVarChar(50)")]
+		public string parameterName
+		{
+			get
+			{
+				return this._parameterName;
+			}
+			set
+			{
+				if ((this._parameterName != value))
+				{
+					this.OnparameterNameChanging(value);
+					this.SendPropertyChanging();
+					this._parameterName = value;
+					this.SendPropertyChanged("parameterName");
+					this.OnparameterNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parameterValue", DbType="NVarChar(50)")]
+		public string parameterValue
+		{
+			get
+			{
+				return this._parameterValue;
+			}
+			set
+			{
+				if ((this._parameterValue != value))
+				{
+					this.OnparameterValueChanging(value);
+					this.SendPropertyChanging();
+					this._parameterValue = value;
+					this.SendPropertyChanged("parameterValue");
+					this.OnparameterValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dataTime", DbType="NVarChar(50)")]
+		public string dataTime
+		{
+			get
+			{
+				return this._dataTime;
+			}
+			set
+			{
+				if ((this._dataTime != value))
+				{
+					this.OndataTimeChanging(value);
+					this.SendPropertyChanging();
+					this._dataTime = value;
+					this.SendPropertyChanged("dataTime");
+					this.OndataTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_elementMeasure", DbType="NVarChar(50)")]
+		public string elementMeasure
+		{
+			get
+			{
+				return this._elementMeasure;
+			}
+			set
+			{
+				if ((this._elementMeasure != value))
+				{
+					this.OnelementMeasureChanging(value);
+					this.SendPropertyChanging();
+					this._elementMeasure = value;
+					this.SendPropertyChanged("elementMeasure");
+					this.OnelementMeasureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parameterUnit", DbType="NVarChar(50)")]
+		public string parameterUnit
+		{
+			get
+			{
+				return this._parameterUnit;
+			}
+			set
+			{
+				if ((this._parameterUnit != value))
+				{
+					this.OnparameterUnitChanging(value);
+					this.SendPropertyChanging();
+					this._parameterUnit = value;
+					this.SendPropertyChanged("parameterUnit");
+					this.OnparameterUnitChanged();
 				}
 			}
 		}

@@ -44,6 +44,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Rest
         {
             //Initial Variables
             IRest repos = DataFactory.RestRepository();
+
             return Content(JsonConvert.SerializeObject(repos.GetRestInfo()), "application/json");
         }
     }

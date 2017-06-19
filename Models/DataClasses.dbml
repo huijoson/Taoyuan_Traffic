@@ -143,23 +143,6 @@
       <Column Name="Area" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Weather" Member="Weather">
-    <Type Name="Weather">
-      <Column Name="WID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="locationName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="geocode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="elementName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="startTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="endTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="elementValue" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="parameterName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="parameterValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="dataTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="elementMeasure" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.BusRoute" Member="BusRoute">
     <Type Name="BusRoute">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -214,6 +197,24 @@
       <Column Name="name" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="text" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
       <Column Name="term" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Weather" Member="Weather">
+    <Type Name="Weather">
+      <Column Name="WID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="locationName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="geocode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="elementName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="startTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="endTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="elementValue" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="parameterName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="parameterValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="dataTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="elementMeasure" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="parameterUnit" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

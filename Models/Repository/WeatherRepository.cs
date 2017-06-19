@@ -110,6 +110,8 @@ namespace Taoyuan_Traffic.Models.Repository
                         {
                             newWeather.parameterName = item.weatherElement[i].time[j].parameter[0].parameterName;
                             newWeather.parameterValue = item.weatherElement[i].time[j].parameter[0].parameterValue;
+                            newWeather.parameterUnit = item.weatherElement[i].time[j].parameter[0].parameterUnit;
+                            
                         }
                         newWeather.dataTime = item.weatherElement[i].time[j].dataTime;
 
@@ -187,6 +189,23 @@ namespace Taoyuan_Traffic.Models.Repository
                                                                             elementValue = o.elementValue
                                                                         }).ToList();
                     return weatherListDescription;
+
+                case "Wind":
+                    List<WeatherWind> weatherListWind = (from o in _db.Weather
+                                                                       where o.elementName.Contains("Wind")
+                                                                       && DateTime.Compare(Convert.ToDateTime(o.startTime), dt1) > 0
+                                                                       && o.locationName.Contains(local)
+                                                                       select new WeatherWind()
+                                                                       {
+                                                                           startTime = o.startTime,
+                                                                           endTime = o.endTime,
+                                                                           elementValue = o.elementValue,
+                                                                           parameterName = o.parameterName,
+                                                                           parameterValue = o.parameterValue,
+                                                                           parameterUnit = o.parameterUnit
+
+                                                                       }).ToList();
+                    return weatherListWind;
 
                 //case "CI":
                 //    List<WeatherCI> weatherListCI = (from o in _db.Weather

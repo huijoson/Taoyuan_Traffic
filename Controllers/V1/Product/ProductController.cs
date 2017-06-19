@@ -7,12 +7,18 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Taoyuan_Traffic.Controllers.V1.TRA;
 using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.Models.Interface;
 using Taoyuan_Traffic.ViewModels;
 using Taoyuan_Traffic.ViewModels.Alert;
 using Taoyuan_Traffic.ViewModels.FreeWay;
 using Taoyuan_Traffic.ViewModels.Parking;
+using Taoyuan_Traffic.ViewModels.RealTime;
+using Taoyuan_Traffic.ViewModels.Rest;
+using Taoyuan_Traffic.ViewModels.Text;
+using Taoyuan_Traffic.ViewModels.TRA;
+using Taoyuan_Traffic.ViewModels.Ubike;
 
 namespace Taoyuan_Traffic.Controllers.V1.Product
 {
@@ -124,7 +130,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Product
         }
         #endregion
 
-        #region 取得道路救援資訊(全省國道)
+        #region 道路救援資訊(全省國道)
         public List<FreeWayDeserialize> GetFreeWay()
         {
             //Initialize
@@ -145,6 +151,84 @@ namespace Taoyuan_Traffic.Controllers.V1.Product
         }
         #endregion
 
+        #region 及時路況(依照填入的經緯度之半徑範圍內災害觸發)
+        /// <summary>
+        /// 取得即時路況(全台)
+        /// </summary>
+        /// <param name="radius">半徑範圍(公尺)</param>
+        /// <param name="x">經度</param>
+        /// <param name="y">緯度</param>
+        /// <returns></returns>
+        public List<RealTimeInfoDeserialize> GetRealTime(float y, float x, int radius)
+        {
+            //Initialize
+            IRealTime repos = DataFactory.RealTimeRepository();
 
+            //return radius range Info
+            return repos.getRealTimeInfo(y, x, radius);
+        }
+        #endregion
+
+        #region 兩輪充電站(桃園地區)
+        public List<RestDeserialize> GetRest()
+        {
+            //Initial Variables
+            IRest repos = DataFactory.RestRepository();
+            return repos.GetRestInfo();
+        }
+        #endregion
+
+        #region 計程車資訊(桃園地區)
+        public List<TexiDeserialize> GetText()
+        {
+            //Initial Variables
+            ITexi repos = DataFactory.TexiRepository();
+
+            return repos.GetTexiInfo();
+        }
+        #endregion
+
+        #region 台鐵班次資訊
+        /// <summary>
+        /// 取得公車路線資料
+        /// </summary>
+        /// <param name="originSation">去站(中文，如臺北)</param>
+        /// <param name="destionation">回站(中文，如臺南)</param>
+        /// <param name="trainDate">乘車日期(2017-05-25)</param>
+        /// <param name="trainAfterTime">希望乘車時間(17:30)</param>
+        /// <returns></returns>
+        public async Task<List<TraDailyTimeTableDeserialize>> GetTraDTT(string originSation, string destionation, string trainDate, string trainAfterTime)
+        {
+            ITraLine repos = DataFactory.TraRepository();
+
+            string originSationID = repos.GetStationID(originSation);
+            string destSationID = repos.GetStationID(destionation);
+
+
+            var traDTTSource = await new TraPubFunc().GetTraDTTData(originSationID, destSationID, trainDate);
+
+            return repos.GetTraDailyTimetable(traDTTSource, trainAfterTime);
+        }
+        #endregion
+
+        #region UBIKE資訊
+        public List<UBikeDeserialize> GetUBike()
+        {
+            //Initial Variables
+            IUBike repos = DataFactory.UBikeRepository();
+
+            return repos.GetUbikeInfo();
+        }
+        #endregion
+
+        #region 天氣資訊
+        public object GetWeather(string attr, DateTime date, string local = "桃園區")
+        {
+            //Initial Variables
+            IWeather repos = DataFactory.WeatherRepository();
+
+            return repos.GetWeatherSearch(attr, date, local);
+        }
+        #endregion 
     }
 }

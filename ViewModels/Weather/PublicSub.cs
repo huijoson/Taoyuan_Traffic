@@ -29,5 +29,13 @@ namespace Taoyuan_Traffic.ViewModels.Weather
     {
         public string parameterName { get; set; }
         public string parameterValue { get; set; }
+        public string parameterUnit { get; set; }
+    }
+
+    public class ParameterWind
+    {
+        public string parameterName { get; set; }
+        public string parameterValue { get; set; }
+        public string parameterUnit { get; set; }
     }
 }
