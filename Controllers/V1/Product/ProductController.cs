@@ -23,7 +23,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Product
         {
             return View();
         }
-        #region 公車資訊
+        #region 公車資訊(全省)
         /// <summary>
         /// 取得所有公車路線(含關鍵字)
         /// </summary>
@@ -109,7 +109,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Product
         }
         #endregion
 
-        #region 災害資訊
+        #region 災害資訊(全省)來源:警廣
         /// <summary>
         /// 取得災害警示資訊(全台)
         /// </summary>
@@ -144,5 +144,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Product
             return repos.GetOutParkingInfo();
         }
         #endregion
+
+
     }
 }
