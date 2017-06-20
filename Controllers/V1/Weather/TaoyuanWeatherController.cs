@@ -85,7 +85,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Weather
         {
             //Initial Variables
             IWeather repos = DataFactory.WeatherRepository();
-            return Content(JsonConvert.SerializeObject(repos.GetWeatherSearch(attr, date, local)), "application/json");
+            return Content(JsonConvert.SerializeObject(repos.GetWeatherSearch(attr, local)), "application/json");
         }
     }
 }

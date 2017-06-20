@@ -27,13 +27,13 @@ namespace Taoyuan_Traffic.Controllers.V1.Weather
         [Route("api/v1/Weather/GetSearchWeather")]
         [SwaggerResponse(HttpStatusCode.NotFound)]
         [SwaggerImplementationNotes("取得天氣預報資訊")]
-        public IHttpActionResult GetSearchWeather(string attr, DateTime date, string local = "桃園區")
+        public IHttpActionResult GetSearchWeather(string attr, string local = "桃園區")
         {
             //Initial
             IHttpActionResult responseResult;
             IWeather repos = DataFactory.WeatherRepository();
             //序列化撈出來的資料
-            var jsonSerialize = JsonConvert.SerializeObject(repos.GetWeatherSearch(attr, date, local));
+            var jsonSerialize = JsonConvert.SerializeObject(repos.GetWeatherSearch(attr, local));
             //做成JSON字串包裝到最後輸出
             StringContent responseMsgString = new StringContent(jsonSerialize, System.Text.Encoding.UTF8, "application/json");
             HttpResponseMessage responseMsg = new HttpResponseMessage() { Content = responseMsgString };

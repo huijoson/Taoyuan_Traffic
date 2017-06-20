@@ -29,6 +29,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Product
         {
             return View();
         }
+
         #region 公車資訊(全省)
         /// <summary>
         /// 取得所有公車路線(含關鍵字)
@@ -222,12 +223,12 @@ namespace Taoyuan_Traffic.Controllers.V1.Product
         #endregion
 
         #region 天氣資訊
-        public object GetWeather(string attr, DateTime date, string local = "桃園區")
+        public object GetWeather(string attr, string local = "桃園區")
         {
             //Initial Variables
             IWeather repos = DataFactory.WeatherRepository();
 
-            return repos.GetWeatherSearch(attr, date, local);
+            return repos.GetWeatherSearch(attr, local);
         }
         #endregion 
     }

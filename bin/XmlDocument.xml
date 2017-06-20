@@ -714,7 +714,7 @@
             <param name="local"></param>
             <returns></returns>
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.V1.Weather.WeatherController.GetSearchWeather(System.String,System.DateTime,System.String)">
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Weather.WeatherController.GetSearchWeather(System.String,System.String)">
             <summary>
             取得天氣資訊
             </summary>
@@ -793,7 +793,7 @@
             新增天氣資訊
             </summary>
         </member>
-        <member name="M:Taoyuan_Traffic.Models.Interface.IWeather.GetWeatherSearch(System.String,System.DateTime,System.String)">
+        <member name="M:Taoyuan_Traffic.Models.Interface.IWeather.GetWeatherSearch(System.String,System.String)">
             <summary>
             取得搜尋的天氣資訊
             </summary>
@@ -1676,6 +1676,11 @@
             去返程 = ['0: 去程', '1: 返程']
             </summary>
         </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.EstimateTime">
+            <summary>
+            到站時間預估(秒) [當StopStatus値為1~4或PlateNumb値為-1時，EstimateTime値為空値; 反之，EstimateTime有値]
+            </summary>
+        </member>
         <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTime.MessageType">
             <summary>
             資料型態種類 = ['0: 未知', '1: 定期', '2: 非定期']
@@ -1749,6 +1754,11 @@
         <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTimeDeserialize.Direction">
             <summary>
             去返程 = ['0: 去程', '1: 返程']
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTimeDeserialize.EstimateTime">
+            <summary>
+            到站時間預估(秒) [當StopStatus値為1~4或PlateNumb値為-1時，EstimateTime値為空値; 反之，EstimateTime有値]
             </summary>
         </member>
         <member name="P:Taoyuan_Traffic.ViewModels.BusEstimatedTimeDeserialize.MessageType">

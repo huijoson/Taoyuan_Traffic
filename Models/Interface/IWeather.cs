@@ -23,7 +23,7 @@ namespace Taoyuan_Traffic.Models.Interface
         /// <param name="attr">天氣屬性</param>
         /// <param name="date">日期時間</param>
         /// <returns></returns>
-        object GetWeatherSearch(string attr, DateTime date, string local);
+        object GetWeatherSearch(string attr, string local);
         void clearWTTable();
     }
 }

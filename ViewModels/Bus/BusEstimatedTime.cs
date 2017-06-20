@@ -52,6 +52,10 @@ namespace Taoyuan_Traffic.ViewModels
         /// </summary>
         public int Direction { get; set; }
         /// <summary>
+        /// 到站時間預估(秒) [當StopStatus値為1~4或PlateNumb値為-1時，EstimateTime値為空値; 反之，EstimateTime有値]
+        /// </summary>
+        public int EstimateTime { get; set; }
+        /// <summary>
         /// 資料型態種類 = ['0: 未知', '1: 定期', '2: 非定期']
         /// </summary>
         public int MessageType { get; set; }

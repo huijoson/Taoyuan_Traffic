@@ -254,6 +254,7 @@ namespace Taoyuan_Traffic.Models.Repository
                     Obj.SubRouteID = item.SubRouteID;
                     Obj.SubRouteName = item.SubRouteName.Zh_tw;
                     Obj.Direction = item.Direction;
+                    Obj.EstimateTime = item.EstimateTime;
                     Obj.MessageType = item.MessageType;
                     Obj.NextBusTime = item.NextBusTime;
                     Obj.SrcUpdateTime = item.SrcUpdateTime;
@@ -276,6 +277,7 @@ namespace Taoyuan_Traffic.Models.Repository
                     Obj.RouteUID = item.RouteUID;
                     Obj.Direction = item.Direction;
                     Obj.MessageType = item.MessageType;
+                    Obj.EstimateTime = item.EstimateTime;
                     Obj.NextBusTime = item.NextBusTime;
                     Obj.SrcUpdateTime = item.SrcUpdateTime;
                     Obj.UpdateTime = item.UpdateTime;

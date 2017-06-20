@@ -497,6 +497,7 @@
     <Compile Include="ViewModels\Weather\PublicSub.cs" />
     <Compile Include="ViewModels\Weather\Weather3DayDeserialize.cs" />
     <Compile Include="ViewModels\Weather\WeatherCI.cs" />
+    <Compile Include="ViewModels\Weather\WeatherCust.cs" />
     <Compile Include="ViewModels\Weather\WeatherPoP.cs" />
     <Compile Include="ViewModels\Weather\WeatherT.cs" />
     <Compile Include="ViewModels\Weather\WeatherDescription.cs" />
