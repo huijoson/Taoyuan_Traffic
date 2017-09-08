@@ -92,6 +92,7 @@ namespace Taoyuan_Traffic.Models.Repository
                 Alert alertObj = new Alert();
 
                 alertObj.alertID = count;
+                alertObj.messageID = item.id;
                 alertObj.updated = item.updated;
                 alertObj.name = item.author.name;
                 if (item.summary.text != null)
@@ -109,16 +110,28 @@ namespace Taoyuan_Traffic.Models.Repository
 
         public List<AlertInfo> getAlertInfo(string keyWord)
         {
-            List<AlertInfo> alertList = (from o in _db.Alert
-                                         where o.text.Contains(keyWord)
-                                         select new AlertInfo()
-                                         {
-                                             updated = o.updated.Value,
-                                             name = o.name,
-                                             text = o.text,
-                                             term = o.term
-                                         }).ToList();
-            return alertList;
+            IEnumerable<string> keys = keyWord.Split(',');
+            List<AlertInfo> query = new List<AlertInfo>();
+
+
+            query = (from o in _db.Alert
+                     where o.text.Contains(keyWord)
+                     select new AlertInfo()
+                     {
+                         messageID = o.messageID,
+                         updated = o.updated.Value,
+                         name = o.name,
+                         text = o.text,
+                         term = o.term
+                     }).Distinct().ToList();
+
+            //query = (from o in query
+            //             //where keys.Any(x => o.text.Contains(x))
+            //         where keys.Concat(keyWord)
+            //         select o).ToList();
+
+
+            return query;
         }
     }
 }

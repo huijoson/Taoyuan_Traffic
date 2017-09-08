@@ -66,12 +66,15 @@ namespace Taoyuan_Traffic.Models
     partial void InsertBusEstimate(BusEstimate instance);
     partial void UpdateBusEstimate(BusEstimate instance);
     partial void DeleteBusEstimate(BusEstimate instance);
-    partial void InsertAlert(Alert instance);
-    partial void UpdateAlert(Alert instance);
-    partial void DeleteAlert(Alert instance);
     partial void InsertWeather(Weather instance);
     partial void UpdateWeather(Weather instance);
     partial void DeleteWeather(Weather instance);
+    partial void InsertAlert(Alert instance);
+    partial void UpdateAlert(Alert instance);
+    partial void DeleteAlert(Alert instance);
+    partial void InsertTidal(Tidal instance);
+    partial void UpdateTidal(Tidal instance);
+    partial void DeleteTidal(Tidal instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -200,6 +203,14 @@ namespace Taoyuan_Traffic.Models
 			}
 		}
 		
+		public System.Data.Linq.Table<Weather> Weather
+		{
+			get
+			{
+				return this.GetTable<Weather>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Alert> Alert
 		{
 			get
@@ -208,11 +219,11 @@ namespace Taoyuan_Traffic.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Weather> Weather
+		public System.Data.Linq.Table<Tidal> Tidal
 		{
 			get
 			{
-				return this.GetTable<Weather>();
+				return this.GetTable<Tidal>();
 			}
 		}
 	}
@@ -4081,164 +4092,6 @@ namespace Taoyuan_Traffic.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Alert")]
-	public partial class Alert : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _alertID;
-		
-		private System.Nullable<System.DateTime> _updated;
-		
-		private string _name;
-		
-		private string _text;
-		
-		private string _term;
-		
-    #region 擴充性方法定義
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnalertIDChanging(int value);
-    partial void OnalertIDChanged();
-    partial void OnupdatedChanging(System.Nullable<System.DateTime> value);
-    partial void OnupdatedChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OntextChanging(string value);
-    partial void OntextChanged();
-    partial void OntermChanging(string value);
-    partial void OntermChanged();
-    #endregion
-		
-		public Alert()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_alertID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int alertID
-		{
-			get
-			{
-				return this._alertID;
-			}
-			set
-			{
-				if ((this._alertID != value))
-				{
-					this.OnalertIDChanging(value);
-					this.SendPropertyChanging();
-					this._alertID = value;
-					this.SendPropertyChanged("alertID");
-					this.OnalertIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated", DbType="DateTime")]
-		public System.Nullable<System.DateTime> updated
-		{
-			get
-			{
-				return this._updated;
-			}
-			set
-			{
-				if ((this._updated != value))
-				{
-					this.OnupdatedChanging(value);
-					this.SendPropertyChanging();
-					this._updated = value;
-					this.SendPropertyChanged("updated");
-					this.OnupdatedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(500)")]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_text", DbType="NVarChar(2000)")]
-		public string text
-		{
-			get
-			{
-				return this._text;
-			}
-			set
-			{
-				if ((this._text != value))
-				{
-					this.OntextChanging(value);
-					this.SendPropertyChanging();
-					this._text = value;
-					this.SendPropertyChanged("text");
-					this.OntextChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_term", DbType="NVarChar(500)")]
-		public string term
-		{
-			get
-			{
-				return this._term;
-			}
-			set
-			{
-				if ((this._term != value))
-				{
-					this.OntermChanging(value);
-					this.SendPropertyChanging();
-					this._term = value;
-					this.SendPropertyChanged("term");
-					this.OntermChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Weather")]
 	public partial class Weather : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4588,6 +4441,586 @@ namespace Taoyuan_Traffic.Models
 					this._parameterUnit = value;
 					this.SendPropertyChanged("parameterUnit");
 					this.OnparameterUnitChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Alert")]
+	public partial class Alert : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _alertID;
+		
+		private string _messageID;
+		
+		private System.Nullable<System.DateTime> _updated;
+		
+		private string _name;
+		
+		private string _text;
+		
+		private string _term;
+		
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnalertIDChanging(int value);
+    partial void OnalertIDChanged();
+    partial void OnmessageIDChanging(string value);
+    partial void OnmessageIDChanged();
+    partial void OnupdatedChanging(System.Nullable<System.DateTime> value);
+    partial void OnupdatedChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OntextChanging(string value);
+    partial void OntextChanged();
+    partial void OntermChanging(string value);
+    partial void OntermChanged();
+    #endregion
+		
+		public Alert()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_alertID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int alertID
+		{
+			get
+			{
+				return this._alertID;
+			}
+			set
+			{
+				if ((this._alertID != value))
+				{
+					this.OnalertIDChanging(value);
+					this.SendPropertyChanging();
+					this._alertID = value;
+					this.SendPropertyChanged("alertID");
+					this.OnalertIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_messageID", DbType="NVarChar(50)")]
+		public string messageID
+		{
+			get
+			{
+				return this._messageID;
+			}
+			set
+			{
+				if ((this._messageID != value))
+				{
+					this.OnmessageIDChanging(value);
+					this.SendPropertyChanging();
+					this._messageID = value;
+					this.SendPropertyChanged("messageID");
+					this.OnmessageIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_updated", DbType="DateTime")]
+		public System.Nullable<System.DateTime> updated
+		{
+			get
+			{
+				return this._updated;
+			}
+			set
+			{
+				if ((this._updated != value))
+				{
+					this.OnupdatedChanging(value);
+					this.SendPropertyChanging();
+					this._updated = value;
+					this.SendPropertyChanged("updated");
+					this.OnupdatedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(100)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_text", DbType="NVarChar(2000)")]
+		public string text
+		{
+			get
+			{
+				return this._text;
+			}
+			set
+			{
+				if ((this._text != value))
+				{
+					this.OntextChanging(value);
+					this.SendPropertyChanging();
+					this._text = value;
+					this.SendPropertyChanged("text");
+					this.OntextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_term", DbType="NVarChar(100)")]
+		public string term
+		{
+			get
+			{
+				return this._term;
+			}
+			set
+			{
+				if ((this._term != value))
+				{
+					this.OntermChanging(value);
+					this.SendPropertyChanging();
+					this._term = value;
+					this.SendPropertyChanged("term");
+					this.OntermChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tidal")]
+	public partial class Tidal : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _tidalID;
+		
+		private string _locationName;
+		
+		private string _chineseDateTimeName;
+		
+		private string _chineseDateTime;
+		
+		private string _tidalDiffName;
+		
+		private string _tidalDiff;
+		
+		private string _dataTime;
+		
+		private string _tidalStatusName;
+		
+		private string _tidalStatus;
+		
+		private string _tidalTWVDName;
+		
+		private string _tidalTWVD;
+		
+		private string _tidalLocalName;
+		
+		private string _tidalLocal;
+		
+		private string _tidalRelationSeaName;
+		
+		private string _tidalRelationSea;
+		
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OntidalIDChanging(int value);
+    partial void OntidalIDChanged();
+    partial void OnlocationNameChanging(string value);
+    partial void OnlocationNameChanged();
+    partial void OnchineseDateTimeNameChanging(string value);
+    partial void OnchineseDateTimeNameChanged();
+    partial void OnchineseDateTimeChanging(string value);
+    partial void OnchineseDateTimeChanged();
+    partial void OntidalDiffNameChanging(string value);
+    partial void OntidalDiffNameChanged();
+    partial void OntidalDiffChanging(string value);
+    partial void OntidalDiffChanged();
+    partial void OndataTimeChanging(string value);
+    partial void OndataTimeChanged();
+    partial void OntidalStatusNameChanging(string value);
+    partial void OntidalStatusNameChanged();
+    partial void OntidalStatusChanging(string value);
+    partial void OntidalStatusChanged();
+    partial void OntidalTWVDNameChanging(string value);
+    partial void OntidalTWVDNameChanged();
+    partial void OntidalTWVDChanging(string value);
+    partial void OntidalTWVDChanged();
+    partial void OntidalLocalNameChanging(string value);
+    partial void OntidalLocalNameChanged();
+    partial void OntidalLocalChanging(string value);
+    partial void OntidalLocalChanged();
+    partial void OntidalRelationSeaNameChanging(string value);
+    partial void OntidalRelationSeaNameChanged();
+    partial void OntidalRelationSeaChanging(string value);
+    partial void OntidalRelationSeaChanged();
+    #endregion
+		
+		public Tidal()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tidalID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int tidalID
+		{
+			get
+			{
+				return this._tidalID;
+			}
+			set
+			{
+				if ((this._tidalID != value))
+				{
+					this.OntidalIDChanging(value);
+					this.SendPropertyChanging();
+					this._tidalID = value;
+					this.SendPropertyChanged("tidalID");
+					this.OntidalIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_locationName", DbType="NVarChar(50)")]
+		public string locationName
+		{
+			get
+			{
+				return this._locationName;
+			}
+			set
+			{
+				if ((this._locationName != value))
+				{
+					this.OnlocationNameChanging(value);
+					this.SendPropertyChanging();
+					this._locationName = value;
+					this.SendPropertyChanged("locationName");
+					this.OnlocationNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chineseDateTimeName", DbType="NVarChar(50)")]
+		public string chineseDateTimeName
+		{
+			get
+			{
+				return this._chineseDateTimeName;
+			}
+			set
+			{
+				if ((this._chineseDateTimeName != value))
+				{
+					this.OnchineseDateTimeNameChanging(value);
+					this.SendPropertyChanging();
+					this._chineseDateTimeName = value;
+					this.SendPropertyChanged("chineseDateTimeName");
+					this.OnchineseDateTimeNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chineseDateTime", DbType="NVarChar(50)")]
+		public string chineseDateTime
+		{
+			get
+			{
+				return this._chineseDateTime;
+			}
+			set
+			{
+				if ((this._chineseDateTime != value))
+				{
+					this.OnchineseDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._chineseDateTime = value;
+					this.SendPropertyChanged("chineseDateTime");
+					this.OnchineseDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tidalDiffName", DbType="NVarChar(50)")]
+		public string tidalDiffName
+		{
+			get
+			{
+				return this._tidalDiffName;
+			}
+			set
+			{
+				if ((this._tidalDiffName != value))
+				{
+					this.OntidalDiffNameChanging(value);
+					this.SendPropertyChanging();
+					this._tidalDiffName = value;
+					this.SendPropertyChanged("tidalDiffName");
+					this.OntidalDiffNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tidalDiff", DbType="NVarChar(50)")]
+		public string tidalDiff
+		{
+			get
+			{
+				return this._tidalDiff;
+			}
+			set
+			{
+				if ((this._tidalDiff != value))
+				{
+					this.OntidalDiffChanging(value);
+					this.SendPropertyChanging();
+					this._tidalDiff = value;
+					this.SendPropertyChanged("tidalDiff");
+					this.OntidalDiffChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dataTime", DbType="NVarChar(50)")]
+		public string dataTime
+		{
+			get
+			{
+				return this._dataTime;
+			}
+			set
+			{
+				if ((this._dataTime != value))
+				{
+					this.OndataTimeChanging(value);
+					this.SendPropertyChanging();
+					this._dataTime = value;
+					this.SendPropertyChanged("dataTime");
+					this.OndataTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tidalStatusName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string tidalStatusName
+		{
+			get
+			{
+				return this._tidalStatusName;
+			}
+			set
+			{
+				if ((this._tidalStatusName != value))
+				{
+					this.OntidalStatusNameChanging(value);
+					this.SendPropertyChanging();
+					this._tidalStatusName = value;
+					this.SendPropertyChanged("tidalStatusName");
+					this.OntidalStatusNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tidalStatus", DbType="NVarChar(50)")]
+		public string tidalStatus
+		{
+			get
+			{
+				return this._tidalStatus;
+			}
+			set
+			{
+				if ((this._tidalStatus != value))
+				{
+					this.OntidalStatusChanging(value);
+					this.SendPropertyChanging();
+					this._tidalStatus = value;
+					this.SendPropertyChanged("tidalStatus");
+					this.OntidalStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tidalTWVDName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string tidalTWVDName
+		{
+			get
+			{
+				return this._tidalTWVDName;
+			}
+			set
+			{
+				if ((this._tidalTWVDName != value))
+				{
+					this.OntidalTWVDNameChanging(value);
+					this.SendPropertyChanging();
+					this._tidalTWVDName = value;
+					this.SendPropertyChanged("tidalTWVDName");
+					this.OntidalTWVDNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tidalTWVD", DbType="NVarChar(50)")]
+		public string tidalTWVD
+		{
+			get
+			{
+				return this._tidalTWVD;
+			}
+			set
+			{
+				if ((this._tidalTWVD != value))
+				{
+					this.OntidalTWVDChanging(value);
+					this.SendPropertyChanging();
+					this._tidalTWVD = value;
+					this.SendPropertyChanged("tidalTWVD");
+					this.OntidalTWVDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tidalLocalName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string tidalLocalName
+		{
+			get
+			{
+				return this._tidalLocalName;
+			}
+			set
+			{
+				if ((this._tidalLocalName != value))
+				{
+					this.OntidalLocalNameChanging(value);
+					this.SendPropertyChanging();
+					this._tidalLocalName = value;
+					this.SendPropertyChanged("tidalLocalName");
+					this.OntidalLocalNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tidalLocal", DbType="NVarChar(50)")]
+		public string tidalLocal
+		{
+			get
+			{
+				return this._tidalLocal;
+			}
+			set
+			{
+				if ((this._tidalLocal != value))
+				{
+					this.OntidalLocalChanging(value);
+					this.SendPropertyChanging();
+					this._tidalLocal = value;
+					this.SendPropertyChanged("tidalLocal");
+					this.OntidalLocalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tidalRelationSeaName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string tidalRelationSeaName
+		{
+			get
+			{
+				return this._tidalRelationSeaName;
+			}
+			set
+			{
+				if ((this._tidalRelationSeaName != value))
+				{
+					this.OntidalRelationSeaNameChanging(value);
+					this.SendPropertyChanging();
+					this._tidalRelationSeaName = value;
+					this.SendPropertyChanged("tidalRelationSeaName");
+					this.OntidalRelationSeaNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tidalRelationSea", DbType="NVarChar(50)")]
+		public string tidalRelationSea
+		{
+			get
+			{
+				return this._tidalRelationSea;
+			}
+			set
+			{
+				if ((this._tidalRelationSea != value))
+				{
+					this.OntidalRelationSeaChanging(value);
+					this.SendPropertyChanging();
+					this._tidalRelationSea = value;
+					this.SendPropertyChanged("tidalRelationSea");
+					this.OntidalRelationSeaChanged();
 				}
 			}
 		}

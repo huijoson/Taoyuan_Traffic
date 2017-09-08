@@ -190,15 +190,6 @@
       <Column Name="UpdateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Alert" Member="Alert">
-    <Type Name="Alert">
-      <Column Name="alertID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="updated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="text" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
-      <Column Name="term" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Weather" Member="Weather">
     <Type Name="Weather">
       <Column Name="WID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -215,6 +206,35 @@
       <Column Name="dataTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="elementMeasure" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="parameterUnit" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Alert" Member="Alert">
+    <Type Name="Alert">
+      <Column Name="alertID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="messageID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="updated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="text" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="term" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tidal" Member="Tidal">
+    <Type Name="Tidal">
+      <Column Name="tidalID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="locationName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="chineseDateTimeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="chineseDateTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tidalDiffName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tidalDiff" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="dataTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tidalStatusName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="tidalStatus" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tidalTWVDName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="tidalTWVD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tidalLocalName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="tidalLocal" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tidalRelationSeaName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="tidalRelationSea" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

@@ -689,6 +689,22 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Tidal.TidalController.GetSearchTidal(System.String)">
+            <summary>
+            取得一個月份潮汐資料(金門地區)
+            </summary>
+            <param name="local">鄉鎮地區關鍵字
+            "金門縣金城鎮", "金門縣金沙鎮", "金門縣金湖鎮", "金門縣金寧鄉", "金門縣烈嶼鄉", "金門縣烏坵鄉"</param>
+            <returns></returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Tidal.TidalCusController.GetTidalInfo(System.String)">
+            <summary>
+            取得搜尋潮汐資訊(金門)
+            </summary>
+            <param name="local">鄉鎮地區關鍵字
+            "金門縣金城鎮", "金門縣金沙鎮", "金門縣金湖鎮", "金門縣金寧鄉", "金門縣烈嶼鄉", "金門縣烏坵鄉"</param>
+            <returns></returns>
+        </member>
         <member name="M:Taoyuan_Traffic.Controllers.V1.TRA.TraController.GetTraDailyTimeTable(System.String,System.String,System.String,System.String)">
             <summary>
             取得公車路線資料
@@ -716,7 +732,7 @@
         </member>
         <member name="M:Taoyuan_Traffic.Controllers.V1.Weather.WeatherController.GetSearchWeather(System.String,System.String)">
             <summary>
-            取得天氣資訊
+            取得一週天氣預報資訊
             </summary>
             <param name="attr">天氣屬性(           
             Wx:天氣示意, 
@@ -772,6 +788,28 @@
             <summary>
             傳回使用的資料庫實體
             </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Interface.ITidal.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Interface.ITidal.addTidalInfo(System.Collections.Generic.IEnumerable{Taoyuan_Traffic.ViewModels.Tidal.TidalDeserialize},System.Int32,System.String)">
+            <summary>
+            新增潮汐資訊
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Interface.ITidal.clearTidalTable">
+            <summary>
+            清潮汐資料
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Interface.ITidal.getTidalInfo(System.String)">
+            <summary>
+            取得潮汐資料
+            </summary>
+            <param name="keyWord">地區關鍵字</param>
+            <returns></returns>
         </member>
         <member name="P:Taoyuan_Traffic.Models.Interface.ITraLine.Entity">
             <summary>
@@ -1156,6 +1194,42 @@
             資源釋放
             </summary>
         </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.TidalRepository._db">
+            <summary>
+            (私有) 資料庫實體資料集合
+            </summary>
+        </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.TidalRepository._now">
+            <summary>
+            目前時間
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TidalRepository.#ctor">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TidalRepository.#ctor(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            倉儲建構子
+            </summary>
+            <param name="context">實體資料集合</param>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TidalRepository.Finalize">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Repository.TidalRepository.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TidalRepository.Dispose">
+            <summary>
+            資源釋放
+            </summary>
+        </member>
         <member name="F:Taoyuan_Traffic.Models.Repository.TraRepository._db">
             <summary>
             (私有) 資料庫實體資料集合
@@ -1401,6 +1475,13 @@
             <param name="dataContext">資料實體</param>
             <returns>資料倉儲介面</returns>
         </member>
+        <member name="M:Taoyuan_Traffic.Models.DataFactory.TidalRepository(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            通用資料倉儲
+            </summary>
+            <param name="dataContext">資料實體</param>
+            <returns>資料倉儲介面</returns>
+        </member>
         <member name="P:Taoyuan_Traffic.ViewModels.Alert.AlertDeserialize.id">
             <summary>
             災害消息編號
@@ -1419,6 +1500,11 @@
         <member name="P:Taoyuan_Traffic.ViewModels.Alert.AlertDeserialize.author">
             <summary>
             發布單位
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.Alert.AlertInfo.messageID">
+            <summary>
+            訊息編號
             </summary>
         </member>
         <member name="P:Taoyuan_Traffic.ViewModels.Alert.AlertInfo.updated">
@@ -2104,6 +2190,46 @@
         <member name="P:Taoyuan_Traffic.ViewModels.Text.TexiDeserialize.Area">
             <summary>
             所在範圍
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.Tidal.TidalCusDeserialize.locationName">
+            <summary>
+            地區
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.Tidal.TidalCusDeserialize.chineseDate">
+            <summary>
+            農曆日期
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.Tidal.TidalCusDeserialize.tidalDiff">
+            <summary>
+            潮差
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.Tidal.TidalCusDeserialize.dataTime">
+            <summary>
+            日期
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.Tidal.TidalCusDeserialize.tidalStatus">
+            <summary>
+            潮汐
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.Tidal.TidalCusDeserialize.tidalTWVD">
+            <summary>
+            潮高(TWWD)
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.Tidal.TidalCusDeserialize.tidalLocal">
+            <summary>
+            潮高(當地)
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.ViewModels.Tidal.TidalCusDeserialize.tidalRelationSea">
+            <summary>
+            潮高(相對海圖)
             </summary>
         </member>
         <member name="P:Taoyuan_Traffic.ViewModels.TRA.Dailytraininfo.TrainNo">

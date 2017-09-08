@@ -424,6 +424,9 @@
     <Compile Include="Controllers\V1\Rest\RestInfoController.cs" />
     <Compile Include="Controllers\V1\Texi\TexiController.cs" />
     <Compile Include="Controllers\V1\Texi\TexiInfoController.cs" />
+    <Compile Include="Controllers\V1\Tidal\TidalController.cs" />
+    <Compile Include="Controllers\V1\Tidal\TidalCusController.cs" />
+    <Compile Include="Controllers\V1\Token\TokenController.cs" />
     <Compile Include="Controllers\V1\TRA\TraClassController.cs" />
     <Compile Include="Controllers\V1\TRA\TraController.cs" />
     <Compile Include="Controllers\V1\TRA\TraDailyTimeTableController.cs" />
@@ -445,6 +448,7 @@
     <Compile Include="Models\Interface\IRealTime.cs" />
     <Compile Include="Models\Interface\IRest.cs" />
     <Compile Include="Models\Interface\ITexi.cs" />
+    <Compile Include="Models\Interface\ITidal.cs" />
     <Compile Include="Models\Interface\ITraLine.cs" />
     <Compile Include="Models\Interface\IUBike.cs" />
     <Compile Include="Models\Interface\IWeather.cs" />
@@ -457,6 +461,7 @@
     <Compile Include="Models\Repository\ParkingRepository.cs" />
     <Compile Include="Models\Repository\RealTimeRepository.cs" />
     <Compile Include="Models\Repository\TexiRepository.cs" />
+    <Compile Include="Models\Repository\TidalRepository.cs" />
     <Compile Include="Models\Repository\TraRepository.cs" />
     <Compile Include="Models\Repository\UBikeRepository.cs" />
     <Compile Include="Models\Repository\WeatherRepository.cs" />
@@ -487,6 +492,8 @@
     <Compile Include="ViewModels\RealTime\RealTimeInfoDeserialize.cs" />
     <Compile Include="ViewModels\Rest\RestDeserialize.cs" />
     <Compile Include="ViewModels\Texi\TexiDeserialize.cs" />
+    <Compile Include="ViewModels\Tidal\TidalCusDeserialize.cs" />
+    <Compile Include="ViewModels\Tidal\TidalDeserialize.cs" />
     <Compile Include="ViewModels\TRA\PublicSub.cs" />
     <Compile Include="ViewModels\TRA\TraClassDeserialize.cs" />
     <Compile Include="ViewModels\TRA\TraDailyTimeTableDeserialize.cs" />
@@ -526,6 +533,7 @@
     <Content Include="Views\UBikeInfo\Index.cshtml" />
     <Content Include="Views\RestInfo\Index.cshtml" />
     <Content Include="Views\BusEstimate\Index.cshtml" />
+    <Content Include="Views\TidalCus\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -535,6 +543,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CustomContent\Images\" />
+    <Folder Include="Views\AccommodationCust\" />
     <Folder Include="Views\API\" />
     <Folder Include="Views\FreeWayInfo\" />
     <Folder Include="Views\Postman\" />

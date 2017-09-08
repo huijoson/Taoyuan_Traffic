@@ -138,7 +138,7 @@ namespace Taoyuan_Traffic.Models.Repository
             {
                 case "Wx":
                     List<WeatherWx> weatherListWx = (from o in _db.Weather
-                                                     where o.elementName.Contains("Wx")
+                                                     where o.elementName.Equals("Wx")
                                                        //&& DateTime.Compare(Convert.ToDateTime(o.startTime), dt1) > 0
                                                        && o.locationName.Contains(local)
                                                      select new WeatherWx()
@@ -153,7 +153,7 @@ namespace Taoyuan_Traffic.Models.Repository
 
                 case "PoP":
                     List<WeatherPoP> weatherListPoP = (from o in _db.Weather
-                                                       where o.elementName.Contains("PoP")
+                                                       where o.elementName.Equals("PoP")
                                                        //&& DateTime.Compare(Convert.ToDateTime(o.startTime), dt1) > 0
                                                        && o.locationName.Contains(local)
                                                        select new WeatherPoP()
@@ -167,8 +167,7 @@ namespace Taoyuan_Traffic.Models.Repository
 
                 case "T":
                     List<WeatherT> weatherListT = (from o in _db.Weather
-                                                   where o.elementName.Contains("T")
-                                                       //&& DateTime.Compare(Convert.ToDateTime(o.startTime), dt1) > 0
+                                                   where o.elementName.Equals("T")
                                                        && o.locationName.Contains(local)
                                                    select new WeatherT()
                                                    {
@@ -181,7 +180,7 @@ namespace Taoyuan_Traffic.Models.Repository
 
                 case "WeatherDescription":
                     List<WeatherDescription> weatherListDescription = (from o in _db.Weather
-                                                                       where o.elementName.Contains("WeatherDescription")
+                                                                       where o.elementName.Equals("WeatherDescription")
                                                                        //&& DateTime.Compare(Convert.ToDateTime(o.startTime), dt1) > 0
                                                                        && o.locationName.Contains(local)
                                                                        select new WeatherDescription()
@@ -194,7 +193,7 @@ namespace Taoyuan_Traffic.Models.Repository
 
                 case "Wind":
                     List<WeatherWind> weatherListWind = (from o in _db.Weather
-                                                         where o.elementName.Contains("Wind")
+                                                         where o.elementName.Equals("Wind")
                                                          //&& DateTime.Compare(Convert.ToDateTime(o.startTime), dt1) > 0
                                                          && o.locationName.Contains(local)
                                                          select new WeatherWind()

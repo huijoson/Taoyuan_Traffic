@@ -95,8 +95,18 @@ namespace Taoyuan_Traffic.Models.Repository
             foreach (BusRouteDeserialize item in AddBusRouteSource)
             {
                 var newBusRoute = new BusRoute { };
+                DateTime updateTemp;
+                if (item.UpdateDate == System.DateTime.MinValue)
+                {
+                    updateTemp = DateTime.Now;
+                }
+                else
+                {
+                    updateTemp = item.UpdateDate;
+                }
                 if (item.SubRoutes.Count() > 1)
                 {
+                    
                     newBusRoute = new BusRoute
                     {
                         ID = count,
@@ -119,7 +129,7 @@ namespace Taoyuan_Traffic.Models.Repository
                         RouteName = item.RouteName.Zh_tw,
                         DepartureStopNameZh = item.DepartureStopNameZh,
                         DestinationStopNameZh = item.DestinationStopNameZh,
-                        UpdateDate = item.UpdateDate,
+                        UpdateDate = updateTemp,
                         UpdateTime = item.UpdateTime
                     };
                 }
@@ -142,7 +152,7 @@ namespace Taoyuan_Traffic.Models.Repository
                         RouteName = item.RouteName.Zh_tw,
                         DepartureStopNameZh = item.DepartureStopNameZh,
                         DestinationStopNameZh = item.DestinationStopNameZh,
-                        UpdateDate = item.UpdateDate,
+                        UpdateDate = updateTemp,
                         UpdateTime = item.UpdateTime
                     };
                 }

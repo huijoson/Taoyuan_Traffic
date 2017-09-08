@@ -8,6 +8,10 @@ namespace Taoyuan_Traffic.ViewModels.Alert
     public class AlertInfo
     {   
         /// <summary>
+        /// 訊息編號
+        /// </summary>
+        public string messageID { get; set; }
+        /// <summary>
         /// 更新時間
         /// </summary>
         public DateTime updated { get; set; }

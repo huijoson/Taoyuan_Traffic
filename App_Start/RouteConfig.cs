@@ -68,6 +68,12 @@ namespace Taoyuan_Traffic
             );
 
             routes.MapRoute(
+                name: "TidalApiV1",
+                url: "api/v1/Tidal/{controller}/{action}",
+                namespaces: new string[] { "TidalCusController" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
