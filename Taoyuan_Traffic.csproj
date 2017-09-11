@@ -50,6 +50,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="jose-jwt, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jose-jwt.2.4.0\lib\net40\jose-jwt.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.Authorization, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Authorization.1.1.1\lib\net451\Microsoft.AspNetCore.Authorization.dll</HintPath>
     </Reference>
@@ -426,6 +429,7 @@
     <Compile Include="Controllers\V1\Texi\TexiInfoController.cs" />
     <Compile Include="Controllers\V1\Tidal\TidalController.cs" />
     <Compile Include="Controllers\V1\Tidal\TidalCusController.cs" />
+    <Compile Include="Controllers\V1\Token\JwtAuthActionFilter.cs" />
     <Compile Include="Controllers\V1\Token\TokenController.cs" />
     <Compile Include="Controllers\V1\TRA\TraClassController.cs" />
     <Compile Include="Controllers\V1\TRA\TraController.cs" />
@@ -452,6 +456,7 @@
     <Compile Include="Models\Interface\ITraLine.cs" />
     <Compile Include="Models\Interface\IUBike.cs" />
     <Compile Include="Models\Interface\IWeather.cs" />
+    <Compile Include="Models\Interface\IToken.cs" />
     <Compile Include="Models\Repository\AlertRepository.cs" />
     <Compile Include="Models\Repository\BusRouteRepository.cs" />
     <Compile Include="Models\Repository\BusStopRepository.cs" />
@@ -462,6 +467,7 @@
     <Compile Include="Models\Repository\RealTimeRepository.cs" />
     <Compile Include="Models\Repository\TexiRepository.cs" />
     <Compile Include="Models\Repository\TidalRepository.cs" />
+    <Compile Include="Models\Repository\TokenRepository.cs" />
     <Compile Include="Models\Repository\TraRepository.cs" />
     <Compile Include="Models\Repository\UBikeRepository.cs" />
     <Compile Include="Models\Repository\WeatherRepository.cs" />
@@ -494,6 +500,7 @@
     <Compile Include="ViewModels\Texi\TexiDeserialize.cs" />
     <Compile Include="ViewModels\Tidal\TidalCusDeserialize.cs" />
     <Compile Include="ViewModels\Tidal\TidalDeserialize.cs" />
+    <Compile Include="ViewModels\Token\ClientInfo.cs" />
     <Compile Include="ViewModels\TRA\PublicSub.cs" />
     <Compile Include="ViewModels\TRA\TraClassDeserialize.cs" />
     <Compile Include="ViewModels\TRA\TraDailyTimeTableDeserialize.cs" />

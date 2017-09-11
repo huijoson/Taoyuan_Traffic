@@ -195,3 +195,4 @@ D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\obj\Debug\Taoyu
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\obj\Debug\Taoyuan_Traffic.csprojResolveAssemblyReference.cache
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\Microsoft.Extensions.Configuration.dll
 D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\Microsoft.Extensions.Configuration.xml
+D:\Projects\2016-Taoyuan_Traffic\Taoyuan_Traffic\Taoyuan_Traffic\bin\jose-jwt.dll

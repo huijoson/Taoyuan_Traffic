@@ -705,6 +705,12 @@
             "金門縣金城鎮", "金門縣金沙鎮", "金門縣金湖鎮", "金門縣金寧鄉", "金門縣烈嶼鄉", "金門縣烏坵鄉"</param>
             <returns></returns>
         </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Token.TokenController.GetClientIP">
+            <summary>
+            取得客戶端真實IP Address
+            </summary>
+            <returns>IP位址</returns>
+        </member>
         <member name="M:Taoyuan_Traffic.Controllers.V1.TRA.TraController.GetTraDailyTimeTable(System.String,System.String,System.String,System.String)">
             <summary>
             取得公車路線資料
@@ -838,6 +844,11 @@
             <param name="attr">天氣屬性</param>
             <param name="date">日期時間</param>
             <returns></returns>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Interface.IToken.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
         </member>
         <member name="P:Taoyuan_Traffic.Models.Interface.IBusDynamic.Entity">
             <summary>
@@ -1230,6 +1241,42 @@
             資源釋放
             </summary>
         </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.TokenRepository._db">
+            <summary>
+            (私有) 資料庫實體資料集合
+            </summary>
+        </member>
+        <member name="F:Taoyuan_Traffic.Models.Repository.TokenRepository._now">
+            <summary>
+            目前時間
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TokenRepository.#ctor">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TokenRepository.#ctor(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            倉儲建構子
+            </summary>
+            <param name="context">實體資料集合</param>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TokenRepository.Finalize">
+            <summary>
+            倉儲建構子
+            </summary>
+        </member>
+        <member name="P:Taoyuan_Traffic.Models.Repository.TokenRepository.Entity">
+            <summary>
+            傳回使用的資料庫實體
+            </summary>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TokenRepository.Dispose">
+            <summary>
+            資源釋放
+            </summary>
+        </member>
         <member name="F:Taoyuan_Traffic.Models.Repository.TraRepository._db">
             <summary>
             (私有) 資料庫實體資料集合
@@ -1476,6 +1523,13 @@
             <returns>資料倉儲介面</returns>
         </member>
         <member name="M:Taoyuan_Traffic.Models.DataFactory.TidalRepository(Taoyuan_Traffic.Models.DataClassesDataContext)">
+            <summary>
+            通用資料倉儲
+            </summary>
+            <param name="dataContext">資料實體</param>
+            <returns>資料倉儲介面</returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Models.DataFactory.TokenRepository(Taoyuan_Traffic.Models.DataClassesDataContext)">
             <summary>
             通用資料倉儲
             </summary>

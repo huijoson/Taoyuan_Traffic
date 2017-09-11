@@ -75,6 +75,9 @@ namespace Taoyuan_Traffic.Models
     partial void InsertTidal(Tidal instance);
     partial void UpdateTidal(Tidal instance);
     partial void DeleteTidal(Tidal instance);
+    partial void InsertToken(Token instance);
+    partial void UpdateToken(Token instance);
+    partial void DeleteToken(Token instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -224,6 +227,14 @@ namespace Taoyuan_Traffic.Models
 			get
 			{
 				return this.GetTable<Tidal>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Token> Token
+		{
+			get
+			{
+				return this.GetTable<Token>();
 			}
 		}
 	}
@@ -5021,6 +5032,140 @@ namespace Taoyuan_Traffic.Models
 					this._tidalRelationSea = value;
 					this.SendPropertyChanged("tidalRelationSea");
 					this.OntidalRelationSeaChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Token")]
+	public partial class Token : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _tID;
+		
+		private string _Token1;
+		
+		private string _IP;
+		
+		private System.DateTime _ExpireTime;
+		
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OntIDChanging(int value);
+    partial void OntIDChanged();
+    partial void OnToken1Changing(string value);
+    partial void OnToken1Changed();
+    partial void OnIPChanging(string value);
+    partial void OnIPChanged();
+    partial void OnExpireTimeChanging(System.DateTime value);
+    partial void OnExpireTimeChanged();
+    #endregion
+		
+		public Token()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int tID
+		{
+			get
+			{
+				return this._tID;
+			}
+			set
+			{
+				if ((this._tID != value))
+				{
+					this.OntIDChanging(value);
+					this.SendPropertyChanging();
+					this._tID = value;
+					this.SendPropertyChanged("tID");
+					this.OntIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Token", Storage="_Token1", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Token1
+		{
+			get
+			{
+				return this._Token1;
+			}
+			set
+			{
+				if ((this._Token1 != value))
+				{
+					this.OnToken1Changing(value);
+					this.SendPropertyChanging();
+					this._Token1 = value;
+					this.SendPropertyChanged("Token1");
+					this.OnToken1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IP", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string IP
+		{
+			get
+			{
+				return this._IP;
+			}
+			set
+			{
+				if ((this._IP != value))
+				{
+					this.OnIPChanging(value);
+					this.SendPropertyChanging();
+					this._IP = value;
+					this.SendPropertyChanged("IP");
+					this.OnIPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpireTime", DbType="DateTime NOT NULL")]
+		public System.DateTime ExpireTime
+		{
+			get
+			{
+				return this._ExpireTime;
+			}
+			set
+			{
+				if ((this._ExpireTime != value))
+				{
+					this.OnExpireTimeChanging(value);
+					this.SendPropertyChanging();
+					this._ExpireTime = value;
+					this.SendPropertyChanged("ExpireTime");
+					this.OnExpireTimeChanged();
 				}
 			}
 		}
