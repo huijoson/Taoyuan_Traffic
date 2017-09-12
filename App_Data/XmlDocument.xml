@@ -1277,6 +1277,14 @@
             資源釋放
             </summary>
         </member>
+        <member name="M:Taoyuan_Traffic.Models.Repository.TokenRepository.checkClient(System.String,System.String)">
+            <summary>
+            驗證狀態: 1:成功 2:時效已過 0:失敗
+            </summary>
+            <param name="id"></param>
+            <param name="authParam"></param>
+            <returns></returns>
+        </member>
         <member name="F:Taoyuan_Traffic.Models.Repository.TraRepository._db">
             <summary>
             (私有) 資料庫實體資料集合
