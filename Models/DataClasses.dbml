@@ -240,6 +240,7 @@
   <Table Name="dbo.Token" Member="Token">
     <Type Name="Token">
       <Column Name="tID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="clientID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Token" Member="Token1" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="IP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ExpireTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />

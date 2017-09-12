@@ -5065,6 +5065,8 @@ namespace Taoyuan_Traffic.Models
 		
 		private int _tID;
 		
+		private string _clientID;
+		
 		private string _Token1;
 		
 		private string _IP;
@@ -5077,6 +5079,8 @@ namespace Taoyuan_Traffic.Models
     partial void OnCreated();
     partial void OntIDChanging(int value);
     partial void OntIDChanged();
+    partial void OnclientIDChanging(string value);
+    partial void OnclientIDChanged();
     partial void OnToken1Changing(string value);
     partial void OnToken1Changed();
     partial void OnIPChanging(string value);
@@ -5106,6 +5110,26 @@ namespace Taoyuan_Traffic.Models
 					this._tID = value;
 					this.SendPropertyChanged("tID");
 					this.OntIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_clientID", DbType="NVarChar(50)")]
+		public string clientID
+		{
+			get
+			{
+				return this._clientID;
+			}
+			set
+			{
+				if ((this._clientID != value))
+				{
+					this.OnclientIDChanging(value);
+					this.SendPropertyChanging();
+					this._clientID = value;
+					this.SendPropertyChanged("clientID");
+					this.OnclientIDChanged();
 				}
 			}
 		}

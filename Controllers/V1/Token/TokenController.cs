@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Web;
 using System.Web.Http;
@@ -16,13 +17,16 @@ namespace Taoyuan_Traffic.Controllers.V1.Token
     public class TokenController : ApiController
     {
         // POST api/values
-        public object Post()
+        public object Post(HttpRequestMessage request)
         {
             //Init TokenClientInfo
             ClientInfo clientInfo = new ClientInfo();
 
             // TODO: key應該移至config
             clientInfo.secret = "CIANAPI";
+
+            //Token ID
+            clientInfo.clientID = GetClientID(request);
 
             //TODO: expiretime
             var now = DateTime.Now;
@@ -31,6 +35,8 @@ namespace Taoyuan_Traffic.Controllers.V1.Token
             //TODO: IP
             clientInfo.clientIP = GetClientIP();
 
+
+            //TODO: repos
             IToken repos = DataFactory.TokenRepository();
 
             return repos.getToken(clientInfo);
@@ -71,6 +77,14 @@ namespace Taoyuan_Traffic.Controllers.V1.Token
                 ip = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
 
             return ip.Replace(" ", string.Empty);
+        }
+
+        public static string GetClientID(HttpRequestMessage request)
+        {
+            IEnumerable<string> clientID = request.Headers.GetValues("X-Client-Uid");
+            var id = clientID.FirstOrDefault();
+
+            return id;
         }
     }
 }
