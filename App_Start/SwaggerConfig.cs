@@ -38,7 +38,7 @@ namespace Taoyuan_Traffic
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "千享國際資料介接API");
+                        c.SingleApiVersion("v1", "千享國際資料介接(需先取得Token)");
 
                         // If your API has multiple versions, use "MultipleApiVersions" instead of "SingleApiVersion".
                         // In this case, you must provide a lambda that tells Swashbuckle which actions should be

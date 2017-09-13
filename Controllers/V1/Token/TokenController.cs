@@ -1,4 +1,5 @@
 ﻿using Jose;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,14 @@ namespace Taoyuan_Traffic.Controllers.V1.Token
 {
     public class TokenController : ApiController
     {
+        /// <summary>
+        /// 取得Token資訊
+        /// </summary>
+        /// <param name="request">需用Post傳Header("X-Client-Uid")</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("api/v1/Token")]
+        [SwaggerImplementationNotes("取得Token資訊")]
         // POST api/values
         public object Post(HttpRequestMessage request)
         {

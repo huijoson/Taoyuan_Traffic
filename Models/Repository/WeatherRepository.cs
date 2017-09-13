@@ -208,6 +208,22 @@ namespace Taoyuan_Traffic.Models.Repository
                                                          }).ToList();
                     return weatherListWind;
 
+                case "UVI":
+                    List<WeatherWind> weatherListUVI = (from o in _db.Weather
+                                                         where o.elementName.Equals("UVI")
+                                                         //&& DateTime.Compare(Convert.ToDateTime(o.startTime), dt1) > 0
+                                                         && o.locationName.Contains(local)
+                                                         select new WeatherWind()
+                                                         {
+                                                             startTime = o.startTime,
+                                                             endTime = o.endTime,
+                                                             elementValue = o.elementValue,
+                                                             parameterName = o.parameterName,
+                                                             parameterValue = o.parameterValue
+
+                                                         }).ToList();
+                    return weatherListUVI;
+
                 default:
                     return null;
             }

@@ -4,11 +4,13 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Taoyuan_Traffic.Controllers.V1.Token;
 using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.Models.Interface;
 
 namespace Taoyuan_Traffic.Controllers.V1.Weather
 {
+    [JwtAuthActionFilter]
     public class WeatherController : ApiController
     {
         /// <summary>
@@ -19,7 +21,8 @@ namespace Taoyuan_Traffic.Controllers.V1.Weather
         /// PoP:降雨率, 
         /// T:溫度, 
         /// WeatherDescription:天氣敘述,
-        /// Wind:風速、風向 )</param>
+        /// Wind:風速、風向,
+        /// UVI:紫外線)</param>
         /// <param name="date">日期(如:2017-05-26 21:00:00)</param>
         /// <param name="local">區域(如:桃園區)</param>
         /// <returns></returns>

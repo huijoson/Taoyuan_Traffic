@@ -3,6 +3,7 @@ using Swashbuckle.Swagger.Annotations;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Taoyuan_Traffic.Controllers.V1.Token;
 using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.Models.Interface;
 using Taoyuan_Traffic.ViewModels.RealTime;
@@ -11,6 +12,7 @@ namespace Taoyuan_Traffic.Controllers.V1.RealTime
 {
     public class RealTimeController : ApiController
     {
+        [JwtAuthActionFilter]
         /// <summary>
         /// 取得即時路況(全台)
         /// </summary>

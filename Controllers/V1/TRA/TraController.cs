@@ -8,13 +8,15 @@ using Taoyuan_Traffic.Models.Interface;
 using System.Web.Http.Description;
 using Taoyuan_Traffic.ViewModels.TRA;
 using System.Threading.Tasks;
+using Taoyuan_Traffic.Controllers.V1.Token;
 
 namespace Taoyuan_Traffic.Controllers.V1.TRA
 {
+    [JwtAuthActionFilter]
     public class TraController : ApiController
     {
         /// <summary>
-        /// 取得公車路線資料
+        /// 取得台鐵路線資料
         /// </summary>
         /// <param name="originSation">去站(中文，如臺北)</param>
         /// <param name="destionation">回站(中文，如臺南)</param>

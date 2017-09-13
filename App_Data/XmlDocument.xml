@@ -668,15 +668,6 @@
             <param name="trainAfterTime">希望乘車時間(17:30)</param>
             <returns></returns>
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.V1.RealTime.RealTimeController.GetSearchWeather(System.Single,System.Single,System.Int32)">
-            <summary>
-            取得即時路況(全台)
-            </summary>
-            <param name="radius">半徑範圍(公尺)</param>
-            <param name="x">經度</param>
-            <param name="y">緯度</param>
-            <returns></returns>
-        </member>
         <member name="M:Taoyuan_Traffic.Controllers.V1.Rest.RestController.GetRest">
             <summary>
             取得兩輪充電站資訊
@@ -689,20 +680,19 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Taoyuan_Traffic.Controllers.V1.Tidal.TidalController.GetSearchTidal(System.String)">
-            <summary>
-            取得一個月份潮汐資料(金門地區)
-            </summary>
-            <param name="local">鄉鎮地區關鍵字
-            "金門縣金城鎮", "金門縣金沙鎮", "金門縣金湖鎮", "金門縣金寧鄉", "金門縣烈嶼鄉", "金門縣烏坵鄉"</param>
-            <returns></returns>
-        </member>
         <member name="M:Taoyuan_Traffic.Controllers.V1.Tidal.TidalCusController.GetTidalInfo(System.String)">
             <summary>
             取得搜尋潮汐資訊(金門)
             </summary>
             <param name="local">鄉鎮地區關鍵字
             "金門縣金城鎮", "金門縣金沙鎮", "金門縣金湖鎮", "金門縣金寧鄉", "金門縣烈嶼鄉", "金門縣烏坵鄉"</param>
+            <returns></returns>
+        </member>
+        <member name="M:Taoyuan_Traffic.Controllers.V1.Token.TokenController.Post(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            取得Token資訊
+            </summary>
+            <param name="request">需用Post傳Header("X-Client-Uid")</param>
             <returns></returns>
         </member>
         <member name="M:Taoyuan_Traffic.Controllers.V1.Token.TokenController.GetClientIP">
@@ -713,7 +703,7 @@
         </member>
         <member name="M:Taoyuan_Traffic.Controllers.V1.TRA.TraController.GetTraDailyTimeTable(System.String,System.String,System.String,System.String)">
             <summary>
-            取得公車路線資料
+            取得台鐵路線資料
             </summary>
             <param name="originSation">去站(中文，如臺北)</param>
             <param name="destionation">回站(中文，如臺南)</param>
@@ -745,7 +735,8 @@
             PoP:降雨率, 
             T:溫度, 
             WeatherDescription:天氣敘述,
-            Wind:風速、風向 )</param>
+            Wind:風速、風向,
+            UVI:紫外線)</param>
             <param name="date">日期(如:2017-05-26 21:00:00)</param>
             <param name="local">區域(如:桃園區)</param>
             <returns></returns>

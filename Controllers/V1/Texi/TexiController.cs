@@ -7,12 +7,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Taoyuan_Traffic.Controllers.V1.Token;
 using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.Models.Interface;
 using Taoyuan_Traffic.ViewModels.Text;
 
 namespace Taoyuan_Traffic.Controllers.V1.Texi
 {
+    [JwtAuthActionFilter]
     public class TexiController : ApiController
     {
         /// <summary>

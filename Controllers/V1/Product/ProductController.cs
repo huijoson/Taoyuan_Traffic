@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Taoyuan_Traffic.Controllers.V1.Token;
 using Taoyuan_Traffic.Controllers.V1.TRA;
 using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.Models.Interface;
@@ -24,6 +25,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Product
 {
     public class ProductController : Controller
     {
+        [JwtAuthActionFilter]
         // GET: Product
         public ActionResult Index()
         {

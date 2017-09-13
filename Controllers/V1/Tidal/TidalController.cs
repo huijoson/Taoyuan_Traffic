@@ -4,6 +4,7 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Taoyuan_Traffic.Controllers.V1.Token;
 using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.Models.Interface;
 using Taoyuan_Traffic.ViewModels.Tidal;
@@ -12,6 +13,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Tidal
 {
     public class TidalController : ApiController
     {
+        [JwtAuthActionFilter]
         /// <summary>
         /// 取得一個月份潮汐資料(金門地區)
         /// </summary>

@@ -38,7 +38,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Weather
             {
 
                 string targetURI = ConfigurationManager.AppSettings["WeatherInfoURL"].ToString() + "/" 
-                                    + wtList[i].ToString() + "?elementName=WeatherDescription,Wx,PoP,T,Wind&sort=time";
+                                    + wtList[i].ToString() + "?elementName=WeatherDescription,Wx,PoP,T,Wind,UVI&sort=time";
 
                 var jsonResponse = "";
                 StringBuilder jsonResultSB = new StringBuilder();
