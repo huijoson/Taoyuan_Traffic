@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Taoyuan_Traffic.Controllers.V1.Token;
 using Taoyuan_Traffic.Models;
 using Taoyuan_Traffic.Models.Interface;
 using Taoyuan_Traffic.ViewModels;
@@ -18,6 +19,7 @@ namespace Taoyuan_Traffic.Controllers.V1.Bus
     /// <summary>
     /// Bus
     /// </summary>
+    [JwtAuthActionFilter]
     public class BusController : ApiController
     {
         //用來暫存路線名稱
